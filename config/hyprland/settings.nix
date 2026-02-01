@@ -20,6 +20,7 @@ in
   exec-once = [
     "eww open statusbar && legcord"
     "elephant"
+    "hyprctl setcursor breeze_cursors 24"
   ];
 
   "debug:disable_logs" = true; # false to have logs

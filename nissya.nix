@@ -1,4 +1,5 @@
 { inputs
+, pkgs
 , ...
 }:
 
@@ -10,6 +11,38 @@
   ];
   home.username = "nissya";
   home.homeDirectory = "/home/nissya";
+
+  home.pointerCursor = {
+    gtk.enable = true;
+    x11.enable = true;
+    package = pkgs.kdePackages.breeze;
+    name = "breeze_cursors";
+    size = 24;
+  };
+
+  gtk = {
+    enable = true;
+
+    font = {
+      name = "Noto Sans";
+      size = 10;
+    };
+    cursorTheme = {
+      name = "breeze_cursors";
+      size = 24;
+    };
+    iconTheme = {
+      package = pkgs.kdePackages.breeze-icons;
+      name = "breeze-dark";
+    };
+
+    gtk3.extraConfig = {
+      gtk-application-prefer-dark-theme = true;
+    };
+    gtk4.extraConfig = {
+      gtk-application-prefer-dark-theme = true;
+    };
+  };
 
   # This value determines the Home Manager release that your configuration is
   # compatible with. This helps avoid breakage when a new Home Manager release
