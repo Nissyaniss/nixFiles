@@ -18,5 +18,6 @@
     "SUPER, DOWN, movefocus, d" # move focus down
     "SUPER, W, togglefloating" # toggle floating on focused window
     "SUPER, SUPER_L, exec, walker" # start walker
+    "SUPER, P, exec, wleave" # start wleave
   ];
 }

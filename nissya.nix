@@ -7,7 +7,9 @@
 
   imports = [
     inputs.walker.homeManagerModules.default
-    ./config/hyprland/default.nix
+    ./config/hyprland
+    ./config/nushell
+    ./config/starship
   ];
   home.username = "nissya";
   home.homeDirectory = "/home/nissya";
@@ -71,6 +73,9 @@
     enable = true;
     runAsService = true;
   };
+
+  programs.carapace.enable = true;
+  programs.carapace.enableNushellIntegration = true;
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;

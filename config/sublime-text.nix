@@ -11,7 +11,11 @@
     enable = true;
     plugins = {
       "A File Icon" = { };
-      BracketHighlighter = { };
+      BracketHighlighter = {
+        settings = {
+          ignore_threshold = false;
+        };
+      };
       "Color Scheme - Dracula Neue" = { };
       "Dracula Color Scheme" = { };
       LSP = {

@@ -2,9 +2,9 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config
-, pkgs
+{ pkgs
 , inputs
+, self
 , ...
 }:
 
@@ -61,7 +61,7 @@
   };
 
   home-manager = {
-    extraSpecialArgs = { inherit inputs; };
+    extraSpecialArgs = { inherit inputs self; };
     users = {
       "nissya" = import ./nissya.nix;
       "root" = import ./root.nix;
@@ -85,6 +85,7 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
+    fastfetch
     neovim
     modrinth-app
     feishin
@@ -111,6 +112,7 @@
     prismlauncher
     playerctl
     alsa-utils
+    sublime-merge-dev
   ];
 
   fonts.packages = with pkgs; [
@@ -141,7 +143,6 @@
 
     nvidiaSettings = true;
 
-    package = config.boot.kernelPackages.nvidiaPackages.stable;
   };
 
   programs.steam.enable = true;
