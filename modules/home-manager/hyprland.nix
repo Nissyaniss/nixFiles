@@ -18,21 +18,25 @@ let
           output = mkOption {
             type = types.str;
             description = ''
+              Name of the monitor. (using hyprctl monitors to get)
             '';
           };
           mode = mkOption {
             type = types.str;
             description = ''
+              XxY@hz where X and Y are the sizes of your screen (for example 1920x1080 is X = 1920 and Y = 1080) and hz the number of hertz for your screen (hyprctl monitors to know what is the supported hz for your monitors)
             '';
           };
           position = mkOption {
             type = types.str;
             description = ''
+              XxY where X and Y are the position in pixels of the screens.
             '';
           };
           scale = mkOption {
             type = types.int;
             description = ''
+              Scale of your screens
             '';
           };
         };
