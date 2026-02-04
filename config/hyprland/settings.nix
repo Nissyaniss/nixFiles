@@ -1,22 +1,9 @@
+{ ... }:
 let
   bindConf = import ./keymaps/bind.nix;
   bindmConf = import ./keymaps/bindm.nix;
 in
 {
-  monitorv2 = [
-    {
-      output = "DP-2";
-      mode = "2560x1440@144";
-      position = "0x0";
-      scale = 1;
-    }
-    {
-      output = "HDMI-A-1";
-      mode = "1360x768@60";
-      position = "2560x672";
-      scale = 1;
-    }
-  ];
   exec-once = [
     "eww open statusbar && legcord"
     "elephant"

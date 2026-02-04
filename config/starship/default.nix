@@ -1,5 +1,4 @@
-{ self
-, ...
+{ ...
 }:
 {
   programs.starship = {
@@ -53,31 +52,31 @@
       };
 
       custom.without_git_and_at_home = {
-        when = "nu ./scripts/isntGitAndIsAtHome.nu";
+        when = "nu ${./scripts/isntGitAndIsAtHome.nu}";
         format = "[ ](fg:#6C6C6C bg:#444444)[ ~ ](bg:#444444 fg:#0997D5)[](fg:#444444)";
       };
 
 
       custom.without_git = {
-        command = "nu ./scripts/getDirectoryRelativeToHome.nu";
+        command = "nu ${./scripts/getDirectoryRelativeToHome.nu}";
         when = "nu ./scripts/isntGit.nu";
         format = "[ ](fg:#6C6C6C bg:#444444)[ ](bg:#444444 fg:#0997D5)[$output ](bg:#444444 fg:#0997D5)[](fg:#444444)";
       };
 
       custom.with_git = {
-        command = "nu ./scripts/getDirectoryRelativeToHome.nu";
+        command = "nu ${./scripts/getDirectoryRelativeToHome.nu}";
         when = "nu ./scripts/isGit.nu";
         format = "[ ](fg:#6C6C6C bg:#444444)[ ](bg:#444444 fg:#0997D5)[$output ](bg:#444444 fg:#0997D5)";
       };
 
       custom.root_without_git = {
-        command = "nu ./scripts/getDirectoryRelativeToRoot.nu";
+        command = "nu ${./scripts/getDirectoryRelativeToRoot.nu}";
         when = "nu ./scripts/isntGitAndIsRoot.nu";
         format = "[ ](fg:#6C6C6C bg:#444444)[ /](bg:#444444 fg:#0997D5)[$output ](bg:#444444 fg:#0997D5)[](fg:#444444)";
       };
 
       custom.root_with_git = {
-        command = "nu ./scripts/getDirectoryRelativeToRoot.nu";
+        command = "nu ${./scripts/getDirectoryRelativeToRoot.nu}";
         when = "nu ./scripts/isGitAndIsRoot.nu";
         format = "[ ](fg:#6C6C6C bg:#444444)[ /](bg:#444444 fg:#0997D5)[$output ](bg:#444444 fg:#0997D5)";
       };

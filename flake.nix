@@ -38,19 +38,51 @@
       nixosConfigurations.nixosTimePC = nixpkgs.lib.nixosSystem {
         specialArgs = { inherit inputs; };
         modules = [
-	  {networking.hostName = "nixosTimePC";}
+          { networking.hostName = "nixosTimePC"; }
           ./configuration.nix
           inputs.home-manager.nixosModules.default
-	  ./hardware-config/nixosTimePC.nix
+          ./hardware-config/nixosTimePC.nix
+          {
+            home-manager.users.nissya.hyprland = {
+              enable = true;
+              monitor = [
+                {
+                  output = "DP-2";
+                  mode = "2560x1440@144";
+                  position = "0x0";
+                  scale = 1;
+                }
+                {
+                  output = "HDMI-A-1";
+                  mode = "1360x768@60";
+                  position = "2560x672";
+                  scale = 1;
+                }
+              ];
+            };
+          }
         ];
       };
 
       nixosConfigurations.nixosTimeLap = nixpkgs.lib.nixosSystem {
         specialArgs = { inherit inputs; }; # this is the important part
         modules = [
-	  {networking.hostName = "nixosTimeLap";}
-	  ./hardware-config/nixosTimeLap.nix
+          { networking.hostName = "nixosTimeLap"; }
+          ./hardware-config/nixosTimeLap.nix
           ./configuration.nix
+          {
+            home-manager.users.nissya.hyprland = {
+              enable = true;
+              monitor = [
+                {
+                  output = "eDP-1";
+                  mode = "1920x1080@59.98Hz";
+                  position = "0x0";
+                  scale = 1;
+                }
+              ];
+            };
+          }
         ];
       };
     };

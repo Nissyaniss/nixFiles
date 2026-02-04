@@ -4,7 +4,7 @@
 
 {
   imports = [
-    ../modules/sublime-text.nix
+    ../modules/nix/sublime-text.nix
   ];
 
   sublime-text = {
@@ -89,7 +89,7 @@
     };
     keymap = [
       {
-        keys = "f2";
+        keys = [ "f2" ];
         command = "lsp_symbol_rename";
         context = [
           {
@@ -99,7 +99,7 @@
         ];
       }
       {
-        keys = "ctrl+.";
+        keys = [ "ctrl+." ];
         command = "lsp_code_actions";
         context = [
           {
