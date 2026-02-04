@@ -33,8 +33,6 @@
   outputs =
     { self, nixpkgs, ... }@inputs:
     {
-      # use "nixos", or your hostname as the name of the configuration
-      # it's a better practice than "default" shown in the video
       nixosConfigurations.nixosTimePC = nixpkgs.lib.nixosSystem {
         specialArgs = { inherit inputs; };
         modules = [
@@ -65,7 +63,7 @@
       };
 
       nixosConfigurations.nixosTimeLap = nixpkgs.lib.nixosSystem {
-        specialArgs = { inherit inputs; }; # this is the important part
+        specialArgs = { inherit inputs; };
         modules = [
           { networking.hostName = "nixosTimeLap"; }
           ./hardware-config/nixosTimeLap.nix

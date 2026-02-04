@@ -1,0 +1,246 @@
+(defwindow statusbar
+	:monitor 1
+	:geometry (geometry
+		:x "0px"
+		:y "0px"
+		:width "100%"
+		:height "40px"
+		:anchor "top center"
+	)
+	:stacking "fg"
+	:exclusive true
+	:focusable false
+	:namespace "eww"
+
+	(statusbar)
+)
+
+(deflisten workspace "python ~/.config/eww/scripts/workspaces.py")
+
+(deflisten mpris-title "playerctl -sF metadata title -f \"{{trunc(title, 55)}}\"")
+
+(deflisten mpris-status "playerctl -sF status")
+
+(defvar mpris-hidden true)
+
+(defpoll dateName
+	:interval "1s"
+	`date +%a`
+)
+
+(defpoll dateHour
+	:interval "1s"
+	`date +%T`
+)
+
+(defpoll dateDate
+	:interval "1s"
+	`date +%d/%m`
+)
+
+(deflisten network
+	:initial '{
+		"upload" : "0.0B/s",
+		"download" : "0.0B/s"
+	}'
+	"python ~/.config/eww/scripts/network.py"
+)
+
+(deflisten memory
+	:initial '{
+		"memory" : "0%"
+	}'
+	"python ~/.config/eww/scripts/memory.py"
+)
+
+(deflisten cpu
+	:initial '{
+		"cpu" : "0%"
+	}'
+	"python ~/.config/eww/scripts/cpu.py"
+)
+
+(defwidget statusbar []
+	(centerbox
+		:class "centerbox"
+		:orientation "horizontal"
+		(box
+			:space-evenly false
+			(button
+				:onclick "wleave -p layer-shell&"
+				:hexpand false
+				:class "powermenu"
+				(label
+					:text "⏻")
+			)
+			(label
+				:text ""
+				:class "left-ending-arrow"
+			)
+			(label
+				:text ""
+				:class "left-starting-arrow"
+			)
+			(box
+				:space-evenly false
+				(for workspace in {workspace}
+					(button
+						:class "workspace"
+						:onclick "hyprctl dispatch workspace ${workspace.id}"
+						(label
+							:text {workspace.active == true ? "" : "" }
+							:class {workspace.active == true ? "workspace-active" : "workspace" }
+						)
+					)
+				)
+			)
+			(label
+				:text ""
+				:class "left-ending-arrow"
+			)
+			(label
+				:visible {mpris-status != ""}
+				:text ""
+				:class "left-starting-arrow"
+			)
+			(box
+				:space-evenly false
+				:class "mpris"
+				:visible {mpris-status != ""}
+				(eventbox
+					:visible {mpris-status != ""}
+					:onclick "playerctl play-pause"
+					:onhover "eww update mpris-hidden=false"
+					:onhoverlost "eww update mpris-hidden=true"
+					(box
+						:space-evenly false
+						(revealer
+							:reveal { ! mpris-hidden }
+							:transition "slideleft"
+							:duration "500ms"
+							(button
+								:class "mpris-previous"
+								:onclick "playerctl previous"
+								(label
+									:text "󰒫"
+								)
+							)
+						)
+						(label
+							:class "mpris"
+							:text "${mpris-title}"
+						)
+						(revealer
+							:reveal { ! mpris-hidden }
+							:transition "slideright"
+							:duration "500ms"
+							(button
+								:class "mpris-next"
+								:onclick "playerctl next"
+								(label
+									:text "󰒬"
+								)
+							)
+						)
+						(label
+							:text "${mpris-status == "Playing" ? "󰏤" : "󰐊"}"
+						)
+					)
+				)
+			)
+			(label
+				:visible {mpris-status != ""}
+				:text ""
+				:class "left-ending-arrow"
+			)
+		)
+
+		(box
+			:space-evenly false
+			(label
+				:text ""
+				:class "right-ending-arrow"
+			)
+			(label
+				:text {dateName}
+				:class "dateName"
+			)
+			(label
+				:text ""
+				:class "right-starting-arrow"
+			)
+			(label
+				:text ""
+				:class "right-ending-arrow"
+			)
+			(label
+				:text {dateHour}
+				:class "dateHour"
+			)
+			(label
+				:text ""
+				:class "left-ending-arrow"
+			)
+			(label
+				:text ""
+				:class "left-starting-arrow"
+			)
+			(label
+				:text {dateDate}
+				:class "dateDate"
+			)
+			(label
+				:text ""
+				:class "left-ending-arrow"
+			)
+		)
+		(box
+			:space-evenly false
+			:halign "end"
+			(label
+				:text ""
+				:class "left-ending-arrow"
+			)
+			(label
+				:class "network"
+				:text " ${network.upload} /  ${network.download}"
+			)
+			(label
+				:text ""
+				:class "left-starting-arrow"
+			)
+			(label
+				:text ""
+				:class "left-ending-arrow"
+			)
+			(label
+				:text "Mem ${memory.memory}"
+				:class "memory"
+			)
+			(label
+				:text ""
+				:class "left-starting-arrow"
+			)
+			(label
+			:text ""
+				:class "left-ending-arrow"
+			)
+			(label
+				:text "Cpu ${cpu.cpu}"
+				:class "cpu"
+			)
+			(label
+				:text ""
+				:class "left-starting-arrow"
+			)
+			(label
+				:text ""
+				:class "left-ending-arrow"
+			)
+			(systray
+				:class "systray"
+				:icon-size 18
+			)
+		)
+	)
+)

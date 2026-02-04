@@ -1,0 +1,7 @@
+{ ... }: {
+  imports = [
+    ./eww
+    ./nushell
+    ./starship
+  ];
+}

@@ -10,23 +10,19 @@
 
 {
   imports = [
-    # Include the results of the hardware scan.
     inputs.home-manager.nixosModules.default
-    ./config/sublime-text.nix
+    ./config/nix
   ];
 
   users.defaultUserShell = pkgs.nushell;
 
-  # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
   networking.networkmanager.enable = true;
 
-  # Set your time zone.
   time.timeZone = "Europe/Paris";
 
-  # Select internationalisation properties.
   i18n.defaultLocale = "en_US.UTF-8";
 
   i18n.extraLocaleSettings = {
@@ -41,13 +37,11 @@
     LC_TIME = "fr_FR.UTF-8";
   };
 
-  # Configure keymap in X11
   services.xserver.xkb = {
     layout = "us";
     variant = "";
   };
 
-  # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.nissya = {
     isNormalUser = true;
     description = "nissya";
@@ -68,7 +62,6 @@
     };
   };
 
-  # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
   nix.settings.experimental-features = [
@@ -82,8 +75,6 @@
     trusted-public-keys = [ "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc=" ];
   };
 
-  # List packages installed in system profile. To search, run:
-  # $ nix search wget
   environment.systemPackages = with pkgs; [
     fastfetch
     neovim

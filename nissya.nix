@@ -7,9 +7,8 @@
 
   imports = [
     inputs.walker.homeManagerModules.default
-    ./modules/home-manager/hyprland.nix
-    ./config/nushell
-    ./config/starship
+    ./modules/home-manager
+    ./config/home-manager
   ];
 
   home.username = "nissya";

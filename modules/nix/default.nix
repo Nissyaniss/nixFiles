@@ -1,0 +1,5 @@
+{ ... }: {
+  imports = [
+    ./sublime-text.nix
+  ];
+}

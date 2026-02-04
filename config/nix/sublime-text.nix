@@ -4,7 +4,7 @@
 
 {
   imports = [
-    ../modules/nix/sublime-text.nix
+    ../../modules/nix/sublime-text.nix
   ];
 
   sublime-text = {
