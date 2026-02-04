@@ -105,6 +105,7 @@
     alsa-utils
     sublime-merge-dev
     nodejs
+    sddm-astronaut
   ];
 
   fonts.packages = with pkgs; [
@@ -142,6 +143,15 @@
     package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
     portalPackage =
       inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
+  };
+
+  services.displayManager.sddm = {
+    enable = true;
+    wayland = {
+      enable = true;
+    };
+    theme = "sddm-astronaut-theme";
+    extraPackages = [ pkgs.sddm-astronaut ];
   };
 
   # Before changing this value read the documentation for this option
