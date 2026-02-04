@@ -1,3 +1,6 @@
 { ... }: {
-  imports = [ ./sublime-text.nix ];
+  imports = [
+    ./programs
+    ./system
+  ];
 }

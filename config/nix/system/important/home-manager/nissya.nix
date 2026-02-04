@@ -7,8 +7,8 @@
 
   imports = [
     inputs.walker.homeManagerModules.default
-    ./modules/home-manager
-    ./config/home-manager
+    ../../../../../modules/home-manager
+    ../../../../home-manager
   ];
 
   home.username = "nissya";
