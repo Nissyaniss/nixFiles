@@ -35,17 +35,21 @@
     {
       # use "nixos", or your hostname as the name of the configuration
       # it's a better practice than "default" shown in the video
-      nixosConfigurations.nixosTime = nixpkgs.lib.nixosSystem {
+      nixosConfigurations.nixosTimePC = nixpkgs.lib.nixosSystem {
         specialArgs = { inherit inputs; };
         modules = [
+	  {networking.hostName = "nixosTimePC";}
           ./configuration.nix
           inputs.home-manager.nixosModules.default
+	  ./hardware-config/nixosTimePC.nix
         ];
       };
 
-      nixosConfigurations.HOSTNAME = nixpkgs.lib.nixosSystem {
+      nixosConfigurations.nixosTimeLap = nixpkgs.lib.nixosSystem {
         specialArgs = { inherit inputs; }; # this is the important part
         modules = [
+	  {networking.hostName = "nixosTimeLap";}
+	  ./hardware-config/nixosTimeLap.nix
           ./configuration.nix
         ];
       };
