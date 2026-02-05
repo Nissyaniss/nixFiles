@@ -8,6 +8,7 @@ in
     "eww open statusbar && legcord"
     "elephant"
     "hyprctl setcursor breeze_cursors 24"
+    "wleave --service"
   ];
 
   "debug:disable_logs" = true; # false to have logs

@@ -3,5 +3,6 @@
     ./eww
     ./nushell
     ./starship
+    ./wleave
   ];
 }
