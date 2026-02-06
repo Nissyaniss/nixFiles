@@ -25,10 +25,6 @@
   gtk = {
     enable = true;
 
-    font = {
-      name = "Noto Sans";
-      size = 10;
-    };
     cursorTheme = {
       name = "breeze_cursors";
       size = 24;

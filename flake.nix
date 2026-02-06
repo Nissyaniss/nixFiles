@@ -28,10 +28,14 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    stylix = {
+      url = "github:danth/stylix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
-    { self, nixpkgs, ... }@inputs:
+    { self, nixpkgs, stylix, ... }@inputs:
     {
       nixosConfigurations.nixosTimePC = nixpkgs.lib.nixosSystem {
         specialArgs = { inherit inputs; };
@@ -40,6 +44,7 @@
           ./configuration.nix
           inputs.home-manager.nixosModules.default
           ./hardware-config/nixosTimePC.nix
+          stylix.nixosModules.stylix
           {
             home-manager.users.nissya.hyprland = {
               enable = true;
