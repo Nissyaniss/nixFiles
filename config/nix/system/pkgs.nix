@@ -34,5 +34,6 @@
     nodejs
     sddm-astronaut
     nautilus
+    dunst
   ];
 }

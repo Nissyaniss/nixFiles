@@ -30,7 +30,7 @@
       size = 24;
     };
     iconTheme = {
-      package = pkgs.kdePackages.breeze-icons;
+      package = pkgs.dracula-icon-theme;
       name = "breeze-dark";
     };
 

@@ -1,5 +1,6 @@
 { ... }: {
   imports = [
     ./udiskie.nix
+    ./dunst
   ];
 }
