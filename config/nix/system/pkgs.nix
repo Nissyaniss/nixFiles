@@ -1,10 +1,11 @@
-{ pkgs, inputs
+{ pkgs
+, inputs
 , ...
 }: {
   environment.systemPackages = with pkgs; [
     fastfetch
     neovim
-    modrinth-app
+    # modrinth-app
     feishin
     wezterm
     pipewire
@@ -32,5 +33,6 @@
     sublime-merge-dev
     nodejs
     sddm-astronaut
+    nautilus
   ];
 }

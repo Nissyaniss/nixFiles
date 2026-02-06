@@ -78,14 +78,14 @@
 			}
 			
 			button:hover {
-			        background-size: 35%;
-			        background-color: rgba(176, 165, 255, 0.8);
-			        border-radius: 20px;
+			    background-size: 35%;
+			    background-color: rgba(176, 165, 255, 0.8);
+			    border-radius: 20px;
 			
-			        transition: all 0.3s cubic-bezier(.55,0.0,0.28,1.682);
+			    transition: all 0.3s cubic-bezier(.55,0.0,0.28,1.682);
 			}
 			
-			button:hover#lock {
+			window:hover #lock {
 			  border-radius: 20px;
 			  margin: 0px 30px 30px 0px;
 			}

@@ -9,7 +9,7 @@ let
     types
     mkIf
     ;
-  hyprlandDefaultSettings = import ../../config/home-manager/hyprland/settings.nix { };
+  hyprlandDefaultSettings = import ../../config/home-manager/shell/hyprland/settings.nix { };
   monitorOptions = types.submodule
     (
       { ... }:

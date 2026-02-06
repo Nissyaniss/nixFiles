@@ -1,0 +1,7 @@
+{ ... }: {
+  imports = [
+    ./eww
+    # ./hyprland
+    ./wleave
+  ];
+}

@@ -1,6 +1,6 @@
 { ... }: {
   imports = [
-    ./shell
-    ./terminal
+    ./starship
+    ./nushell
   ];
 }

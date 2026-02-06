@@ -1,7 +1,8 @@
 { ... }: {
   imports = [
-    ./steam.nix
+    ./personal
     ./dev
+    ./services
   ];
 }
 

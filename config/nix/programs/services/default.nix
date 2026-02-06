@@ -1,6 +1,5 @@
 { ... }: {
   imports = [
-    ./shell
-    ./terminal
+    ./udisks2.nix
   ];
 }
