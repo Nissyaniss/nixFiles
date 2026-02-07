@@ -24,6 +24,5 @@
         name = "Noto Color Emoji";
       };
     };
-
   };
 }

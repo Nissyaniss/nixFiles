@@ -1,0 +1,130 @@
+/*
+ * vim: ft=less 
+ */
+
+@define-color border-color rgb(40, 42, 54);
+@define-color border-color2 rgb(189, 147, 249);
+@define-color bg rgb(40, 42, 54);
+@define-color bg-hover rgb(68, 71, 90);
+@define-color bg-focus rgb(98, 114, 164);
+@define-color bg-selected rgb(40, 42, 54);
+@define-color bg-red rgba(255, 85, 85, 0.4);
+@define-color bg-red-bright rgba(255, 85, 85, 1);
+
+.notification-row {
+	outline: none;
+	padding: 0px;
+	border-radius: 50px;
+}
+
+.notification-row:focus,
+.notification-row:hover {
+	background: none;
+	padding: 0px;
+	border-radius: 50px;
+}
+
+.notification {
+	border-radius: 12px;
+	border: 1px solid rgba(255, 255, 255, 0.15);
+	margin: 6px 8px;
+	box-shadow: 0px 2px 4px 2px @bg-hover;
+	border-radius: 15px @border-color;
+	padding: 0px;
+}
+
+.notification-content {
+	background: transparent;
+	padding: 6px;
+}
+
+.close-button {
+	background: @border-color;
+	color: white;
+	text-shadow: none;
+	padding: 0px;
+	border-radius: 100%;
+	min-width: 12px;
+	min-height: 14px;
+	margin-right: 12px;
+}
+
+.close-button:hover {
+	background: @bg-red-bright;
+	transition: all 0.15s ease-in-out;
+}
+
+.notification-default-action,
+.notification-action {
+	padding: 4px;
+	margin: 0;
+	box-shadow: none;
+	background: transparent;
+	border-radius: 0px;
+	border: 1px solid @border-color;
+}
+
+.notification-default-action:hover,
+.notification-action:hover {
+	background: @border-color2;
+}
+
+.notification-default-action {
+	border-radius: 10px;
+}
+
+/* When alternative actions are visible */
+.notification-default-action:not(:only-child) {
+	border-bottom-left-radius: 0px;
+	border-bottom-right-radius: 0px;
+}
+
+.notification-action {
+	border-radius: 15px;
+	border-top: none;
+	border-right: none;
+}
+
+/* add bottom border radius to eliminate clipping */
+.notification-action:first-child {
+	border-bottom-left-radius: 10px;
+}
+
+.notification-action:last-child {
+	border-bottom-right-radius: 10px;
+	border-right: 1px solid @border-color;
+}
+
+.image {}
+
+.body-image {
+	margin-top: 6px;
+	background-color: white;
+	border-radius: 10px;
+}
+
+.summary {
+	color: white;
+	text-shadow: none;
+}
+
+.time {
+	color: white;
+	text-shadow: none;
+}
+
+.body {
+	background: transparent;
+	color: white;
+	text-shadow: none;
+}
+
+.top-action-title {
+	color: white;
+	text-shadow: none;
+}
+
+.floating-notifications {
+	background: transparent;
+	border-radius: 50px;
+}

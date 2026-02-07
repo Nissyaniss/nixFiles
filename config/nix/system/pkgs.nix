@@ -5,7 +5,6 @@
   environment.systemPackages = with pkgs; [
     fastfetch
     neovim
-    # modrinth-app
     feishin
     wezterm
     pipewire
@@ -15,8 +14,6 @@
     walker
     swaylock-effects
     grimblast
-    wleave
-    eww
     nixd
     nh
     git
@@ -25,7 +22,6 @@
     killall
     networkmanagerapplet
     carapace
-    starship
     zoxide
     prismlauncher
     playerctl
@@ -34,6 +30,6 @@
     nodejs
     sddm-astronaut
     nautilus
-    dunst
+    libnotify
   ];
 }
