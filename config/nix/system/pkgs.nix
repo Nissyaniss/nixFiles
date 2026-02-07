@@ -31,5 +31,8 @@
     sddm-astronaut
     nautilus
     libnotify
+    vlc
+    eog
+    zathura
   ];
 }
