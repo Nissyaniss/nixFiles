@@ -35,7 +35,7 @@
   };
 
   outputs =
-    { self, nixpkgs, stylix, ... }@inputs:
+    { nixpkgs, stylix, ... }@inputs:
     {
       nixosConfigurations.nixosTimePC = nixpkgs.lib.nixosSystem {
         specialArgs = { inherit inputs; };
