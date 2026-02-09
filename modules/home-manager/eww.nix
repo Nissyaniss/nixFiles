@@ -86,7 +86,7 @@ let
         focusable = mkOption {
           type = types.bool;
           description = ''
-            Wether the window is focusable
+            Whether the window is focusable
           '';
         };
         namespace = mkOption {
@@ -197,6 +197,124 @@ let
           example = "statusbar";
           descritption = ''
             Name of the widget.
+          '';
+        };
+        children = {
+          type = children;
+        };
+      };
+    }
+  );
+
+  widgetDefaultAttributes =
+    {
+      class = mkOption {
+        type = types.str;
+        example = "good-lookin-class";
+        descritption = ''
+          Css class name.
+        '';
+      };
+      valign = mkOption {
+        type = types.str;
+        example = "fill";
+        descritption = ''
+          How to align this vertically. possible values: "fill", "baseline", "center", "start", "end".
+        '';
+      };
+      halign = mkOption {
+        type = types.str;
+        example = "fill";
+        descritption = ''
+          How to align this horizontally. possible values: "fill", "baseline", "center", "start", "end"
+        '';
+      };
+      vexpand = mkOption {
+        type = types.nullOr types.bool;
+        default = false;
+        example = "fill";
+        descritption = ''
+          Should this container expand vertically.
+        '';
+      };
+      hexpand = mkOption {
+        type = types.nullOr types.bool;
+        default = false;
+        descritption = ''
+          Should this widget expand horizontally.
+        '';
+      };
+      width = mkOption {
+        type = types.int;
+        descritption = ''
+          Should this widget expand horizontally.
+        '';
+      };
+      # width: int width of this element. note that this can not restrict the size if the contents stretch it
+      # height: int height of this element. note that this can not restrict the size if the contents stretch it
+      # active: bool If this widget can be interacted with
+      # tooltip: string tooltip text (on hover)
+      # visible: bool visibility of the widget
+      # style: string inline scss style applied to the widget
+      # css: string scss code applied to the widget, i.e.: button {color: red;}
+
+    };
+
+  children = types.oneOf [
+    centerBox
+  ];
+
+  centerBox = types.submodule (
+    { ... }:
+    {
+      options = {
+        class = mkOption {
+          type = types.str;
+          example = "centerbox";
+          descritption = ''
+            Class of the centerbox.
+          '';
+        };
+        orientation = mkOption {
+          type = types.str;
+          example = "horizontal";
+          descritption = ''
+            Orientation of the centerbox.
+          '';
+        };
+        children = {
+          type = types.attrsOf children;
+          example = "coming soon";
+          descritption = ''
+            List of childrens.
+          '';
+        };
+      };
+    }
+  );
+
+  box = types.submodule (
+    { ... }:
+    {
+      options = {
+        space-evenly = mkOption {
+          type = types.bool;
+          descritption = ''
+            Whether 
+          '';
+        };
+        orientation = mkOption {
+          type = types.str;
+          example = "horizontal";
+          descritption = ''
+            Orientation of the centerbox.
+          '';
+        };
+        children = {
+          type = types.attrsOf children;
+          example = "coming soon";
+          descritption = ''
+            List of childrens.
           '';
         };
       };
