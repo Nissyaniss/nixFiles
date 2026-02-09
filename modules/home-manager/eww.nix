@@ -640,5 +640,18 @@ in
           config.eww.defWindow}
       '';
     };
+    defPoll = mkOption {
+      type = with types; attrsOf defPollOptions;
+      example = ''
+        defPoll = [
+          {
+            name = dateHour;
+            interval = "1s"
+              command = "date +%T"
+            }
+            ];
+      '';
+    };
   };
 }
+
