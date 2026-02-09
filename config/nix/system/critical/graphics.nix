@@ -2,7 +2,7 @@
 let
   isOpen = if machine-name == "pc" then true else false;
   laptopExtraParameters =
-    if machine-name == "pc" then
+    if machine-name == "laptop" then
       {
         boot.kernelParams = [
           "module_blacklist=nouveau"
@@ -11,7 +11,7 @@ let
       } else
       { };
   primeConfig =
-    if machine-name == "pc" then {
+    if machine-name == "laptop" then {
       offload = {
         enable = true;
         enableOffloadCmd = true;
