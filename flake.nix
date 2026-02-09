@@ -38,7 +38,10 @@
     { nixpkgs, stylix, ... }@inputs:
     {
       nixosConfigurations.nixosTimePC = nixpkgs.lib.nixosSystem {
-        specialArgs = { inherit inputs; };
+        specialArgs = {
+          inherit inputs;
+          machine-name = "pc";
+        };
         modules = [
           { networking.hostName = "nixosTimePC"; }
           ./configuration.nix
@@ -63,16 +66,24 @@
                 }
               ];
             };
+            home-manager.extraSpecialArgs = {
+              inputs = inputs;
+              machine-name = "pc";
+            };
           }
         ];
       };
 
       nixosConfigurations.nixosTimeLap = nixpkgs.lib.nixosSystem {
-        specialArgs = { inherit inputs; };
+        specialArgs = {
+          inherit inputs;
+          machine-name = "laptop";
+        };
         modules = [
           { networking.hostName = "nixosTimeLap"; }
           ./hardware-config/nixosTimeLap.nix
           ./configuration.nix
+          stylix.nixosModules.stylix
           {
             home-manager.users.nissya.hyprland = {
               enable = true;
@@ -84,6 +95,10 @@
                   scale = 1;
                 }
               ];
+            };
+            home-manager.extraSpecialArgs = {
+              inputs = inputs;
+              machine-name = "laptop";
             };
           }
         ];
