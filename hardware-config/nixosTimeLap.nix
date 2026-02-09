@@ -31,18 +31,6 @@
       options = [ "fmask=0077" "dmask=0077" ];
     };
 
-  fileSystems."/var/lib/docker/rootfs/overlayfs/1345bfd655867fe9dfc2271e0f476dc4074054c620b2935fcef4878940c3e3c4" =
-    {
-      device = "overlay";
-      fsType = "overlay";
-    };
-
-  fileSystems."/var/lib/docker/rootfs/overlayfs/be2141ab5798aed284b728760aefc8311fcd853245391ff859adc6e8e54f31ff" =
-    {
-      device = "overlay";
-      fsType = "overlay";
-    };
-
   fileSystems."/mnt/BIGDISK" =
     {
       device = "/dev/disk/by-uuid/5d438092-b767-4a88-ab63-0e2fb04685a5";
