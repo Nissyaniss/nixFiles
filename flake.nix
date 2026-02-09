@@ -54,7 +54,7 @@
               monitor = [
                 {
                   output = "DP-2";
-                  mode = "2560x1440@144";
+                  mode = "modeline 798.86 2560 2568 2592 2672 1440 1463 1471 1492 +hsync -vsync";
                   position = "0x0";
                   scale = 1;
                 }
