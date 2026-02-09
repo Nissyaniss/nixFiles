@@ -36,6 +36,13 @@
 
   outputs =
     { nixpkgs, stylix, ... }@inputs:
+    let
+      defaultModules = [
+        ./configuration.nix
+        inputs.home-manager.nixosModules.default
+        stylix.nixosModules.stylix
+      ];
+    in
     {
       nixosConfigurations.nixosTimePC = nixpkgs.lib.nixosSystem {
         specialArgs = {
@@ -44,34 +51,15 @@
         };
         modules = [
           { networking.hostName = "nixosTimePC"; }
-          ./configuration.nix
-          inputs.home-manager.nixosModules.default
+
           ./hardware-config/nixosTimePC.nix
-          stylix.nixosModules.stylix
           {
-            home-manager.users.nissya.hyprland = {
-              enable = true;
-              monitor = [
-                {
-                  output = "DP-2";
-                  mode = "modeline 798.86 2560 2568 2592 2672 1440 1463 1471 1492 +hsync -vsync";
-                  position = "0x0";
-                  scale = 1;
-                }
-                {
-                  output = "HDMI-A-1";
-                  mode = "1360x768@60";
-                  position = "2560x672";
-                  scale = 1;
-                }
-              ];
-            };
             home-manager.extraSpecialArgs = {
               inputs = inputs;
               machine-name = "pc";
             };
           }
-        ];
+        ] ++ defaultModules;
       };
 
       nixosConfigurations.nixosTimeLap = nixpkgs.lib.nixosSystem {
@@ -82,26 +70,13 @@
         modules = [
           { networking.hostName = "nixosTimeLap"; }
           ./hardware-config/nixosTimeLap.nix
-          ./configuration.nix
-          stylix.nixosModules.stylix
           {
-            home-manager.users.nissya.hyprland = {
-              enable = true;
-              monitor = [
-                {
-                  output = "eDP-1";
-                  mode = "1920x1080@59.98Hz";
-                  position = "0x0";
-                  scale = 1;
-                }
-              ];
-            };
             home-manager.extraSpecialArgs = {
               inputs = inputs;
               machine-name = "laptop";
             };
           }
-        ];
+        ] ++ defaultModules;
       };
     };
 }
