@@ -1,7 +1,7 @@
 { ... }: {
   imports = [
     ./eww
-    # ./hyprland
+    ./hyprland
     ./wleave
   ];
 }
