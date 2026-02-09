@@ -30,7 +30,6 @@ let
         };
         monitor = mkOption {
           type = types.int;
-          default = 0;
           example = 0;
           description = ''
             The monitor where the widget appears.
@@ -100,6 +99,7 @@ let
       };
     }
   );
+
   defListenOptions = types.submodule (
     { ... }:
     {
@@ -120,6 +120,7 @@ let
         };
         initial = mkOption {
           type = with types; nullOr jsonFormat.type;
+          default = null;
           example = ''
             # needs the double {} (i think)
             initial = {
@@ -135,6 +136,7 @@ let
       };
     }
   );
+
   defVarOptions = types.submodule (
     { ... }:
     {
@@ -146,14 +148,57 @@ let
             Name of the var.
           '';
         };
-        value = mkOption
-          {
-            type = types.str;
-            example = "true";
-            descritption = ''
-              Value of the var.
-            '';
-          };
+        value = mkOption {
+          type = types.str;
+          example = "true";
+          descritption = ''
+            Value of the var.
+          '';
+        };
+      };
+    }
+  );
+
+  defPollOptions = types.submodule (
+    { ... }:
+    {
+      options = {
+        name = mkOption {
+          type = types.str;
+          example = "dateName";
+          descritption = ''
+            Name of the poll.
+          '';
+        };
+        interval = mkOption {
+          type = types.str;
+          example = "1s";
+          descritption = ''
+            Interval in wich the poll command is called.
+          '';
+        };
+        command = mkOption {
+          type = types.str;
+          example = "date +%T";
+          descritption = ''
+            Command that is called at poll interval.
+          '';
+        };
+      };
+    }
+  );
+
+  defWidget = types.submodule (
+    { ... }:
+    {
+      options = {
+        name = mkOption {
+          type = types.str;
+          example = "statusbar";
+          descritption = ''
+            Name of the widget.
+          '';
+        };
       };
     }
   );
@@ -166,22 +211,22 @@ in
     defWindow = mkOption {
       type = with types; attrsOf defWindowOptions;
       example = ''
-        defWindow = [
+              defWindow = [
           {
-            name = "statusbar";
-            monitor = 0;
-            geometry = {
-              x = "0px";
-              y = "0px";
-              width = "100%";
-              height = "40px";
-              anchor = "top center";
-            };
-            stacking  = "fg";
-            exclusive = true;
-            focusable = false;
-            namespace = "eww";
-          }
+          name = "statusbar";
+          monitor = 0;
+          geometry = {
+            x = "0px";
+            y = "0px";
+            width = "100%";
+            height = "40px";
+            anchor = "top center";
+          };
+          stacking = "fg";
+          exclusive = true;
+          focusable = false;
+          namespace = "eww";
+        }
         ];
       '';
     };
@@ -189,10 +234,10 @@ in
     defListen = mkOption {
       type = with types; attrsOf defListenOptions;
       example = ''
-        defListen = [
+          defListen = [
           {
-          name = "mpris-hidden";
-          command = "python workspaces.py";
+            name = "mpris-hidden";
+            command = "python workspaces.py";
           }
         ]
       '';
@@ -201,13 +246,26 @@ in
     defVar = mkOption {
       type = with types; attrsOf defVarOptions;
       example = ''
-        defVar = [
-          {
-          name = "workspace";
-          value = "true";
-          }
+          defVar = [
+        {
+        name = "workspace";
+        value = "true";
+        }
         ]
+      '';
+    };
+    defPoll = mkOption {
+      type = with types; attrsOf defPollOptions;
+      example = ''
+        defPoll = [
+          {
+            name = dateHour;
+            interval = "1s"
+              command = "date +%T"
+            }
+            ];
       '';
     };
   };
 }
+
