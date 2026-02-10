@@ -4,7 +4,6 @@
 }:
 
 {
-
   imports = [
     inputs.walker.homeManagerModules.default
     ../../../../../modules/home-manager
