@@ -16,6 +16,8 @@ let
     inherit machine-name;
   }).right;
 
+  monitorNumber = if machine-name == "pc" then 1 else 0;
+
   batteryAttr =
     if machine-name == "laptop" then {
       battery = {
@@ -33,7 +35,7 @@ in
     enable = true;
     defWindow = {
       statusbar = {
-        monitor = 1;
+        monitor = monitorNumber;
         geometry = {
           x = "0px";
           y = "0px";
@@ -52,7 +54,7 @@ in
         command = "python ${./scripts/workspaces.py}";
       };
       mpris-title = {
-        command = "playerctl metadata --format '{{trunc(title, ${playerctlTrunc})}}'";
+        command = "playerctl -sF metadata --format '{{trunc(title, ${playerctlTrunc})}}'";
       };
       mpris-status = {
         command = "playerctl -sF status";
