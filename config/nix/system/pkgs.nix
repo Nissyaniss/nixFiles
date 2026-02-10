@@ -21,7 +21,6 @@
     linux-wallpaperengine
     killall
     networkmanagerapplet
-    carapace
     zoxide
     prismlauncher
     playerctl

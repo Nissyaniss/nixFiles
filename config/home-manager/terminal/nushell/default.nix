@@ -1,12 +1,17 @@
 { ...
 }:
 {
+  programs.carapace = {
+    enable = true;
+    enableNushellIntegration = true;
+  };
+
   programs.nushell =
     {
       enable = true;
 
-      configFile.source = ./config.nu;
-      envFile.source = ./env.nu;
+      extraConfig = builtins.readFile ./config.nu;
+      extraEnv = builtins.readFile ./env.nu;
 
       shellAliases = {
         ls = "ls -a";
