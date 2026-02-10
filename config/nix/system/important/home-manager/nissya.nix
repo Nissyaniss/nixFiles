@@ -70,4 +70,24 @@
   programs.carapace.enableNushellIntegration = true;
 
   programs.home-manager.enable = true;
+
+  eww = {
+    enable = true;
+    defWindow = {
+      statusbar = {
+        monitor = 0;
+        geometry = {
+          x = "0px";
+          y = "0px";
+          width = "100%";
+          height = "40px";
+          anchor = "top center";
+        };
+        stacking = "fg";
+        exclusive = true;
+        focusable = false;
+        namespace = "eww";
+      };
+    };
+  };
 }
