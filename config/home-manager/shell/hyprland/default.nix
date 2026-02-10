@@ -19,7 +19,7 @@ let
         }
       ];
     } else {
-      monitor = [
+      monitorv2 = [
         {
           output = "eDP-1";
           mode = "1920x1080@59.98Hz";
