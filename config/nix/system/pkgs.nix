@@ -1,5 +1,4 @@
 { pkgs
-, inputs
 , ...
 }: {
   environment.systemPackages = with pkgs; [
@@ -10,7 +9,6 @@
     pipewire
     sublime4
     legcord
-    inputs.zen-browser.packages.${pkgs.stdenv.hostPlatform.system}.default
     walker
     swaylock-effects
     grimblast
