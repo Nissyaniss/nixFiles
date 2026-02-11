@@ -1,4 +1,7 @@
-{ machine-name, ... }:
+{ machine-name
+, lib
+, ...
+}:
 let
   bindConf = import ./keymaps/bind.nix;
   bindmConf = import ./keymaps/bindm.nix;
@@ -38,6 +41,9 @@ in
         "elephant"
         "hyprctl setcursor breeze_cursors 24"
         "wleave --service"
+        (lib.optionalString
+          (machine-name == "laptop")
+          "nvidia-offload linux-wallpaperengine --screen-root eDP-1 1705122927")
       ];
 
       "debug:disable_logs" = true; # false to have logs

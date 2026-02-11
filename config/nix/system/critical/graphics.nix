@@ -20,6 +20,13 @@ let
       nvidiaBusId = "PCI:1:0:0";
     } else
       { };
+
+  package =
+    if machine-name == "laptop" then
+      config.boot.kernelPackages.nvidiaPackages.stable
+    else
+      config.boot.kernelPackages.nvidiaPackages.beta
+  ;
 in
 {
   services.xserver.videoDrivers = [ "nvidia" ];
@@ -33,7 +40,7 @@ in
     powerManagement.enable = true;
     open = isOpen;
     nvidiaSettings = true;
-    package = config.boot.kernelPackages.nvidiaPackages.beta;
+    package = package;
 
     prime = primeConfig;
   };
