@@ -3,6 +3,7 @@
     ./personal
     ./dev
     ./services
+    ./zen.nix
   ];
 }
 
