@@ -32,5 +32,6 @@
     eog
     zathura
     transmission_4-gtk
+    heroic
   ];
 }
