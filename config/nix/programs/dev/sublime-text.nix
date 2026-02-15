@@ -98,6 +98,7 @@
       # Terminal = { };
       TOML = { };
       Nix = { };
+      QML = { };
     };
     keymap = [
       {

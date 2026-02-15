@@ -3,25 +3,85 @@ import Quickshell.Wayland
 import Quickshell.Io
 import Quickshell.Hyprland
 import QtQuick
-import QtQuick.Layouts
 import Quickshell.Services.Mpris
-
-import QtQuick
 import QtQuick.Layouts
-import Quickshell
 import Quickshell.Services.SystemTray
-
+import QtQuick.Shapes
 
 PanelWindow {
     id: topBar
     height: 40
     color: "transparent"
 
+    component HexSegment: Item {
+        id: seg
+        property string text: ""
+        property bool isLeft: false
+        property bool endLeft: false
+        property bool isRight: false
+        property bool endRight: false
+        property bool isMiddle: false
+
+        readonly property int pw: 12 // Point Width
+        width: label.width + (isMiddle ? pw * 3 : pw * 2) + 10 + (isLeft ? 30 : 0) + (isRight ? 30 : 0) + (isMiddle ? 30 : 0)
+        height: 40
+        anchors.verticalCenter: parent.verticalCenter
+
+        Shape {
+            anchors.fill: parent
+            layer.enabled: true
+            layer.samples: 4
+            ShapePath {
+                fillColor: "#1a1a1a"
+                strokeColor: "transparent"
+
+                // Logic for the shape points based on position
+                startX: endLeft ? 0 : seg.pw
+                startY: 0
+
+                PathLine {
+                    x: endRight ? seg.width : isMiddle ? seg.width - seg.pw - 10 : isRight ? seg.width - 20 : isLeft ? seg.width : 0
+                    y: 0
+                }
+                PathLine {
+                    x: isLeft ? seg.width - 20 : seg.width
+                    y: seg.height / 2
+                }
+                PathLine {
+                    x: endRight ? seg.width : isMiddle ? seg.width - seg.pw - 10 : isRight ? seg.width - 20 : isLeft ? seg.width : 0
+                    y: seg.height
+                }
+                PathLine {
+                    x: endLeft ? 0 : isRight ? 0 : seg.pw + 10
+                    y: seg.height
+                }
+                PathLine {
+                    x: 0 + (isRight ? 20 : 0)
+                    y: seg.height / 2
+                }
+                PathLine {
+                    x: endLeft ? 0 : isRight ? 0 : seg.pw + 10
+                    y: 0
+                }
+            }
+        }
+
+        Text {
+            id: label
+            anchors.centerIn: parent
+            text: seg.text
+            color: "white"
+            font.family: "JetBrains Mono"
+        }
+    }
+
     property string memUsage: "0%"
     property string cpuUsage: "0"
     property string networkUsage: " 0.0Mb/s /  0.0Mb/s"
     readonly property list<MprisPlayer> availablePlayers: Mpris.players.values
     property MprisPlayer player: availablePlayers.find(p => p.isPlaying) ?? availablePlayers.find(p => p.canControl && p.canPlay) ?? null
+
+    property bool isHoveringMpris: false
 
     anchors {
         top: true
@@ -40,7 +100,6 @@ PanelWindow {
         stdout: StdioCollector {
             onStreamFinished: memUsage = this.text
         }
-
     }
 
     Process {
@@ -64,9 +123,9 @@ PanelWindow {
         running: true
         repeat: true
         onTriggered: {
-            mem.running = true
-            cpu.running = true
-            network.running = true
+            mem.running = true;
+            cpu.running = true;
+            network.running = true;
         }
     }
 
@@ -82,9 +141,9 @@ PanelWindow {
 
             Row {
                 spacing: 15
-                Text {
-                    color: "white"
+                HexSegment {
                     text: "⏻"
+                    endLeft: true
                     MouseArea {
                         anchors.fill: parent
                         onClicked: wleave.running = true
@@ -97,8 +156,6 @@ PanelWindow {
                         text: workspace.focused ? "" : ""
                         color: "white"
                         font {
-                            family: root.fontFamily
-                            pixelSize: root.fontSize
                             bold: true
                         }
                         MouseArea {
@@ -107,26 +164,69 @@ PanelWindow {
                         }
                     }
                 }
-                Text {
-                    text: player.isPlaying ? "⏸" : "▶"
-                    color: "white"
+
+                Item {
+                    width: layoutRow.width
+                    height: layoutRow.height
+
                     MouseArea {
                         anchors.fill: parent
-                        onClicked: player.isPlaying ? player.pause() : player.play()
-                        onHover: player.pause()
-                    }
-                }
+                        hoverEnabled: true
+                        propagateComposedEvents: true
 
-                Column {
-                    Text {
-                        text: player.trackTitle
-                        color: "white"
-                        font.bold: true
+                        onClicked: player.isPlaying ? player.pause() : player.play()
+
+                        onEntered: isHoveringMpris = true
+
+                        onExited: isHoveringMpris = false
                     }
-                    Text {
-                        text: player.trackArtist
-                        color: "gray"
-                        font.pixelSize: 10
+
+                    Row {
+                        id: layoutRow
+                        spacing: 10
+                        Text {
+                            text: "󰒫"
+                            color: "white"
+                            visible: isHoveringMpris
+                            anchors.verticalCenter: parent.verticalCenter
+                            font.pixelSize: 25
+
+                            MouseArea {
+                                anchors.fill: parent
+                                onClicked: player.previous()
+                            }
+                        }
+
+                        Column {
+                            Text {
+                                text: player.trackTitle
+                                color: "white"
+                                font.bold: true
+                            }
+                            Text {
+                                text: player.trackArtist
+                                color: "white"
+                                font.pixelSize: 10
+                            }
+                        }
+                        Text {
+                            text: player.isPlaying ? "⏸" : "▶"
+                            color: "white"
+                            anchors.verticalCenter: parent.verticalCenter
+                            font.pixelSize: 25
+                        }
+                        Text {
+                            text: "󰒬"
+                            color: "white"
+                            visible: isHoveringMpris
+                            anchors.verticalCenter: parent.verticalCenter
+                            font.pixelSize: 25
+
+                            MouseArea {
+                                anchors.fill: parent
+                                onClicked: player.next()
+                            }
+                        }
                     }
                 }
             }
@@ -136,29 +236,35 @@ PanelWindow {
         Item {
             Layout.fillWidth: true
             Layout.fillHeight: true
-            SystemClock {
-                id: clock
-                precision: SystemClock.Seconds
-            }
 
             Row {
                 anchors.centerIn: parent
-                spacing: 15
-                Text {
-                    color: "white"
+                spacing: -5
+
+                // 1. Day Segment (Flat left, Pointed right)
+                HexSegment {
                     text: Qt.formatDateTime(clock.date, "ddd.")
+                    isLeft: true
                 }
-                Text {
-                    color: "white"
+
+                // 2. Time Segment (Pointed left, Pointed right)
+                HexSegment {
                     text: Qt.formatDateTime(clock.date, "hh:mm:ss")
+                    isMiddle: true
                 }
-                Text {
-                    color: "white"
+
+                // 3. Date Segment (Pointed left, Flat right)
+                HexSegment {
                     text: Qt.formatDateTime(clock.date, "dd/MM")
+                    isRight: true
+                }
+
+                SystemClock {
+                    id: clock
+                    precision: SystemClock.Seconds
                 }
             }
         }
-
         // Right
         Item {
             Layout.fillWidth: true
@@ -168,20 +274,19 @@ PanelWindow {
                 anchors.verticalCenter: parent.verticalCenter
                 spacing: 10
 
-
-                Text {
+                HexSegment {
                     text: networkUsage
-                    color: "white"
+                    isLeft: true
                 }
 
-                Text {
+                HexSegment {
                     text: `Mem ${memUsage}`
-                    color: "white"
+                    isLeft: true
                 }
 
-                Text {
+                HexSegment {
                     text: `Cpu ${cpuUsage}%`
-                    color: "white"
+                    isLeft: true
                 }
 
                 Repeater {
