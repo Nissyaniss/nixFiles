@@ -33,11 +33,19 @@
           };
           lsp_format_on_save = true;
           show_inlay_hints = true;
-          clients.nixd = {
-            enabled = true;
-            command = [ "${pkgs.nixd}/bin/nixd" ];
-            selector = "source.nix";
-            settings.nixd.formatting.command = [ "${pkgs.nixpkgs-fmt}/bin/nixpkgs-fmt" ];
+          clients = {
+            nixd = {
+              enabled = true;
+              command = [ "${pkgs.nixd}/bin/nixd" ];
+              selector = "source.nix";
+              settings.nixd.formatting.command = [ "${pkgs.nixpkgs-fmt}/bin/nixpkgs-fmt" ];
+            };
+            qmlls = {
+              enabled = true;
+              command = [ "${pkgs.kdePackages.qtdeclarative}/bin/qmlls" ];
+              selector = "source.qml";
+              settings.nixd.formatting.command = [ "${pkgs.kdePackages.qtdeclarative}/bin/qmlformat" ];
+            };
           };
         };
       };

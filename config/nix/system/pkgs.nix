@@ -33,5 +33,8 @@
     zathura
     transmission_4-gtk
     heroic
+    gamescope
+    mangohud
+    protonplus
   ];
 }
