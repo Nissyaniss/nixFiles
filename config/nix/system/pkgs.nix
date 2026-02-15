@@ -35,6 +35,8 @@
     heroic
     gamescope
     mangohud
+    qt6.qt5compat
+    kdePackages.qtdeclarative
     protonplus
   ];
 }

@@ -3,5 +3,6 @@
     ./eww
     ./hyprland
     ./wleave
+    ./quickshell
   ];
 }
