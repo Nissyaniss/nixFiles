@@ -37,7 +37,7 @@ in
     enable = true;
     settings = {
       exec-once = [
-        "eww open statusbar && legcord"
+        "legcord"
         "elephant"
         "hyprctl setcursor breeze_cursors 24"
         "wleave --service"
