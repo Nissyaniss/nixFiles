@@ -3,6 +3,8 @@ import QtQuick
 import Quickshell.Services.Mpris
 
 BarText {
+    anchors.verticalCenter: parent.verticalCenter
+
     property MprisPlayer mprisPlayer
     text: "󰒬"
     color: "white"
