@@ -2,9 +2,9 @@
   programs.quickshell = {
     enable = true;
 
-    activeConfig = "test";
+    activeConfig = "default";
     configs = {
-      test = ./configs/test;
+      default = ./configs/default;
     };
     systemd = {
       enable = true;
@@ -12,16 +12,3 @@
     };
   };
 }
-
-# programs.quickshell = {
-#   enable = true;
-
-#   test = {
-#     activeConfig = "test";
-#     configs.test = ./quickshell;
-#     systemd = {
-#       enable = true;
-#       target = "graphical-session.target";
-#     };
-#   };
-# };
