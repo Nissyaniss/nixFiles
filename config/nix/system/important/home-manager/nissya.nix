@@ -51,10 +51,6 @@
 
   home.file = { };
 
-  home.sessionVariables = {
-    EDITOR = "subl";
-  };
-
   programs.elephant = {
     enable = true;
     installService = true;
