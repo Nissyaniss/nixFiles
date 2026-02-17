@@ -10,7 +10,6 @@
     sublime4
     legcord
     walker
-    swaylock-effects
     grimblast
     nixd
     nh
@@ -38,5 +37,6 @@
     qt6.qt5compat
     kdePackages.qtdeclarative
     protonplus
+    grim
   ];
 }
