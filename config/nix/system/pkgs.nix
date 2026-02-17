@@ -38,5 +38,7 @@
     kdePackages.qtdeclarative
     protonplus
     grim
+
+    swaylock # Debug
   ];
 }
