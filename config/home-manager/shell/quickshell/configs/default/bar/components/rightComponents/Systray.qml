@@ -2,7 +2,6 @@ import Quickshell
 import QtQuick
 import Quickshell.Services.SystemTray
 import "../../components/arrows"
-import "./mprisComponents"
 
 EndRightHexagone {
     Row {

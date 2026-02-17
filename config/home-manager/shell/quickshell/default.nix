@@ -11,4 +11,8 @@
       target = "graphical-session.target";
     };
   };
+
+  systemd.user.services.quickshell.Service.Environment = [
+    "QML_XHR_ALLOW_FILE_READ=1"
+  ];
 }

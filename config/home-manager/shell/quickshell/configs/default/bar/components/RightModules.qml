@@ -20,9 +20,9 @@ Item {
                 running: true
                 repeat: true
                 onTriggered: {
-                    cpu.running = true;
-                    mem.running = true;
-                    network.running = true;
+                    cpu.updateCpu();
+                    mem.updateMemory();
+                    network.updateNetwork();
                 }
             }
 

@@ -5,7 +5,7 @@ import "./bar/components"
 
 PanelWindow {
     id: topBar
-    height: 40
+    implicitHeight: 40
     color: "transparent"
     anchors {
         top: true

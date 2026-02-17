@@ -1,21 +1,40 @@
 import Quickshell.Io
+import QtQuick
+import QtQuick.Controls
 import "../../components/arrows"
 import "../../components"
 
 LeftArrow {
-    property alias running: mem.running
+    id: mem
     property string memUsage: "0"
 
-    Process {
-        id: mem
-        command: ["nu", "-c", "(((sys mem).used / (sys mem).total) * 100 | math round | into string)"]
-        stdout: StdioCollector {
-            onStreamFinished: memUsage = this.text.trim()
+    function updateMemory() {
+        let xhr = new XMLHttpRequest();
+        xhr.open("GET", "file:///proc/meminfo", false); // Synchronous read
+        xhr.send(null);
+
+        if (xhr.status === 200 || xhr.status === 0) {
+            let lines = xhr.responseText.split('\n');
+            let total = 0;
+            let available = 0;
+
+            for (let i = 0; i < lines.length; i++) {
+                if (lines[i].indexOf("MemTotal:") === 0) {
+                    total = parseInt(lines[i].replace(/[^0-9]/g, ''));
+                } else if (lines[i].indexOf("MemAvailable:") === 0) {
+                    available = parseInt(lines[i].replace(/[^0-9]/g, ''));
+                }
+            }
+
+            if (total > 0) {
+                let percentage = Math.round(((total - available) / total) * 100);
+                mem.memUsage = percentage;
+            }
         }
     }
 
     BarText {
-        text: `Mem ${memUsage}%`
+        text: `Mem ${mem.memUsage}%`
         color: "#017a7a"
     }
 }

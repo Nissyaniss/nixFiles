@@ -3,15 +3,15 @@ import QtQuick
 import Quickshell.Services.Mpris
 
 BarText {
-    anchors.verticalCenter: parent.verticalCenter
-
     property MprisPlayer mprisPlayer
+
     text: "󰒬"
     color: "white"
     font.pixelSize: 25
     clip: true
     leftPadding: 5
     width: isHoveringMpris ? implicitWidth : 0
+    anchors.verticalCenter: parent.verticalCenter
     Behavior on width {
         NumberAnimation {
             duration: 200

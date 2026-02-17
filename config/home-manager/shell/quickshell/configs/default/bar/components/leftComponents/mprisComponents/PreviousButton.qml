@@ -4,7 +4,6 @@ import Quickshell.Services.Mpris
 
 BarText {
     property MprisPlayer mprisPlayer
-    anchors.verticalCenter: parent.verticalCenter
 
     text: "󰒫"
     color: "white"
@@ -13,6 +12,7 @@ BarText {
 
     clip: true
     width: isHoveringMpris ? implicitWidth : 0
+    anchors.verticalCenter: parent.verticalCenter
     Behavior on width {
         NumberAnimation {
             duration: 250
