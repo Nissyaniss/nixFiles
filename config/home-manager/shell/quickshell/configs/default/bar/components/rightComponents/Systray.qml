@@ -15,7 +15,7 @@ EndRightHexagone {
                 id: trayIcon
                 source: modelData.icon
                 sourceSize: Qt.size(20, 20)
-                visible: source.toString() !== "image://icon/media-optical" // udikie shitting itself
+                visible: source.toString() !== "image://icon/media-optical" // udiskie shitting itself
 
                 QsMenuAnchor {
                     id: menuAnchor
