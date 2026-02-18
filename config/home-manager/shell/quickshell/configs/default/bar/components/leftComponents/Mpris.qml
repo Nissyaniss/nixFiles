@@ -50,7 +50,6 @@ RightArrow {
     }
 
     Item {
-        id: here
         z: -1
         width: player.position / player.length * parent.width
         height: parent.height
