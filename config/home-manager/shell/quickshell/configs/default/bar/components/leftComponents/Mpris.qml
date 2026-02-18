@@ -1,6 +1,7 @@
 import QtQuick
 import Quickshell.Services.Mpris
 import "../../components/arrows"
+import "../../components"
 import "./mprisComponents"
 
 RightArrow {
@@ -20,36 +21,65 @@ RightArrow {
 
             onClicked: player.isPlaying ? player.pause() : player.play()
 
-            onEntered: isHoveringMpris = true
+    Row {
+        id: layoutRow
+        height: 40
+        anchors.verticalCenter: parent.verticalCenter
 
-            onExited: isHoveringMpris = false
+        PreviousButton {
+            mprisPlayer: player
         }
 
-        Row {
-            id: layoutRow
-            height: 40
+        Column {
             anchors.verticalCenter: parent.verticalCenter
-
-            PreviousButton {
+            MusicTitle {
                 mprisPlayer: player
             }
 
-            Column {
-                anchors.verticalCenter: parent.verticalCenter
-                MusicTitle {
-                    mprisPlayer: player
-                }
-
-                ArtistName {
-                    mprisPlayer: player
-                }
-            }
-            PauseButton {
-                mprisPlayer: player
-            }
-            SkipButton {
+            ArtistName {
                 mprisPlayer: player
             }
         }
+        PauseButton {
+            mprisPlayer: player
+        }
+        SkipButton {
+            mprisPlayer: player
+        }
+    }
+
+    Item {
+        id: here
+        z: -1
+        width: player.position / player.length * parent.width
+        height: parent.height
+        clip: true
+        x: -parent.x
+        y: -parent.y
+
+        RightArrow {
+            anchors.fill: parent
+            width: mpris.width
+            color: "#666666"
+            height: 40
+        }
+    }
+    MouseArea {
+        anchors.fill: parent
+        hoverEnabled: true
+        propagateComposedEvents: true
+
+        acceptedButtons: Qt.LeftButton | Qt.RightButton
+        onClicked: mouse => {
+            if (mouse.button == Qt.LeftButton) {
+                player.isPlaying ? player.pause() : player.play();
+            } else {
+                showMusicPopup = !showMusicPopup;
+            }
+        }
+
+        onEntered: isHoveringMpris = true
+
+        onExited: isHoveringMpris = false
     }
 }
