@@ -67,10 +67,9 @@ RightArrow {
         y: -parent.y
 
         RightArrow {
-            anchors.fill: parent
-            width: mpris.width
+            width: parent.parent.width
+            height: parent.parent.height
             color: "#666666"
-            height: 40
         }
     }
     MouseArea {
