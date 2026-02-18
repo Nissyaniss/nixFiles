@@ -9,6 +9,15 @@ RightArrow {
     property MprisPlayer player: availablePlayers.find(p => p.isPlaying) ?? availablePlayers.find(p => p.canControl && p.canPlay) ?? null
     property bool isHoveringMpris: false
 
+    Timer {
+        interval: 20
+        running: true
+        repeat: true
+        onTriggered: {
+            player.positionChanged();
+        }
+    }
+
     visible: player == null ? false : true
     Item {
         width: layoutRow.width
