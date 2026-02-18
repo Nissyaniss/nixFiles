@@ -16,7 +16,7 @@
       shellAliases = {
         ls = "ls -a";
         nix-config = "subl ~/.nixFiles";
-        update = "nh os switch ~/.nixFiles";
+        update = "nh os switch --update ~/.nixFiles";
       };
     };
 }
