@@ -5,17 +5,17 @@ Item {
     id: seg
     default property alias content: contentContainer.data
 
+    property string color: "#1a1a1a"
     readonly property int pw: 12
     width: contentContainer.width + pw * 2
     height: 40
-    anchors.verticalCenter: parent.verticalCenter
 
     Shape {
         anchors.fill: parent
         layer.enabled: true
         layer.samples: 4
         ShapePath {
-            fillColor: "#1a1a1a"
+            fillColor: color
             strokeColor: "transparent"
 
             startX: seg.pw
