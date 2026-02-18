@@ -20,7 +20,8 @@ RightArrow {
             propagateComposedEvents: true
 
             onClicked: player.isPlaying ? player.pause() : player.play()
-
+        }
+    }
     Row {
         id: layoutRow
         height: 40
@@ -69,13 +70,9 @@ RightArrow {
         hoverEnabled: true
         propagateComposedEvents: true
 
-        acceptedButtons: Qt.LeftButton | Qt.RightButton
+        acceptedButtons: Qt.LeftButton
         onClicked: mouse => {
-            if (mouse.button == Qt.LeftButton) {
-                player.isPlaying ? player.pause() : player.play();
-            } else {
-                showMusicPopup = !showMusicPopup;
-            }
+            player.isPlaying ? player.pause() : player.play();
         }
 
         onEntered: isHoveringMpris = true
