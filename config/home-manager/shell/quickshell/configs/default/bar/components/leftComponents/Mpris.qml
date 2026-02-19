@@ -78,9 +78,7 @@ RightArrow {
         propagateComposedEvents: true
 
         acceptedButtons: Qt.LeftButton
-        onClicked: mouse => {
-            player.isPlaying ? player.pause() : player.play();
-        }
+        onClicked: player.togglePlaying()
 
         onEntered: isHoveringMpris = true
 
