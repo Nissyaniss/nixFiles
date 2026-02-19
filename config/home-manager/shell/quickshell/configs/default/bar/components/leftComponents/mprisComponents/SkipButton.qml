@@ -5,7 +5,7 @@ import Quickshell.Services.Mpris
 BarText {
     property MprisPlayer mprisPlayer
 
-    text: "󰒬"
+    text: "󰒭"
     color: "white"
     font.pixelSize: 25
     clip: true
