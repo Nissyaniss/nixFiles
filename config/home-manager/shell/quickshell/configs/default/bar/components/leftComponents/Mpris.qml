@@ -5,6 +5,7 @@ import "../../components"
 import "./mprisComponents"
 
 RightArrow {
+    id: root
     readonly property list<MprisPlayer> availablePlayers: Mpris.players.values
     property MprisPlayer player: availablePlayers.find(p => p.isPlaying) ?? availablePlayers.find(p => p.canControl && p.canPlay) ?? null
     property bool isHoveringMpris: false
@@ -60,15 +61,13 @@ RightArrow {
 
     Item {
         z: -1
-        width: player.position / player.length * parent.width
-        height: parent.height
-        clip: true
-        x: -parent.x
+        width: root.width - 20
+        height: root.height
+        x: -parent.x - 1
         y: -parent.y
-
         RightArrow {
-            width: parent.parent.width
-            height: parent.parent.height
+            width: (player.position / player.length * parent.width) + 20
+            height: root.height
             color: "#666666"
         }
     }

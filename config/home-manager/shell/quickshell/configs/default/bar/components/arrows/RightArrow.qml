@@ -18,24 +18,9 @@ Item {
             fillColor: color
             strokeColor: "transparent"
 
-            startX: seg.pw
-            startY: 0
-
-            PathLine {
-                x: seg.width - 20
-                y: 0
-            }
-            PathLine {
-                x: seg.width
-                y: seg.height / 2
-            }
-            PathLine {
-                x: seg.width - 20
-                y: seg.height
-            }
             PathLine {
                 x: 0
-                y: seg.height
+                y: 0
             }
             PathLine {
                 x: 20
@@ -43,6 +28,30 @@ Item {
             }
             PathLine {
                 x: 0
+                y: seg.height
+            }
+            PathLine {
+                x: if (seg.width - 20 < 0) {
+                    0;
+                } else {
+                    seg.width - 20;
+                }
+                y: seg.height
+            }
+            PathLine {
+                x: if (seg.width < 20) {
+                    20;
+                } else {
+                    seg.width;
+                }
+                y: seg.height / 2
+            }
+            PathLine {
+                x: if (seg.width - 20 < 0) {
+                    0;
+                } else {
+                    seg.width - 20;
+                }
                 y: 0
             }
         }
