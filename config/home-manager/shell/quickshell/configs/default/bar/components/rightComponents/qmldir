@@ -1,0 +1,5 @@
+module bar.components.rightComponents
+Cpu 1.0 Cpu.qml
+Memory 1.0 Memory.qml
+Network 1.0 Network.qml
+Systray 1.0 Systray.qml

@@ -3,12 +3,16 @@ import Quickshell.Services.Mpris
 import "../../components/arrows"
 import "../../components"
 import "./mprisComponents"
+import "./mprisComponents/popup"
 
 RightArrow {
     id: root
     readonly property list<MprisPlayer> availablePlayers: Mpris.players.values
     property MprisPlayer player: availablePlayers.find(p => p.isPlaying) ?? availablePlayers.find(p => p.canControl && p.canPlay) ?? null
     property bool isHoveringMpris: false
+    property bool showMusicPopup: false
+
+    visible: player == null ? false : true
 
     Timer {
         interval: 20
@@ -19,7 +23,6 @@ RightArrow {
         }
     }
 
-    visible: player == null ? false : true
     Item {
         width: layoutRow.width
         height: layoutRow.height
@@ -32,6 +35,10 @@ RightArrow {
             onClicked: player.togglePlaying()
         }
     }
+    Popup {
+        showMusicPopup: mpris.showMusicPopup
+    }
+
     Row {
         id: layoutRow
         height: 40
@@ -39,6 +46,13 @@ RightArrow {
 
         PreviousButton {
             mprisPlayer: player
+            width: isHoveringMpris ? implicitWidth : 0
+            Behavior on width {
+                NumberAnimation {
+                    duration: 250
+                    easing.type: Easing.OutExpo
+                }
+            }
         }
 
         Column {
@@ -56,6 +70,13 @@ RightArrow {
         }
         SkipButton {
             mprisPlayer: player
+            width: isHoveringMpris ? implicitWidth : 0
+            Behavior on width {
+                NumberAnimation {
+                    duration: 250
+                    easing.type: Easing.OutExpo
+                }
+            }
         }
     }
 
@@ -76,7 +97,14 @@ RightArrow {
         hoverEnabled: true
         propagateComposedEvents: true
 
-        acceptedButtons: Qt.LeftButton
+        acceptedButtons: Qt.LeftButton | Qt.RightButton
+        onClicked: mouse => {
+            if (mouse.button == Qt.LeftButton) {
+                player.isPlaying ? player.pause() : player.play();
+            } else {
+                showMusicPopup = !showMusicPopup;
+            }
+        }
 
         onEntered: isHoveringMpris = true
 

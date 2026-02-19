@@ -1,0 +1,57 @@
+import "../../../../../components/arrows"
+import QtQuick
+import QtQuick.Controls
+
+Slider {
+    id: slider
+
+    implicitWidth: 200
+    implicitHeight: 30
+
+    padding: 0
+
+    from: 0
+    to: player.length
+
+    Connections {
+        target: player
+        function onPositionChanged() {
+            if (!slider.pressed) {
+                slider.value = player.position;
+            }
+        }
+    }
+
+    background: Item {
+        anchors.fill: parent
+
+        RightArrow {
+            color: "#3D3D3D"
+            width: parent.width
+            height: parent.height
+        }
+
+        Item {
+            width: slider.visualPosition * parent.width
+            height: parent.height
+            clip: true
+
+            RightArrow {
+                width: parent.parent.width
+                color: "#89b4fa"
+                height: parent.height
+            }
+        }
+    }
+
+    handle: Item {
+        width: 0
+        height: 0
+    }
+
+    onPressedChanged: {
+        if (!pressed) {
+            player.position = value;
+        }
+    }
+}

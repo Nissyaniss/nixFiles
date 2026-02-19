@@ -4,9 +4,10 @@ import QtQuick.Shapes
 Item {
     id: seg
     default property alias content: contentContainer.data
-
+    property int offset: 20
     property string color: "#1a1a1a"
     readonly property int pw: 12
+
     width: contentContainer.width + 30 + pw * 2
     height: 40
 
@@ -23,7 +24,6 @@ Item {
                 y: 0
             }
             PathLine {
-                x: 20
                 y: seg.height / 2
             }
             PathLine {
@@ -31,26 +31,26 @@ Item {
                 y: seg.height
             }
             PathLine {
-                x: if (seg.width - 20 < 0) {
+                x: if (seg.width - offset < 0) {
                     0;
                 } else {
-                    seg.width - 20;
+                    seg.width - offset;
                 }
                 y: seg.height
             }
             PathLine {
-                x: if (seg.width < 20) {
-                    20;
+                x: if (seg.width < offset) {
+                    offset;
                 } else {
                     seg.width;
                 }
                 y: seg.height / 2
             }
             PathLine {
-                x: if (seg.width - 20 < 0) {
+                x: if (seg.width - offset < 0) {
                     0;
                 } else {
-                    seg.width - 20;
+                    seg.width - offset;
                 }
                 y: 0
             }
