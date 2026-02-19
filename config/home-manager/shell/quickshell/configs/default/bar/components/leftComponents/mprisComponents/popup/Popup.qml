@@ -6,10 +6,12 @@ import QtQuick.Controls
 import QtQuick.Shapes
 import "../../../../components"
 import "../../../../components/arrows"
+import "../."
 
 PopupWindow {
     id: musicPopup
     property bool showMusicPopup: false
+    property bool isZenBrowser: false
     property int rotation: 0
 
     color: "#1a1a1a"
@@ -24,12 +26,15 @@ PopupWindow {
         running: player.isPlaying
         repeat: true
         onTriggered: {
-            if (rotation == 360) {
+            if (rotation == 360 && isZenBrowser == false) {
                 rotation = 0;
-            } else {
+            } else if (isZenBrowser == false) {
                 rotation = rotation + 1;
-                player.positionChanged();
             }
+            if (player.desktopEntry == "zen") {
+                isZenBrowser = true;
+            }
+            player.positionChanged();
         }
     }
     Row {
@@ -49,7 +54,7 @@ PopupWindow {
 
                 anchors.fill: parent
 
-                source: player.trackArtUrl
+                source: isZenBrowser ? "./assets/ZenLogo.svg" : player.trackArtUrl
                 asynchronous: true
                 sourceSize.width: width
                 sourceSize.height: height
@@ -126,7 +131,39 @@ PopupWindow {
                     }
                 }
             }
-            Row {}
+            Row {
+                BarText {
+                    font.pixelSize: 30
+                    text: "󰒫"
+                    color: player.canGoPrevious ? "white" : "gray"
+                    MouseArea {
+                        anchors.fill: parent
+                        onClicked: player.previous()
+                    }
+                }
+                // BarText {
+                //     leftPadding: 67
+                //     font.pixelSize: 30
+                //     text: player.isPlaying ? "⏸" : "▶"
+                //     MouseArea {
+                //         anchors.fill: parent
+                //         onClicked: player.togglePlaying()
+                //     }
+                // }
+                PauseButton {
+                    mprisPlayer: player
+                }
+                BarText {
+                    leftPadding: 67
+                    font.pixelSize: 30
+                    text: "󰒬"
+                    color: player.canGoNext ? "white" : "gray"
+                    MouseArea {
+                        anchors.fill: parent
+                        onClicked: player.next()
+                    }
+                }
+            }
         }
     }
 }
