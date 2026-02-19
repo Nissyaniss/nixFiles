@@ -35,6 +35,13 @@ RightArrow {
 
         PreviousButton {
             mprisPlayer: player
+            width: isHoveringMpris ? implicitWidth : 0
+            Behavior on width {
+                NumberAnimation {
+                    duration: 250
+                    easing.type: Easing.OutExpo
+                }
+            }
         }
 
         Column {
@@ -52,6 +59,13 @@ RightArrow {
         }
         SkipButton {
             mprisPlayer: player
+            width: isHoveringMpris ? implicitWidth : 0
+            Behavior on width {
+                NumberAnimation {
+                    duration: 250
+                    easing.type: Easing.OutExpo
+                }
+            }
         }
     }
 

@@ -10,4 +10,9 @@ BarText {
     anchors.verticalCenter: parent.verticalCenter
     font.pixelSize: 25
     leftPadding: mprisPlayer.isPlaying ? 5 : 10
+
+    MouseArea {
+        anchors.fill: parent
+        onClicked: mprisPlayer.togglePlaying()
+    }
 }

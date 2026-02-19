@@ -33,6 +33,8 @@ PopupWindow {
             }
             if (player.desktopEntry == "zen") {
                 isZenBrowser = true;
+            } else {
+                isZenBrowser = false;
             }
             player.positionChanged();
         }
@@ -132,36 +134,21 @@ PopupWindow {
                 }
             }
             Row {
-                BarText {
+                PreviousButton {
                     font.pixelSize: 30
-                    text: "󰒫"
                     color: player.canGoPrevious ? "white" : "gray"
-                    MouseArea {
-                        anchors.fill: parent
-                        onClicked: player.previous()
-                    }
-                }
-                // BarText {
-                //     leftPadding: 67
-                //     font.pixelSize: 30
-                //     text: player.isPlaying ? "⏸" : "▶"
-                //     MouseArea {
-                //         anchors.fill: parent
-                //         onClicked: player.togglePlaying()
-                //     }
-                // }
-                PauseButton {
                     mprisPlayer: player
                 }
-                BarText {
-                    leftPadding: 67
+                PauseButton {
                     font.pixelSize: 30
-                    text: "󰒬"
+                    leftPadding: player.isPlaying ? 72 : 62
+                    mprisPlayer: player
+                }
+                SkipButton {
+                    leftPadding: player.isPlaying ? 62 : 67
+                    font.pixelSize: 30
                     color: player.canGoNext ? "white" : "gray"
-                    MouseArea {
-                        anchors.fill: parent
-                        onClicked: player.next()
-                    }
+                    mprisPlayer: player
                 }
             }
         }
