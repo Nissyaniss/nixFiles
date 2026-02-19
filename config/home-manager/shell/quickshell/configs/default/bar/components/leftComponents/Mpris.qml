@@ -28,7 +28,7 @@ RightArrow {
             hoverEnabled: true
             propagateComposedEvents: true
 
-            onClicked: player.isPlaying ? player.pause() : player.play()
+            onClicked: player.togglePlaying()
         }
     }
     Row {
@@ -78,7 +78,7 @@ RightArrow {
         propagateComposedEvents: true
 
         acceptedButtons: Qt.LeftButton
-        onClicked: player.togglePlaying()
+        // onClicked: player.togglePlaying()
 
         onEntered: isHoveringMpris = true
 
