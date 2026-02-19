@@ -6,7 +6,7 @@ import "./mprisComponents"
 import "./mprisComponents/popup"
 
 RightArrow {
-    id: root
+    id: mpris
     readonly property list<MprisPlayer> availablePlayers: Mpris.players.values
     property MprisPlayer player: availablePlayers.find(p => p.isPlaying) ?? availablePlayers.find(p => p.canControl && p.canPlay) ?? null
     property bool isHoveringMpris: false
@@ -35,6 +35,7 @@ RightArrow {
             onClicked: player.togglePlaying()
         }
     }
+
     Popup {
         showMusicPopup: mpris.showMusicPopup
     }
@@ -82,13 +83,13 @@ RightArrow {
 
     Item {
         z: -1
-        width: root.width - 20
-        height: root.height
+        width: mpris.width - 20
+        height: mpris.height
         x: -parent.x - 1
         y: -parent.y
         RightArrow {
             width: (player.position / player.length * parent.width) + 20
-            height: root.height
+            height: mpris.height
             color: "#666666"
         }
     }

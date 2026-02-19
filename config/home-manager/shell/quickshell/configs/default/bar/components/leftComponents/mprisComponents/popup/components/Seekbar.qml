@@ -32,14 +32,15 @@ Slider {
         }
 
         Item {
-            width: slider.visualPosition * parent.width
-            height: parent.height
-            clip: true
-
+            z: 1
+            width: parent.parent.width
+            height: 30
+            x: -parent.x - 1
+            y: -parent.y
             RightArrow {
-                width: parent.parent.width
-                color: "#89b4fa"
-                height: parent.height
+                width: (player.position / player.length * parent.width)
+                height: 30
+                color: "#666666"
             }
         }
     }

@@ -24,6 +24,7 @@ Item {
                 y: 0
             }
             PathLine {
+                x: offset
                 y: seg.height / 2
             }
             PathLine {

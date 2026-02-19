@@ -1,4 +1,0 @@
-module bar.components.middleComponents
-DateNumber 1.0 DateNumber.qml
-DateText 1.0 DateText.qml
-HourText 1.0 HourText.qml
