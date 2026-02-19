@@ -13,14 +13,14 @@ Item {
         running: player.isPlaying
         repeat: true
         onTriggered: {
-            if (rotation == 360 && isZenBrowser == false) {
+            if (rotation == 360 && isZenBrowser == false && player.isPlaying) {
                 rotation = 0;
-            } else if (isZenBrowser == false) {
+            } else if (isZenBrowser == false && player.isPlaying) {
                 rotation = rotation + 1;
             }
-            if (player.desktopEntry == "zen") {
+            if (player.desktopEntry == "zen" && player.isPlaying) {
                 isZenBrowser = true;
-            } else {
+            } else if (player.isPlaying) {
                 isZenBrowser = false;
             }
         }

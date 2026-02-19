@@ -32,14 +32,13 @@ Slider {
         }
 
         Item {
-            z: 1
-            width: parent.parent.width
-            height: 30
-            x: -parent.x - 1
-            y: -parent.y
+            width: slider.visualPosition * parent.width
+            height: parent.height
+            clip: true
+
             RightArrow {
-                width: (player.position / player.length * parent.width)
-                height: 30
+                width: parent.parent.width
+                height: parent.parent.height
                 color: "#666666"
             }
         }
