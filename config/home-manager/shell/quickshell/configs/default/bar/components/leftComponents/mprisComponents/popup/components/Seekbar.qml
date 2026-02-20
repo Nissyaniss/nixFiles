@@ -23,6 +23,10 @@ Slider {
     }
 
     background: Item {
+        MouseArea {
+            anchors.fill: parent
+            cursorShape: Qt.PointingHandCursor
+        }
         anchors.fill: parent
 
         RightArrow {

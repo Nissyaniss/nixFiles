@@ -18,6 +18,7 @@ EndLeftHexagone {
     }
     MouseArea {
         anchors.fill: parent
+        cursorShape: Qt.PointingHandCursor
         onClicked: wleave.running = true
     }
 }

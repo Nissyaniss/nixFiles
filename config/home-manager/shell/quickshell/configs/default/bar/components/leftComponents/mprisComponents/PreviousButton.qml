@@ -13,6 +13,7 @@ BarText {
     clip: true
     anchors.verticalCenter: parent.verticalCenter
     MouseArea {
+        cursorShape: Qt.PointingHandCursor
         anchors.fill: parent
         onClicked: mprisPlayer.previous()
     }

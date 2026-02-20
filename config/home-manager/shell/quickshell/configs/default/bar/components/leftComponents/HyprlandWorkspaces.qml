@@ -19,6 +19,7 @@ RightArrow {
                 MouseArea {
                     anchors.fill: parent
                     onClicked: workspace.activate()
+                    cursorShape: Qt.PointingHandCursor
                 }
             }
         }

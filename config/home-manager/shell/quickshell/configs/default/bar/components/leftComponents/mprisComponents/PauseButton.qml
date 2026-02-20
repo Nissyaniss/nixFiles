@@ -11,6 +11,7 @@ BarText {
     font.pixelSize: 30
 
     MouseArea {
+        cursorShape: Qt.PointingHandCursor
         anchors.fill: parent
         onClicked: mprisPlayer.togglePlaying()
     }

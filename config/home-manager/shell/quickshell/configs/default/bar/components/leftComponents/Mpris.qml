@@ -42,6 +42,38 @@ RightArrow {
         showMusicPopup: mpris.showMusicPopup
     }
 
+    Item {
+        z: -1
+        width: mpris.width - 20
+        height: mpris.height
+        x: -parent.x - 1
+        y: -parent.y
+        RightArrow {
+            width: (player.position / player.length * parent.width) + 20
+            height: mpris.height
+            color: "#666666"
+        }
+    }
+    MouseArea {
+        anchors.fill: parent
+        hoverEnabled: true
+        propagateComposedEvents: true
+        cursorShape: Qt.PointingHandCursor
+
+        acceptedButtons: Qt.LeftButton | Qt.RightButton
+        onClicked: mouse => {
+            if (mouse.button == Qt.LeftButton) {
+                player.isPlaying ? player.pause() : player.play();
+            } else {
+                showMusicPopup = !showMusicPopup;
+            }
+        }
+
+        onEntered: isHoveringMpris = true
+
+        onExited: isHoveringMpris = false
+    }
+
     Row {
         id: layoutRow
         height: 40
@@ -81,36 +113,5 @@ RightArrow {
                 }
             }
         }
-    }
-
-    Item {
-        z: -1
-        width: mpris.width - 20
-        height: mpris.height
-        x: -parent.x - 1
-        y: -parent.y
-        RightArrow {
-            width: (player.position / player.length * parent.width) + 20
-            height: mpris.height
-            color: "#666666"
-        }
-    }
-    MouseArea {
-        anchors.fill: parent
-        hoverEnabled: true
-        propagateComposedEvents: true
-
-        acceptedButtons: Qt.LeftButton | Qt.RightButton
-        onClicked: mouse => {
-            if (mouse.button == Qt.LeftButton) {
-                player.isPlaying ? player.pause() : player.play();
-            } else {
-                showMusicPopup = !showMusicPopup;
-            }
-        }
-
-        onEntered: isHoveringMpris = true
-
-        onExited: isHoveringMpris = false
     }
 }

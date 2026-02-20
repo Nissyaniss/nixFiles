@@ -13,6 +13,7 @@ BarText {
     anchors.verticalCenter: parent.verticalCenter
 
     MouseArea {
+        cursorShape: Qt.PointingHandCursor
         anchors.fill: parent
         onClicked: mprisPlayer.next()
     }
