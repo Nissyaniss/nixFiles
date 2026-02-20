@@ -12,6 +12,7 @@ Item {
         spacing: -5
         PowerButton {}
         HyprlandWorkspaces {}
+        Sound {}
         Mpris {}
     }
 }
