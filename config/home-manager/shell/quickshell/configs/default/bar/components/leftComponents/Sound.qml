@@ -1,15 +1,22 @@
 import "../../components"
 import "../../components/arrows"
+import "./soundMixer"
 import QtQuick
 import Quickshell.Services.Pipewire
 
 RightArrow {
+    id: sound
     PwObjectTracker {
         objects: [node]
     }
     property PwNode node: Pipewire.defaultAudioSink
     property bool hasWheeled: false
     property int volumePercent: Math.round(node.audio.volume * 100)
+    property bool showMixer: false
+
+    SoundMixer {
+        showMixer: sound.showMixer
+    }
 
     Timer {
         id: timer
@@ -24,28 +31,12 @@ RightArrow {
     }
 
     Row {
+        id: main
         anchors.verticalCenter: parent.verticalCenter
         spacing: 10
         BarText {
             text: node.audio.muted || node.audio.volume == 0 ? "" : ""
             font.pixelSize: 30
-            MouseArea {
-                anchors.fill: parent
-                cursorShape: Qt.PointingHandCursor
-                hoverEnabled: true
-                onWheel: mouse => {
-                    if (mouse.angleDelta.y > 0 && node.audio.volume < 1) {
-                        node.audio.volume += 0.01;
-                    } else {
-                        node.audio.volume -= 0.01;
-                    }
-                    hasWheeled = true;
-                    timer.restart();
-                }
-                onClicked: {
-                    node.audio.muted = !node.audio.muted;
-                }
-            }
         }
 
         BarText {
@@ -58,6 +49,30 @@ RightArrow {
                     duration: 250
                     easing.type: Easing.InOutQuad
                 }
+            }
+        }
+    }
+    MouseArea {
+        anchors.fill: parent
+        hoverEnabled: true
+        propagateComposedEvents: true
+        cursorShape: Qt.PointingHandCursor
+
+        acceptedButtons: Qt.LeftButton | Qt.RightButton
+        onWheel: mouse => {
+            if (mouse.angleDelta.y > 0 && node.audio.volume < 1) {
+                node.audio.volume += 0.01;
+            } else {
+                node.audio.volume -= 0.01;
+            }
+            hasWheeled = true;
+            timer.restart();
+        }
+        onClicked: mouse => {
+            if (mouse.button == Qt.LeftButton) {
+                node.audio.muted = !node.audio.muted;
+            } else {
+                showMixer = !showMixer;
             }
         }
     }

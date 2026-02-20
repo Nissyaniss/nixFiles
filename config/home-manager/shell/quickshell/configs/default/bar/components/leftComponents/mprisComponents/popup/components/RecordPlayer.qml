@@ -34,7 +34,7 @@ Item {
         Image {
             id: image
             anchors.fill: parent
-            source: isZenBrowser ? "./assets/ZenLogo.svg" : player.trackArtUrl
+            source: isZenBrowser ? "../assets/ZenLogo.svg" : player.trackArtUrl
             asynchronous: true
             fillMode: Image.PreserveAspectCrop
         }

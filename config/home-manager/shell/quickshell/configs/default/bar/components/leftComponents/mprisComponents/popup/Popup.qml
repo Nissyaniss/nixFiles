@@ -31,7 +31,7 @@ PopupWindow {
         }
     }
 
-    Background {
+    PopupBackground {
         id: background
         offset: musicPopup.offset
     }
