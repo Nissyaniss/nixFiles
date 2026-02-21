@@ -37,6 +37,7 @@ in
     enable = true;
     settings = {
       exec-once = [
+        "blueman-applet"
         "legcord"
         "elephant"
         "hyprctl setcursor breeze_cursors 24"
