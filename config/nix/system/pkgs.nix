@@ -38,5 +38,6 @@
     kdePackages.qtdeclarative
     protonplus
     grim
+    balatro-mod-manager
   ];
 }
