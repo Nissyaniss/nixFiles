@@ -83,5 +83,22 @@
           }
         ] ++ defaultModules;
       };
+
+      nixosConfigurations.nixosTimeWork = nixpkgs.lib.nixosSystem {
+        specialArgs = {
+          inherit inputs;
+          machine-name = "work";
+        };
+        modules = [
+          { networking.hostName = "nixosTimeWork"; }
+          ./hardware-config/nixosTimeWork.nix
+          {
+            home-manager.extraSpecialArgs = {
+              inputs = inputs;
+              machine-name = "work";
+            };
+          }
+        ] ++ defaultModules;
+      };
     };
 }
