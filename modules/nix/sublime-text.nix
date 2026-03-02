@@ -324,4 +324,75 @@ in
       })
       cfg.snippets);
   };
+
+  config.home-manager.users.lasbop01 = {
+    home.packages = [ cfg.package ];
+    xdg.configFile = {
+      "${userConfigDirectory}/Preferences.sublime-settings".source =
+        jsonFormat.generate "sublime-text-settings"
+          (
+            (optionalAttrs (cfg.font != null) {
+              font_face = "FiraCode Nerd Font Mono";
+            })
+            // {
+              sublime_merge_path = "${pkgs.sublime-merge}/bin/sublime_merge";
+            }
+            // cfg.settings
+          );
+      "${userConfigDirectory}/Default (Linux).sublime-keymap".source =
+        jsonFormat.generate "sublime-text-keymap" cfg.keymap;
+      "${userConfigDirectory}/Package Control.sublime-settings".source =
+        jsonFormat.generate "sublime-text-package-control"
+          {
+            bootstrapped = true;
+            in_process_packages = [ ];
+            installed_packages = (builtins.attrNames (filterAttrs (_: plugin: plugin.managed) cfg.plugins));
+            repositories = unique (
+              builtins.filter (repo: repo != null) (
+                mapAttrsToList (_: plugin: plugin.repository or null) cfg.plugins
+              )
+            );
+          };
+    }
+    // (concatMapAttrs
+      (name: plugin: {
+        "${userConfigDirectory}/${name}.sublime-settings".source =
+          jsonFormat.generate "sublime-text-settings-${name}" plugin.settings;
+      })
+      (filterAttrs (_: plugin: plugin.settings != { }) cfg.plugins))
+    // (concatMapAttrs
+      (
+        packageName: plugin:
+          concatMapAttrs
+            (name: value: {
+              "${configDirectory}/${packageName}/${name}".source = value;
+            })
+            plugin.overrides
+      )
+      (filterAttrs (_: plugin: plugin.overrides != { }) cfg.plugins))
+    // (concatMapAttrs
+      (name: build-system: {
+        "${userConfigDirectory}/${name}.sublime-build".source =
+          jsonFormat.generate "sublime-text-build-${name}" build-system;
+      })
+      cfg.build-systems)
+    // (concatMapAttrs
+      (name: syntax: {
+        "${userConfigDirectory}/${name}.sublime-syntax".source = syntax;
+      })
+      cfg.syntaxes)
+    // (concatMapAttrs
+      (name: snippet: {
+        "${userConfigDirectory}/${name}.sublime-snippet".text =
+          "
+          <snippet>
+            <content><![CDATA[${snippet.content}]]></content>
+            <tabTrigger>${snippet.tabTrigger}</tabTrigger>
+            <scope>${snippet.scope}</scope>
+            <description>${snippet.description}</description>
+          </snippet>
+        ";
+      })
+      cfg.snippets);
+  };
 }
