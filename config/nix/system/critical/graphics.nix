@@ -1,8 +1,9 @@
 { config, machine-name, ... }:
 let
   isOpen = if machine-name == "pc" then true else false;
-  laptopExtraParameters =
-    if machine-name == "laptop" then
+
+  extraParameters =
+    if (machine-name == "laptop" || machine-name == "work") then
       {
         boot.kernelParams = [
           "module_blacklist=nouveau"
@@ -10,8 +11,9 @@ let
         ];
       } else
       { };
+
   primeConfig =
-    if machine-name == "laptop" then {
+    if (machine-name == "laptop" || machine-name == "work") then {
       offload = {
         enable = true;
         enableOffloadCmd = true;
@@ -25,14 +27,13 @@ let
     if machine-name == "laptop" then
       config.boot.kernelPackages.nvidiaPackages.stable
     else
-      config.boot.kernelPackages.nvidiaPackages.beta
-  ;
+      config.boot.kernelPackages.nvidiaPackages.beta;
 in
 {
   services.xserver.videoDrivers = [ "nvidia" ];
 
   hardware.graphics = {
-    enable = if machine-name == "work" then false else true;
+    enable = true;
   };
 
   hardware.nvidia = {
@@ -44,4 +45,4 @@ in
 
     prime = primeConfig;
   };
-} // laptopExtraParameters
+} // extraParameters
