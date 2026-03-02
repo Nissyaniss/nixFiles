@@ -1,6 +1,8 @@
-{ ... }: {
+{ machine-name
+, ...
+}: {
   services.xserver.xkb = {
-    layout = "us";
-    variant = "";
+    layout = if machine-name == "work" then "fr" else "us";
+    variant = if machine-name == "work" then "oss" else "";
   };
 }
