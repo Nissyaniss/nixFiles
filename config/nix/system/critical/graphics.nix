@@ -32,7 +32,7 @@ in
   services.xserver.videoDrivers = [ "nvidia" ];
 
   hardware.graphics = {
-    enable = true;
+    enable = if machine-name == "work" then false else true;
   };
 
   hardware.nvidia = {
