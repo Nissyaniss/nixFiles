@@ -5,6 +5,7 @@
     ./network-manager.nix
     ./nix.nix
     ./users.nix
+    ./sudo.nix
   ];
 }
 
