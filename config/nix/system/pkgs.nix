@@ -12,6 +12,7 @@ let
       mangohud
       protonplus
       balatro-mod-manager
+      transmission_4-gtk
     ] else [ ];
 in
 {
@@ -43,7 +44,6 @@ in
       vlc
       eog
       zathura
-      transmission_4-gtk
       qt6.qt5compat
       kdePackages.qtdeclarative
       grim
