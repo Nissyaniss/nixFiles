@@ -10,5 +10,14 @@
       "docker"
     ];
   };
+  users.users.lasbop01 = {
+    isNormalUser = true;
+    description = "lasbop01";
+    extraGroups = [
+      "networkmanager"
+      "wheel"
+      "docker"
+    ];
+  };
   users.defaultUserShell = pkgs.nushell;
 }
