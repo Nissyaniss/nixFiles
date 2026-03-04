@@ -1,23 +1,32 @@
 { pkgs
+, machine-name
 , ...
-}: {
-  users.users.nissya = {
-    isNormalUser = true;
-    description = "nissya";
-    extraGroups = [
-      "networkmanager"
-      "wheel"
-      "docker"
-    ];
-  };
-  users.users.lasbop01 = {
-    isNormalUser = true;
-    description = "lasbop01";
-    extraGroups = [
-      "networkmanager"
-      "wheel"
-      "docker"
-    ];
-  };
+}:
+let
+  me =
+    if machine-name != "work" then {
+      nissya = {
+        isNormalUser = true;
+        description = "nissya";
+        extraGroups = [
+          "networkmanager"
+          "wheel"
+          "docker"
+        ];
+      };
+    } else {
+      lasbop01 = {
+        isNormalUser = true;
+        description = "lasbop01";
+        extraGroups = [
+          "networkmanager"
+          "wheel"
+          "docker"
+        ];
+      };
+    };
+in
+{
+  users.users = { } // me;
   users.defaultUserShell = pkgs.nushell;
 }

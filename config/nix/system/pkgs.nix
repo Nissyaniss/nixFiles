@@ -14,6 +14,16 @@ let
       balatro-mod-manager
       transmission_4-gtk
     ] else [ ];
+
+  workPackages =
+    if machine-name == "work" then with pkgs; [
+      remmina
+      rocketchat-desktop
+      openfortivpn
+      symfony-cli
+      php
+      php84Packages.composer
+    ] else [ ];
 in
 {
   environment.systemPackages = with pkgs;
@@ -47,5 +57,7 @@ in
       qt6.qt5compat
       kdePackages.qtdeclarative
       grim
-    ] ++ personnalPackages;
+      hyprland
+      devenv
+    ] ++ personnalPackages ++ workPackages;
 }

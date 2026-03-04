@@ -8,6 +8,11 @@ let
     if machine-name == "work" then {
       "lasbop01" = import ./lasbop01.nix;
     } else { };
+
+  personnalUsers =
+    if machine-name != "work" then {
+      "nissya" = import ./nissya.nix;
+    } else { };
 in
 {
   imports = [
@@ -16,8 +21,7 @@ in
   home-manager = {
     extraSpecialArgs = { inherit inputs self; };
     users = {
-      "nissya" = import ./nissya.nix;
       "root" = import ./root.nix;
-    } // workAdditionnalUsers;
+    } // workAdditionnalUsers // personnalUsers;
   };
 }
