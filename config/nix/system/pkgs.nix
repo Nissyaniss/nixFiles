@@ -28,6 +28,7 @@ in
 {
   environment.systemPackages = with pkgs;
     [
+      bruno
       fastfetch
       neovim
       feishin
