@@ -63,5 +63,6 @@ in
       grim
       hyprland
       devenv
+      openssl
     ] ++ personnalPackages ++ workPackages;
 }
