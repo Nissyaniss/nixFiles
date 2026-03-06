@@ -1,61 +1,27 @@
 { pkgs
+, machine-name
 , ...
 }:
-
-{
-  imports = [
-    ../../../../modules/nix/sublime-text.nix
-  ];
-
-  nixpkgs.config.permittedInsecurePackages = [
-    "openssl-1.1.1w"
-  ];
-
-  sublime-text = {
-    enable = true;
-    plugins = {
-      "A File Icon" = { };
-      BracketHighlighter = {
-        settings = {
-          ignore_threshold = false;
-        };
-      };
-      "Color Scheme - Dracula Neue" = { };
-      "Dracula Color Scheme" = { };
-      LSP = {
-        settings = {
-          lsp_code_actions_on_save = {
-            source = {
-              addMissingImports = true;
-              fixAll = true;
-              organizeImports = true;
-            };
-          };
-          lsp_format_on_save = true;
-          show_inlay_hints = true;
-          clients = {
-            nixd = {
-              enabled = true;
-              command = [ "${pkgs.nixd}/bin/nixd" ];
-              selector = "source.nix";
-              settings.nixd.formatting.command = [ "${pkgs.nixpkgs-fmt}/bin/nixpkgs-fmt" ];
-            };
-            qmlls = {
-              enabled = true;
-              command = [ "${pkgs.kdePackages.qtdeclarative}/bin/qmlls" ];
-              selector = "source.qml";
-              settings.nixd.formatting.command = [ "${pkgs.kdePackages.qtdeclarative}/bin/qmlformat" ];
-            };
-          };
-        };
-      };
-      LSP-bash = { };
-      LSP-clangd = { };
-      LSP-css = { };
-      LSP-html = { };
+let
+  workPlugins =
+    if machine-name == "work" then {
       LSP-intelephense = { };
-      LSP-jdtls = { };
-      LSP-json = { };
+      Phpcs = { };
+    } else { };
+
+  personnalLSPClients =
+    if machine-name != "work" then
+      {
+        qmlls = {
+          enabled = true;
+          command = [ "${pkgs.kdePackages.qtdeclarative}/bin/qmlls" ];
+          selector = "source.qml";
+          settings.nixd.formatting.command = [ "${pkgs.kdePackages.qtdeclarative}/bin/qmlformat" ];
+        };
+      } else { };
+
+  personnalPlugins =
+    if machine-name != "work" then {
       LSP-lua = { };
       LSP-pylsp = { };
       LSP-ruff = { };
@@ -90,16 +56,64 @@
           };
         };
       };
-      LSP-typescript = { };
-      LSP-yaml = { };
-      Nushell = { };
-      "Package Control" = { };
-      # SQLTools = { };
-      # Terminal = { };
-      TOML = { };
-      Nix = { };
       QML = { };
+    } else { };
+
+  defaultPlugins = {
+    "A File Icon" = { };
+    BracketHighlighter = {
+      settings = {
+        ignore_threshold = false;
+      };
     };
+    "Color Scheme - Dracula Neue" = { };
+    "Dracula Color Scheme" = { };
+    LSP = {
+      settings = {
+        lsp_code_actions_on_save = {
+          source = {
+            addMissingImports = true;
+            fixAll = true;
+            organizeImports = true;
+          };
+        };
+        lsp_format_on_save = true;
+        show_inlay_hints = true;
+        clients = {
+          nixd = {
+            enabled = true;
+            command = [ "${pkgs.nixd}/bin/nixd" ];
+            selector = "source.nix";
+            settings.nixd.formatting.command = [ "${pkgs.nixpkgs-fmt}/bin/nixpkgs-fmt" ];
+          };
+        } // personnalLSPClients;
+      };
+    };
+    LSP-bash = { };
+    LSP-clangd = { };
+    LSP-css = { };
+    LSP-html = { };
+    LSP-json = { };
+    LSP-typescript = { };
+    LSP-yaml = { };
+    Nushell = { };
+    "Package Control" = { };
+    TOML = { };
+    Nix = { };
+  };
+in
+{
+  imports = [
+    ../../../../modules/nix/sublime-text.nix
+  ];
+
+  nixpkgs.config.permittedInsecurePackages = [
+    "openssl-1.1.1w"
+  ];
+
+  sublime-text = {
+    enable = true;
+    plugins = { } // defaultPlugins // workPlugins // personnalPlugins;
     keymap = [
       {
         keys = [ "f2" ];
