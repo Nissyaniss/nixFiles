@@ -23,6 +23,9 @@ let
       symfony-cli
       php
       php84Packages.composer
+      php84Packages.php-codesniffer
+      php84Packages.phpmd
+      php84Packages.php-cs-fixer
     ] else [ ];
 in
 {
