@@ -26,6 +26,7 @@ let
       php84Packages.php-codesniffer
       php84Packages.phpmd
       php84Packages.php-cs-fixer
+      obsidian
     ] else [ ];
 in
 {
