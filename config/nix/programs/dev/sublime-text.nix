@@ -5,8 +5,24 @@
 let
   workPlugins =
     if machine-name == "work" then {
-      LSP-intelephense = { };
+      PhpActor = { };
       Phpcs = { };
+    } else { };
+
+  workLSPClients =
+    if machine-name == "work" then {
+      phpactor = {
+        enabled = true;
+        command = [ "${pkgs.phpactor}/bin/phpactor" "language-server" ];
+        selector = "source.php | embedding.php";
+        priority_selector = "source.php";
+        initialization_options = {
+          language_server_completion.trim_leading_dollar = true;
+          language_server_worse_reflection.inlay_hints.enable = true;
+          language_server_phpstan.enabled = true;
+          language_server_phpstan.bin = "${pkgs.phpstan}/bin/phpstan";
+        };
+      };
     } else { };
 
   personnalLSPClients =
@@ -16,7 +32,6 @@ let
           enabled = true;
           command = [ "${pkgs.kdePackages.qtdeclarative}/bin/qmlls" ];
           selector = "source.qml";
-          settings.nixd.formatting.command = [ "${pkgs.kdePackages.qtdeclarative}/bin/qmlformat" ];
         };
       } else { };
 
@@ -86,7 +101,7 @@ let
             selector = "source.nix";
             settings.nixd.formatting.command = [ "${pkgs.nixpkgs-fmt}/bin/nixpkgs-fmt" ];
           };
-        } // personnalLSPClients;
+        } // personnalLSPClients // workLSPClients;
       };
     };
     LSP-bash = { };
@@ -131,7 +146,7 @@ in
         context = [
           {
             key = "lsp.session_with_capability";
-            operand = "codeActionProvider.codeActionKinds";
+            operand = "codeActionProvider";
           }
         ];
       }
