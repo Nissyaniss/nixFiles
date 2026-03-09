@@ -65,5 +65,6 @@ in
       hyprland
       devenv
       openssl
+      delta
     ] ++ personnalPackages ++ workPackages;
 }
