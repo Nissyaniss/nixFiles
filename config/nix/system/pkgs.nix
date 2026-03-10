@@ -28,6 +28,7 @@ let
       obsidian
       phpactor
       php84Packages.php-cs-fixer
+      libreoffice-still
     ] else [ ];
 in
 {
