@@ -30,13 +30,13 @@ let
           scale = 1;
         }
         {
-          output = "DP-10";
+          output = "DP-5"; # Right
           mode = "1920x1080@60Hz";
           position = "1920x0";
           scale = 1;
         }
         {
-          output = "DP-6";
+          output = "DP-4"; # Left
           mode = "1920x1080@60Hz";
           position = "-1920x0";
           scale = 1;

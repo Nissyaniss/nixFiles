@@ -6,7 +6,13 @@ let
   workPlugins =
     if machine-name == "work" then {
       PhpActor = { };
-      Phpcs = { };
+      # Phpcs = {
+      #   settings = {
+      #     phpcs_show_errors_on_save = false;
+      #     php_cs_fixer_show_quick_panel = false;
+      #     phpcbf_show_quick_panel = false;
+      #   };
+      # };
     } else { };
 
   workLSPClients =
