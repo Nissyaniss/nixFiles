@@ -6,13 +6,7 @@ let
   workPlugins =
     if machine-name == "work" then {
       PhpActor = { };
-      # Phpcs = {
-      #   settings = {
-      #     phpcs_show_errors_on_save = false;
-      #     php_cs_fixer_show_quick_panel = false;
-      #     phpcbf_show_quick_panel = false;
-      #   };
-      # };
+      Twig = { };
     } else { };
 
   workLSPClients =
@@ -81,6 +75,7 @@ let
     } else { };
 
   defaultPlugins = {
+    "Language - French - Français" = { };
     "A File Icon" = { };
     BracketHighlighter = {
       settings = {
@@ -171,6 +166,8 @@ in
       ];
       theme = "Default Dark.sublime-theme";
       color_scheme = "Dracula Neue Classic.sublime-color-scheme";
+      spell_check = true;
+      dictionary = [ "Packages/Language - English/en_US.dic" "Packages/Language - French - Français/fr_FR.dic" ];
     };
   };
 }

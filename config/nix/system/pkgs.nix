@@ -29,6 +29,7 @@ let
       phpactor
       php84Packages.php-cs-fixer
       libreoffice-still
+      dbeaver-bin
     ] else [ ];
 in
 {
