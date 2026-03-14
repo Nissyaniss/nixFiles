@@ -22,6 +22,24 @@ PopupWindow {
     anchor.rect.y: sound.y + 40
     visible: showMixer
 
+    NumberAnimation on implicitWidth {
+        id: openningAnimation
+        from: 20
+        to: 600
+        duration: 300
+        easing.type: Easing.InOutQuad
+        running: showMixer
+    }
+
+    NumberAnimation on implicitWidth {
+        id: closingAnimation
+        from: 600
+        to: 20
+        duration: 300
+        easing.type: Easing.InOutQuad
+        running: !showMixer
+    }
+
     PopupBackground {
         offset: 20
     }
@@ -42,6 +60,10 @@ PopupWindow {
 
         anchors.horizontalCenter: parent.horizontalCenter
 
+        BarText {
+            text: showMusicPopup.visible
+        }
+
         ComboBox {
             id: control
             width: 400
@@ -59,7 +81,6 @@ PopupWindow {
                 y: control.height
                 width: control.width
                 implicitHeight: contentItem.implicitHeight
-                height: implicitHeight
                 padding: 4
 
                 enter: Transition {
@@ -89,10 +110,10 @@ PopupWindow {
 
                 contentItem: ListView {
                     clip: true
-                    implicitHeight: contentHeight
+                    implicitHeight: contentHeight + 10
                     model: control.popup.visible ? control.delegateModel : null
                     currentIndex: control.highlightedIndex
-                    spacing: 0
+                    spacing: -15 // WHY ??
                     boundsBehavior: Flickable.StopAtBounds
 
                     ScrollIndicator.vertical: ScrollIndicator {}

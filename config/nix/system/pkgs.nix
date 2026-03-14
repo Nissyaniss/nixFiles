@@ -13,6 +13,8 @@ let
       protonplus
       balatro-mod-manager
       transmission_4-gtk
+      stoat-desktop
+      nextcloud-client
     ] else [ ];
 
   workPackages =

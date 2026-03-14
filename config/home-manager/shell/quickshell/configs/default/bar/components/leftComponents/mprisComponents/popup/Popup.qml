@@ -22,6 +22,15 @@ PopupWindow {
     visible: showMusicPopup
     implicitWidth: main.implicitWidth + 20
 
+    NumberAnimation on implicitWidth {
+        id: openningAnimation
+        from: 20
+        to: 450
+        duration: 300
+        easing.type: Easing.InOutQuad
+        running: showMusicPopup
+    }
+
     Timer {
         interval: 20
         running: player.isPlaying
@@ -53,7 +62,6 @@ PopupWindow {
             MediaTitle {}
             MediaArtist {}
             MediaTime {}
-            // offset: musicPopup.offset
             Seekbar {}
             Controls {}
         }
