@@ -5,8 +5,6 @@ import QtQuick
 import QtQuick.Controls
 import QtQuick.Shapes
 import "../../../../components"
-import "../../../../components/arrows"
-import "../."
 import "./components"
 
 PopupWindow {
