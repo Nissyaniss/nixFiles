@@ -4,9 +4,6 @@
 
 {
 
-  imports = [
-    inputs.walker.homeManagerModules.default
-  ];
   home.username = "root";
   home.homeDirectory = "/root";
 

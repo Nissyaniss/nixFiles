@@ -17,7 +17,7 @@
     "SUPER, UP, movefocus, u" # move focus up
     "SUPER, DOWN, movefocus, d" # move focus down
     "SUPER, W, togglefloating" # toggle floating on focused window
-    "SUPER, SUPER_L, exec, walker" # start walker
+    "SUPER, SUPER_L, exec, nu ${./bindmScripts/openLauncher.nu}" # start launcher
     "SUPER, P, exec, wleave" # start wleave
     "SUPER SHIFT, F, fullscreen, 2"
   ];

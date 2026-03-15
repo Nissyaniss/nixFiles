@@ -31,15 +31,6 @@ PopupWindow {
         running: showMixer
     }
 
-    NumberAnimation on implicitWidth {
-        id: closingAnimation
-        from: 600
-        to: 20
-        duration: 300
-        easing.type: Easing.InOutQuad
-        running: !showMixer
-    }
-
     PopupBackground {
         offset: 20
     }
@@ -59,10 +50,6 @@ PopupWindow {
         spacing: 10
 
         anchors.horizontalCenter: parent.horizontalCenter
-
-        BarText {
-            text: showMusicPopup.visible
-        }
 
         ComboBox {
             id: control

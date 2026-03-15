@@ -45,7 +45,6 @@ in
       pipewire
       sublime4
       legcord
-      walker
       grimblast
       nixd
       nh

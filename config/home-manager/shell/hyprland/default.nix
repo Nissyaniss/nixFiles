@@ -60,7 +60,6 @@ in
       exec-once = [
         "blueman-applet"
         "legcord"
-        "elephant"
         "hyprctl setcursor breeze_cursors 24"
         "wleave --service"
         (lib.optionalString

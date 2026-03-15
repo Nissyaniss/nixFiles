@@ -1,5 +1,6 @@
 import Quickshell
 import QtQuick.Layouts
+import QtQuick
 import "./components"
 
 PanelWindow {

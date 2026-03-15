@@ -1,5 +1,5 @@
-#! /bin/bash
+#!/usr/bin/env nu
 
-currentAbsoluteDirectory="$(pwd)"
-result="$(realpath -s --relative-to="/home/nissya" "${currentAbsoluteDirectory}")"
-echo "$result"
+let currentAbsoluteDirectory = pwd
+let result = realpath -s --relative-to="/home/nissya" $currentAbsoluteDirectory
+print $result

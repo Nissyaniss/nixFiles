@@ -5,7 +5,6 @@
 
 {
   imports = [
-    inputs.walker.homeManagerModules.default
     ../../../../../modules/home-manager
     ../../../../home-manager
   ];
@@ -50,16 +49,6 @@
   ];
 
   home.file = { };
-
-  programs.elephant = {
-    enable = true;
-    installService = true;
-  };
-
-  programs.walker = {
-    enable = true;
-    runAsService = true;
-  };
 
   programs.carapace.enable = true;
   programs.carapace.enableNushellIntegration = true;
