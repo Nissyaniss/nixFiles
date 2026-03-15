@@ -85,10 +85,12 @@ PanelWindow {
                     onClicked: modelData.execute()
                     Row {
                         id: item
+                        leftPadding: 25
                         IconImage {
                             source: Quickshell.iconPath(modelData.icon)
                             asynchronous: true
-                            implicitSize: 50
+                            implicitSize: 30
+                            anchors.verticalCenter: parent.verticalCenter
                         }
                         Column {
                             leftPadding: 10
@@ -97,7 +99,7 @@ PanelWindow {
                                 color: "white"
                             }
                             Text {
-                                text: modelData.comment
+                                text: modelData.comment.length > 90 ? modelData.comment.substring(0, 90) + "..." : modelData.comment
                                 font.pixelSize: 10
                                 color: "white"
                             }
