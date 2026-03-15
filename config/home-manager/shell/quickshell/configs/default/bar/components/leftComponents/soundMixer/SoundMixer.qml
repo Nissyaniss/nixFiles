@@ -17,13 +17,12 @@ PopupWindow {
     color: "transparent"
     anchor.window: topBar
     implicitHeight: main.height + control.height + 50
-    implicitWidth: main.width + 20
+    implicitWidth: mainColumn.width + 20
     anchor.rect.x: sound.x
     anchor.rect.y: sound.y + 40
     visible: showMixer
 
     NumberAnimation on implicitWidth {
-        id: openningAnimation
         from: 20
         to: 600
         duration: 300
@@ -48,6 +47,14 @@ PopupWindow {
         id: mainColumn
         width: 600
         spacing: 10
+
+        NumberAnimation on width {
+            from: 20
+            to: 600
+            duration: 300
+            easing.type: Easing.InOutQuad
+            running: showMixer
+        }
 
         anchors.horizontalCenter: parent.horizontalCenter
 
@@ -174,7 +181,14 @@ PopupWindow {
 
         ListView {
             id: main
-            width: parent.width
+            NumberAnimation on width {
+                from: 20
+                to: 600
+                duration: 300
+                easing.type: Easing.InOutQuad
+                running: showMixer
+            }
+
             height: count > 1 ? 200 : 100
 
             anchors.top: control.bottom
