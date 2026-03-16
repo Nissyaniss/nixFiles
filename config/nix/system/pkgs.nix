@@ -32,6 +32,7 @@ let
       php84Packages.php-cs-fixer
       libreoffice-still
       dbeaver-bin
+      apache-directory-studio
     ] else [ ];
 in
 {
@@ -40,7 +41,7 @@ in
       bruno
       fastfetch
       neovim
-      feishin
+      # feishin # broken rn
       wezterm
       pipewire
       sublime4
