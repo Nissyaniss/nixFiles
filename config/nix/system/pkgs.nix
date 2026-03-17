@@ -7,7 +7,7 @@ let
     if machine-name != "work" then with pkgs; [
       linux-wallpaperengine
       prismlauncher
-      heroic
+      # heroic
       gamescope
       mangohud
       protonplus
