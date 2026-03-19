@@ -32,6 +32,7 @@ let
     (extension "refined-github-" "{a4c4eda4-fb84-4a84-b4a1-f7c1cbf2a1ad}")
     (extension "return-youtube-dislikes" "{762f9885-5a13-4abd-9c77-433dcd38b8fd}")
     (extension "tampermonkey" "firefox@tampermonkey.net")
+    (extension "youtube-nonstop" "{0d7cafdd-501c-49ca-8ebb-e3341caaa55e}")
   ];
 
 in

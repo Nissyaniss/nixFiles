@@ -20,6 +20,7 @@
     "SUPER, SUPER_L, exec, nu ${./bindmScripts/openLauncher.nu}" # start launcher
     "SUPER, P, exec, wleave" # start wleave
     "SUPER SHIFT, F, fullscreen, 2"
+    "SUPER SHIFT, R, exec, nu ${./bindScripts/toggle_span.nu}"
   ];
 }
 
