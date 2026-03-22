@@ -7,7 +7,7 @@ let
   extraSddmSettingsPc =
     if machine-name == "pc" then {
       setupScript = ''
-        ${pkgs.xorg.xrandr}/bin/xrandr --output DP-2 --primary --mode 2560x1440 --rate 144 --rotate normal --output HDMI-1 --off
+        ${pkgs.xrandr}/bin/xrandr --output DP-2 --primary --mode 2560x1440 --rate 144 --rotate normal --output HDMI-1 --off
       '';
     } else { };
 in

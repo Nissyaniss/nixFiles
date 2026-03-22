@@ -7,7 +7,7 @@ let
     if machine-name != "work" then with pkgs; [
       linux-wallpaperengine
       prismlauncher
-      # heroic
+      heroic
       gamescope
       mangohud
       protonplus
@@ -15,6 +15,10 @@ let
       transmission_4-gtk
       stoat-desktop
       nextcloud-client
+      rustup
+      llvmPackages_21.llvm
+      llvmPackages_21.clang
+      llvmPackages_21.libclang
     ] else [ ];
 
   workPackages =
@@ -41,7 +45,7 @@ in
       bruno
       fastfetch
       neovim
-      # feishin # broken rn
+      feishin
       wezterm
       pipewire
       sublime4
@@ -68,7 +72,6 @@ in
       kdePackages.qtdeclarative
       grim
       hyprland
-      devenv
       openssl
       delta
     ] ++ personnalPackages ++ workPackages;

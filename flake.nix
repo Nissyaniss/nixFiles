@@ -13,10 +13,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # hyprland = {
-    #   url = "github:hyprwm/Hyprland";
-    #   inputs.nixpkgs.follows = "nixpkgs";
-    # };
+    spicetify-nix.url = "github:Gerg-L/spicetify-nix";
 
     stylix = {
       url = "github:danth/stylix";

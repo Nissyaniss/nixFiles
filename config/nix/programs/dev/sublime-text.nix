@@ -42,6 +42,7 @@ let
       LSP-ruff = { };
       LSP-rust-analyzer = {
         settings = {
+          command = [ "${pkgs.rustup}/bin/rust-analyzer" ];
           settings = {
             rust-analyzer = {
               checkOnSave = true;

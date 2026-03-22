@@ -24,5 +24,6 @@
         name = "Noto Color Emoji";
       };
     };
+    targets.spicetify.colors.enable = true;
   };
 }
