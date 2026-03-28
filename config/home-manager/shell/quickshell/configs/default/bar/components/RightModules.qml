@@ -39,6 +39,8 @@ Item {
             }
         }
 
+        Battery {}
+
         Systray {}
     }
 }

@@ -4,5 +4,6 @@
     ./transmission.nix
     ./gvfs.nix
     ./flatpak.nix
+    ./upower.nix
   ];
 }

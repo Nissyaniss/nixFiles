@@ -74,5 +74,6 @@ in
       hyprland
       openssl
       delta
+      upower
     ] ++ personnalPackages ++ workPackages;
 }
