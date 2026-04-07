@@ -5,5 +5,6 @@
     ./gvfs.nix
     ./flatpak.nix
     ./upower.nix
+    ./ratbagd.nix
   ];
 }

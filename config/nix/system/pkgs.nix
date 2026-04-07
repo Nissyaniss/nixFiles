@@ -84,5 +84,6 @@ in
       openssl
       delta
       upower
+      piper
     ] ++ personnalPackages ++ workPackages;
 }
