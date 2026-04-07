@@ -4,8 +4,10 @@ import Quickshell.Services.UPower
 import QtQml.Models
 
 LeftArrow {
+    visible: UPower.onBattery
+
     BarText {
-        text: UPower.displayDevice.percentage + "%"
+        text: UPower.displayDevice.percentage * 100 + "%"
     }
     Debug {
         to_print: "aaa"
