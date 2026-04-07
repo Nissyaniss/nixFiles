@@ -85,8 +85,7 @@ in
         {
 
           # See https://wiki.hyprland.org/Configuring/Variables
-          kb_layout = if machine-name == "work" then "fr" else "us";
-          kb_variant = if machine-name == "work" then "oss" else "";
+          kb_layout = "us";
           kb_model = "";
           kb_options = "";
           kb_rules = "";

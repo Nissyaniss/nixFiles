@@ -37,9 +37,18 @@ let
       libreoffice-still
       dbeaver-bin
       apache-directory-studio
+      rustup
+      clang
+      llvm
+      pkgsCross.mingwW64.buildPackages.binutils
+      pkg-config
+      mariadb-connector-c
+      mariadb
+      vcpkg
     ] else [ ];
 in
 {
+  environment.pathsToLink = [ "/include" ];
   environment.systemPackages = with pkgs;
     [
       bruno
