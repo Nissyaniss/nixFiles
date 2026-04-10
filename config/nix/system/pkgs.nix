@@ -85,5 +85,6 @@ in
       delta
       upower
       piper
+      swaylock
     ] ++ personnalPackages ++ workPackages;
 }

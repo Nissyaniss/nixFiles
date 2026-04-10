@@ -6,10 +6,6 @@ import "./components"
 ShellRoot {
     id: root
 
-    PamContext {
-        id: pamContext
-    }
-
     WlSessionLock {
         id: sessionLock
         locked: LockState.locked
@@ -22,14 +18,34 @@ ShellRoot {
                 running: true
                 repeat: true
                 onTriggered: {
-                    if (pmaText.pamText != "Checking...") {
-                        pmaText.pamText = "";
+                    if (pamText.pamText != "Checking...") {
+                        pamText.pamText = "";
                     }
                     if (circle.activeCirclePart != -1) {
                         circle.activeCirclePart = -1;
                     }
                 }
             }
+
+            PamContext {
+                id: pamContext
+            }
+
+            // DEBUG
+
+            // MouseArea {
+            //     anchors.fill: parent
+            //     cursorShape: Qt.PointingHandCursor
+            //     hoverEnabled: false
+            //     onEntered: {}
+            //     onExited: {}
+            //     onWheel: {}
+            //     onClicked: {
+            //         Qt.quit();
+            //     }
+            // }
+
+            // DEBUG
 
             Background {}
 
@@ -39,11 +55,11 @@ ShellRoot {
 
             PasswordField {}
 
-            PmaText {
-                id: pmaText
+            PamText {
+                id: pamText
             }
+
+            Component.onCompleted: pamContext.start()
         }
     }
-
-    Component.onCompleted: pamContext.start()
 }

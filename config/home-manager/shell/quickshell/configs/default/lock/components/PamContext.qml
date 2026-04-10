@@ -11,7 +11,7 @@ PamContext {
             LockState.locked = false;
             Qt.quit();
         } else {
-            root.pamText = "Failed";
+            pamText.pamText = "Failed";
             pamContext.start();
         }
     }

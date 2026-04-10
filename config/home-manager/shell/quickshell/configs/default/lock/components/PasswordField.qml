@@ -13,14 +13,14 @@ TextField {
         if (pamContext.responseRequired) {
             pamContext.respond(text);
             text = "";
-            pmaText.pamText = "Checking...";
+            pamText.pamText = "Checking...";
         }
     }
     onTextChanged: {
         if (text == "") {
-            pmaText.pamText = "Cleared";
+            pamText.pamText = "Cleared";
         } else {
-            pmaText.pamText = "";
+            pamText.pamText = "";
         }
         timer.restart();
         circle.randomCirclePart();
@@ -29,7 +29,7 @@ TextField {
 
     Keys.onEscapePressed: event => {
         text = "";
-        pmaText.pamText = "Cleared";
+        pamText.pamText = "Cleared";
         circle.activeCirclePart = -1;
         event.accepted = true;
     }
