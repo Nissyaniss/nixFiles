@@ -85,6 +85,6 @@ in
       delta
       upower
       piper
-      swaylock
+      # swaylock # for debugging the lock
     ] ++ personnalPackages ++ workPackages;
 }
