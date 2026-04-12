@@ -7,6 +7,7 @@
     ./timezone.nix
     ./hyprland.nix
     ./bluetooth.nix
+    ./zsh.nix
   ];
 }
 

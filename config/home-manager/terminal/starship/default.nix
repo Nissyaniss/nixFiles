@@ -4,11 +4,19 @@
   programs.starship = {
     enable = true;
     settings = {
+      character = {
+        success_symbol = "[>](bold green)";
+        error_symbol = "[>](bold red)";
+      };
+
+      profiles = {
+        transient = "(#6C6C6C)$character";
+      };
       format = ''
         [╭─](#6C6C6C)$os''${custom.root_without_git}''${custom.root_with_git}''${custom.without_git}''${custom.with_git}''${custom.without_git_and_at_home}$git_branch$git_status$fill$status$cmd_duration[─╮ ](#6C6C6C)
         [╰─ ](#6C6C6C)'';
       add_newline = false;
-      right_format = "[─╯](#6C6C6C) ";
+      right_format = " [─╯](#6C6C6C) ";
 
       #  7m 22s 
       cmd_duration = {
@@ -52,32 +60,32 @@
       };
 
       custom.without_git_and_at_home = {
-        when = "nu ${./scripts/isntGitAndIsAtHome.nu}";
+        when = "sh ${./scripts/isntGitAndIsAtHome.sh}";
         format = "[ ](fg:#6C6C6C bg:#444444)[ ~ ](bg:#444444 fg:#0997D5)[](fg:#444444)";
       };
 
 
       custom.without_git = {
-        command = "nu ${./scripts/getDirectoryRelativeToHome.nu}";
-        when = "nu ${./scripts/isntGit.nu}";
+        command = "sh ${./scripts/getDirectoryRelativeToHome.sh}";
+        when = "sh ${./scripts/isntGit.sh}";
         format = "[ ](fg:#6C6C6C bg:#444444)[ ](bg:#444444 fg:#0997D5)[$output ](bg:#444444 fg:#0997D5)[](fg:#444444)";
       };
 
       custom.with_git = {
-        command = "nu ${./scripts/getDirectoryRelativeToHome.nu}";
-        when = "nu ${./scripts/isGit.nu}";
+        command = "sh ${./scripts/getDirectoryRelativeToHome.sh}";
+        when = "sh ${./scripts/isGit.sh}";
         format = "[ ](fg:#6C6C6C bg:#444444)[ ](bg:#444444 fg:#0997D5)[$output ](bg:#444444 fg:#0997D5)";
       };
 
       custom.root_without_git = {
-        command = "nu ${./scripts/getDirectoryRelativeToRoot.nu}";
-        when = "nu ${./scripts/isntGitAndIsRoot.nu}";
+        command = "sh ${./scripts/getDirectoryRelativeToRoot.sh}";
+        when = "sh ${./scripts/isntGitAndIsRoot.sh}";
         format = "[ ](fg:#6C6C6C bg:#444444)[ /](bg:#444444 fg:#0997D5)[$output ](bg:#444444 fg:#0997D5)[](fg:#444444)";
       };
 
       custom.root_with_git = {
-        command = "nu ${./scripts/getDirectoryRelativeToRoot.nu}";
-        when = "nu ${./scripts/isGitAndIsRoot.nu}";
+        command = "sh ${./scripts/getDirectoryRelativeToRoot.sh}";
+        when = "sh ${./scripts/isGitAndIsRoot.sh}";
         format = "[ ](fg:#6C6C6C bg:#444444)[ /](bg:#444444 fg:#0997D5)[$output ](bg:#444444 fg:#0997D5)";
       };
     };

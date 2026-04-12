@@ -28,5 +28,5 @@ let
 in
 {
   users.users = { } // me;
-  users.defaultUserShell = pkgs.nushell;
+  users.defaultUserShell = pkgs.zsh;
 }

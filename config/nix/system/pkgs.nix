@@ -65,7 +65,6 @@ in
       (python3.withPackages (ps: [ ps.psutil ]))
       killall
       networkmanagerapplet
-      zoxide
       playerctl
       alsa-utils
       sublime-merge-dev
@@ -85,5 +84,6 @@ in
       upower
       piper
       # swaylock # for debugging the lock
+      rbw
     ] ++ personnalPackages ++ workPackages;
 }
