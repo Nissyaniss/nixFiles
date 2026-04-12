@@ -2,6 +2,7 @@ import QtQuick
 import Quickshell
 import Quickshell.Wayland
 import "./components"
+import "./arrows"
 
 ShellRoot {
     id: root
@@ -48,6 +49,19 @@ ShellRoot {
             // DEBUG
 
             Background {}
+
+            RightArrow {
+                id: background
+                width: parent.width
+                height: parent.height
+                offset: 200
+                Behavior on width {
+                    NumberAnimation {
+                        duration: 1500
+                        easing.type: Easing.OutExpo
+                    }
+                }
+            }
 
             Circle {
                 id: circle
