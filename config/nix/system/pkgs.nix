@@ -83,7 +83,8 @@ in
       delta
       upower
       piper
-      # swaylock # for debugging the lock
+      swaylock # for debugging the lock
       rbw
+      jq
     ] ++ personnalPackages ++ workPackages;
 }

@@ -1,9 +1,9 @@
-#!/usr/bin/env nu
+#!/bin/bash
 
-let state = (hyprctl activewindow -j | from json | get floating)
+state=$(hyprctl activewindow -j | jq -r '.floating')
 
-if $state {
+if [[ "$state" == "true" ]]; then
     hyprctl dispatch togglefloating active
-} else {
+else
     hyprctl --batch "dispatch togglefloating active ; dispatch moveactive exact -1920 0 ; dispatch resizeactive exact 5760 1080"
-}
+fi

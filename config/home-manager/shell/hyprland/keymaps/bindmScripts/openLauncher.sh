@@ -1,9 +1,7 @@
-#!/usr/bin/env nu
+#!/bin/bash
 
-let status = (do -i { pgrep -f "[L]auncher.qml" } | complete)
-
-if $status.exit_code == 0 {
+if pgrep -f "[L]auncher.qml" >/dev/null 2>&1; then
     pkill -f "[L]auncher.qml"
-} else {
+else
     exec qs -p ~/.nixFiles/config/home-manager/shell/quickshell/configs/default/launcher/Launcher.qml
-}
+fi
