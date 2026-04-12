@@ -14,7 +14,6 @@ let
       balatro-mod-manager
       transmission_4-gtk
       stoat-desktop
-      nextcloud-client
       rustup
       llvmPackages_21.llvm
       llvmPackages_21.clang
