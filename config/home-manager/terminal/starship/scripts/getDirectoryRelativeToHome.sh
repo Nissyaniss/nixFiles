@@ -1,5 +1,6 @@
 #! /bin/bash
 
 currentAbsoluteDirectory="$(pwd)"
-result="$(realpath -s --relative-to="~" "${currentAbsoluteDirectory}")"
+home=$HOME
+result="$(realpath -s --relative-to="${home}" "${currentAbsoluteDirectory}")"
 echo "$result"

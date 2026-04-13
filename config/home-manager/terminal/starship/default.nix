@@ -68,13 +68,13 @@
       custom.without_git = {
         command = "sh ${./scripts/getDirectoryRelativeToHome.sh}";
         when = "sh ${./scripts/isntGit.sh}";
-        format = "[ ](fg:#6C6C6C bg:#444444)[ ](bg:#444444 fg:#0997D5)[$output ](bg:#444444 fg:#0997D5)[](fg:#444444)";
+        format = "[ ](fg:#6C6C6C bg:#444444)[ ~/](bg:#444444 fg:#0997D5)[$output ](bg:#444444 fg:#0997D5)[](fg:#444444)";
       };
 
       custom.with_git = {
         command = "sh ${./scripts/getDirectoryRelativeToHome.sh}";
         when = "sh ${./scripts/isGit.sh}";
-        format = "[ ](fg:#6C6C6C bg:#444444)[ ](bg:#444444 fg:#0997D5)[$output ](bg:#444444 fg:#0997D5)";
+        format = "[ ](fg:#6C6C6C bg:#444444)[ ~/](bg:#444444 fg:#0997D5)[$output ](bg:#444444 fg:#0997D5)";
       };
 
       custom.root_without_git = {

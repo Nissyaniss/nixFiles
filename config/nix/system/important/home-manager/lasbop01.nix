@@ -1,5 +1,6 @@
 { inputs
 , pkgs
+, machine-name
 , ...
 }:
 
@@ -11,6 +12,10 @@
 
   home.username = "lasbop01";
   home.homeDirectory = "/home/lasbop01";
+
+  home.sessionVariables = {
+    CURRENT_MACHINE = machine-name;
+  };
 
   home.pointerCursor = {
     gtk.enable = true;
