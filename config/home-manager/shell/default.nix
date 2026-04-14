@@ -3,5 +3,6 @@
     ./hyprland
     ./wleave
     ./quickshell
+    ./wallpaper
   ];
 }

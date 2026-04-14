@@ -26,7 +26,7 @@
         mkdir --parents "$1" && cd "$1"
       '';
     };
-    initExtra = ''
+    initContent = ''
       function _transient_prompt_redraw() {
         # Ignore empty lines
         [[ -z "$BUFFER" ]] && return

@@ -84,7 +84,6 @@ in
       upower
       piper
       swaylock # for debugging the lock
-      rbw
       jq
     ] ++ personnalPackages ++ workPackages;
 }
