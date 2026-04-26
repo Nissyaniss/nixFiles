@@ -1,0 +1,6 @@
+{ ... }:
+{
+  nvidia = {
+    enable = true;
+  };
+}
