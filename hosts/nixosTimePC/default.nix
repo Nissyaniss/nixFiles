@@ -1,7 +1,56 @@
+{ pkgs, ... }:
 {
-  imports = [ ../modules/hyprland ];
-  local.hyprland =
-    {
+  imports = [
+    ./hardware.nix
+  ];
+
+  nixpkgs.config.allowUnfree = true;
+
+  nix.settings.experimental-features = [
+    "nix-command"
+    "flakes"
+  ];
+
+  nix.settings = {
+    substituters = [ "https://hyprland.cachix.org" ];
+    trusted-substituters = [ "https://hyprland.cachix.org" ];
+    trusted-public-keys = [ "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc=" ];
+  };
+
+  nix.settings.trusted-users = [ "root" "nissya" ];
+
+  # Before changing this value read the documentation for this option
+  # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
+  system.stateVersion = "25.11"; # Did you read the comment?
+
+  programs.zsh.enable = true;
+
+  users.users = {
+    nissya = {
+      isNormalUser = true;
+      description = "nissya";
+      extraGroups = [
+        "networkmanager"
+        "wheel"
+        "docker"
+      ];
+    };
+  };
+
+  users.defaultUserShell = pkgs.zsh;
+
+  boot.loader.systemd-boot.enable = true;
+
+
+  home-manager.users.nissya = {
+    imports = [ ../../modules/home-manager ];
+
+    # You should not change this value, even if you update Home Manager. If you do
+    # want to update the value, then make sure to first check the Home Manager
+    # release notes.
+    home.stateVersion = "25.11"; # Please read the comment before changing.
+
+    local.hyprland = {
       enable = true;
       exec-once = [
         "blueman-applet"
@@ -10,7 +59,7 @@
         "wleave --service"
       ];
 
-      enble_logs = true; # false to have logs
+      enable_logs = true; # false to have logs
 
       env = [
         "XCURSOR_SIZE,24"
@@ -50,4 +99,10 @@
         # "SUPER SHIFT, R, exec, sh ${./bindScripts/toggle_span.sh}"
       ];
     };
+
+    local.zsh = {
+      enable = true;
+    };
+  };
+
 }

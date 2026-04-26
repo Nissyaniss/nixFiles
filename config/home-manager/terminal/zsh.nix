@@ -8,12 +8,11 @@
 
   programs.zsh = {
     enable = true;
-    enableCompletion = true;
     autosuggestion.enable = true;
     syntaxHighlighting.enable = true;
     oh-my-zsh = {
       enable = true;
-      plugins = [ "sublime" "zoxide" "colored-man-pages" "command-not-found" "rbw" "rust" ];
+      plugins = [ "sublime" "zoxide" "colored-man-pages" "command-not-found" "rust" ];
     };
     shellAliases = {
       nix-config = "subl ~/.nixFiles";
@@ -28,9 +27,6 @@
     };
     initContent = ''
       function _transient_prompt_redraw() {
-        # Ignore empty lines
-        [[ -z "$BUFFER" ]] && return
-
         # Save the current Starship prompt state
         local ORIGINAL_PROMPT="$PROMPT"
         local ORIGINAL_RPROMPT="$RPROMPT"

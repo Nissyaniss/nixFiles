@@ -198,7 +198,7 @@ in
 
   config = lib.mkIf cfg.enable {
     wayland.windowManager.hyprland = {
-      enable = true;
+      enable = cfg.enable;
       settings = {
         exec-once = cfg.exec-once;
 
