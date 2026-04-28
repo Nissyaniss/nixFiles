@@ -71,14 +71,14 @@
         ] ++ defaultModules;
       };
 
-      nixosConfigurations.nixosTimeWork = nixpkgs.lib.nixosSystem {
+      nixosConfigurations.dsi-p-tp-13 = nixpkgs.lib.nixosSystem {
         specialArgs = {
           inherit inputs;
           machine-name = "work";
         };
         modules = [
-          { networking.hostName = "nixosTimeWork"; }
-          ./hardware-config/nixosTimeWork.nix
+          { networking.hostName = "dsi-p-tp-13"; }
+          ./hardware-config/dsi-p-tp-13.nix
           {
             home-manager.extraSpecialArgs = {
               inputs = inputs;
