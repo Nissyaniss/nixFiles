@@ -1,5 +1,4 @@
-{ ... }:
-{
+{ ... }: {
   nvidia = {
     enable = true;
   };
