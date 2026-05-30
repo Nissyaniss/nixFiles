@@ -12,6 +12,7 @@ let
           "networkmanager"
           "wheel"
           "docker"
+          "dialout"
         ];
       };
     } else {

@@ -24,10 +24,12 @@
       url = "git+https://git.outfoxxed.me/outfoxxed/quickshell";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    kopuz.url = "github:temidaradev/kopuz";
   };
 
   outputs =
-    { nixpkgs, stylix, ... }@inputs:
+    { nixpkgs, stylix, kopuz, ... }@inputs:
     let
       defaultModules = [
         ./configuration.nix
@@ -39,6 +41,7 @@
       nixosConfigurations.nixosTimePC = nixpkgs.lib.nixosSystem {
         specialArgs = {
           inherit inputs;
+          inherit kopuz;
           machine-name = "pc";
         };
         modules = [

@@ -142,7 +142,7 @@ in
 
       dwindle = {
         # See https://wiki.hyprland.org/Configuring/Dwindle-Layout/ for more
-        pseudotile = "yes";
+        # pseudotile = "yes";
         preserve_split = "yes";
       };
 
