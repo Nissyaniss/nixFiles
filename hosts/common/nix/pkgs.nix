@@ -1,4 +1,9 @@
 { pkgs, ... }: {
+  nixpkgs.config.permittedInsecurePackages = [
+    "openssl-1.1.1w" # sublime4
+    "electron-38.8.4" # legcord
+  ];
+
   environment.systemPackages = with pkgs;
     [
       bruno
@@ -37,10 +42,4 @@
       # swaylock # for debugging the lock
       jq
     ];
-
-  nixpkgs.config.permittedInsecurePackages = [
-    "openssl-1.1.1w" # sublime4
-    "electron-38.8.4" # legcord
-  ];
-
 }
