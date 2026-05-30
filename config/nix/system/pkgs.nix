@@ -1,8 +1,11 @@
 { pkgs
 , machine-name
+, kopuz
 , ...
 }:
 let
+  kopuzPkg = kopuz.packages.${pkgs.stdenv.hostPlatform.system}.default;
+
   personnalPackages =
     if machine-name != "work" then with pkgs; [
       linux-wallpaperengine
@@ -19,6 +22,9 @@ let
       llvmPackages_21.clang
       llvmPackages_21.libclang
       lutris-free
+      android-tools
+      xwayland-satellite
+      kopuzPkg
     ] else [ ];
 
   workPackages =

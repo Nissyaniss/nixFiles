@@ -1,5 +1,4 @@
-{ machine-name
-, ...
+{ ...
 }:
 {
   nixpkgs.config.permittedInsecurePackages = [
@@ -10,6 +9,12 @@
   imports = [
     ./config/nix
   ];
+
+  programs.direnv = {
+    enable = true;
+    enableZshIntegration = true;
+    silent = true;
+  };
 
   nixpkgs.overlays = [
     # Skipping tests while upstream sorts it out, revert once

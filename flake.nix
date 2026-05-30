@@ -24,6 +24,8 @@
       url = "git+https://git.outfoxxed.me/outfoxxed/quickshell";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    kopuz.url = "github:temidaradev/kopuz";
   };
 
   outputs =
