@@ -11,6 +11,7 @@
     imports = [
       ../../modules/home-manager
       ./config/home-manager
+      ../common/home-manager
     ];
 
     local.zsh = {

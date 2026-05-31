@@ -1,0 +1,8 @@
+{ ... }:
+{
+  imports = [
+    ./swaync
+    ./hyprpaper
+    ./quickshell
+  ];
+}

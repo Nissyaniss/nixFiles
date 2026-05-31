@@ -16,15 +16,15 @@
     silent = true;
   };
 
-  nixpkgs.overlays = [
-    # Skipping tests while upstream sorts it out, revert once
-    # Hydra consistently builds openldap green.
-    (final: prev: {
-      openldap = prev.openldap.overrideAttrs (_: {
-        doCheck = false;
-      });
-    })
-  ];
+  # nixpkgs.overlays = [
+  #   # Skipping tests while upstream sorts it out, revert once
+  #   # Hydra consistently builds openldap green.
+  #   (final: prev: {
+  #     openldap = prev.openldap.overrideAttrs (_: {
+  #       doCheck = true;
+  #     });
+  #   })
+  # ];
 
   fileSystems."/mnt/data" = {
     device = "/dev/disk/by-uuid/4979a195-a58c-4e11-ade3-c72d9b068986";
