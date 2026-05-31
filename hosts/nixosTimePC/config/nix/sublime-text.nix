@@ -5,10 +5,6 @@
     ../../../../modules/nix/sublime-text.nix
   ];
 
-  nixpkgs.config.permittedInsecurePackages = [
-    "openssl-1.1.1w"
-  ];
-
   sublime-text = {
     enable = true;
     plugins = {
