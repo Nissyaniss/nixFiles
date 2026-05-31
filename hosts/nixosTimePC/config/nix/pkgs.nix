@@ -13,6 +13,5 @@
     llvmPackages_21.llvm
     llvmPackages_21.clang
     llvmPackages_21.libclang
-    lutris-free
   ];
 }

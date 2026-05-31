@@ -23,6 +23,17 @@
       "SUPER, mouse:273, resizewindow" # resize window with right click
     ];
 
+    monitors = [
+        {
+          output = "DP-2";
+          mode = "2560x1440@200";
+        }
+        {
+          output = "HDMI-A-1";
+          mode = "1360x768@60";
+          position = "2560x672";
+        }
+  ];
 
     bind = [
       "SUPER + ALT_L, UP, movetoworkspace, +1" # move window to workspace left

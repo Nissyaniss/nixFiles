@@ -25,10 +25,10 @@ let
 
   inputType = lib.types.submodule {
     options = {
-      layout = lib.mkOption {
+      kb_layout = lib.mkOption {
         type = lib.types.str;
       };
-      variant = lib.mkOption {
+      kb_variant = lib.mkOption {
         type = lib.types.str;
       };
       numlock_by_default = lib.mkOption {
@@ -80,10 +80,6 @@ let
 
   dwindleType = lib.types.submodule {
     options = {
-      pseudotile = lib.mkOption {
-        type = lib.types.bool;
-      };
-
       preserve_split = lib.mkOption {
         type = lib.types.bool;
       };
@@ -138,8 +134,8 @@ in
     input = lib.mkOption {
       type = inputType;
       default = {
-        layout = "us";
-        variant = "";
+        kb_layout = "us";
+        kb_variant = "";
         numlock_by_default = true;
       };
     };
@@ -182,7 +178,6 @@ in
     dwindle = lib.mkOption {
       type = dwindleType;
       default = {
-        pseudotile = true;
         preserve_split = true;
       };
     };

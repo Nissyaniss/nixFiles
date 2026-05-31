@@ -4,5 +4,6 @@
     ./swaync
     ./hyprpaper
     ./quickshell
+    ./starship
   ];
 }
