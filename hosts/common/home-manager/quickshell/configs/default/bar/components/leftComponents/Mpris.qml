@@ -15,13 +15,11 @@ RightArrow {
     visible: player == null ? false : true
 
     Timer {
-        interval: 20
-        running: true
+        interval: 500
+        running: player != null && player.isPlaying
         repeat: true
         onTriggered: {
-            if (player && player.isPlaying) {
-                player.positionChanged();
-            }
+            if (player) player.positionChanged();
         }
     }
 
@@ -49,7 +47,7 @@ RightArrow {
         x: -parent.x - 1
         y: -parent.y
         RightArrow {
-            width: (player.position / player.length * parent.width) + 20
+            width: (player && player.length > 0 ? player.position / player.length * parent.width : 0) + 20
             height: mpris.height
             color: "#666666"
         }

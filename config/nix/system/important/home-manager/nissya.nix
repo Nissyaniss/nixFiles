@@ -43,8 +43,6 @@
     gtk4.extraConfig = {
       gtk-application-prefer-dark-theme = true;
     };
-
-    gtk4.theme = null;
   };
 
   # You should not change this value, even if you update Home Manager. If you do

@@ -30,11 +30,11 @@ PopupWindow {
     }
 
     Timer {
-        interval: 20
-        running: player.isPlaying
+        interval: 500
+        running: player != null && player.isPlaying
         repeat: true
         onTriggered: {
-            player.positionChanged();
+            if (player) player.positionChanged();
         }
     }
 

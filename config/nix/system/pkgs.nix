@@ -40,7 +40,7 @@ let
       obsidian
       phpactor
       php84Packages.php-cs-fixer
-      libreoffice-still
+      # libreoffice-still
       dbeaver-bin
       apache-directory-studio
       rustup
@@ -51,12 +51,15 @@ let
       mariadb-connector-c
       mariadb
       vcpkg
+      uv
+      phpantom-lsp
     ] else [ ];
 in
 {
   environment.pathsToLink = [ "/include" ];
   environment.systemPackages = with pkgs;
     [
+      claude-code
       bruno
       fastfetch
       neovim
@@ -92,5 +95,6 @@ in
       piper
       swaylock # for debugging the lock
       jq
+      pear-desktop
     ] ++ personnalPackages ++ workPackages;
 }
