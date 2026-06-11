@@ -5,23 +5,18 @@
 let
   workPlugins =
     if machine-name == "work" then {
-      PhpActor = { };
       Twig = { };
+      LSP-ruff = { };
+      LSP-pyright = { };
     } else { };
 
   workLSPClients =
     if machine-name == "work" then {
-      phpactor = {
+      phpantom = {
         enabled = true;
-        command = [ "${pkgs.phpactor}/bin/phpactor" "language-server" ];
-        selector = "source.php | embedding.php";
-        priority_selector = "source.php";
-        initialization_options = {
-          language_server_completion.trim_leading_dollar = true;
-          language_server_worse_reflection.inlay_hints.enable = true;
-          language_server_phpstan.enabled = true;
-          language_server_phpstan.bin = "${pkgs.phpstan}/bin/phpstan";
-        };
+        command = [ "${pkgs.phpantom-lsp}/bin/phpantom_lsp" ];
+        selector = "embedding.php";
+        priority_selector = "selector.php";
       };
     } else { };
 

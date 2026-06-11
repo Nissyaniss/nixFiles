@@ -1,4 +1,6 @@
-{ ...
+{ machine-name
+, pkgs
+, ...
 }:
 {
   nixpkgs.config.permittedInsecurePackages = [
@@ -9,12 +11,6 @@
   imports = [
     ./config/nix
   ];
-
-  programs.direnv = {
-    enable = true;
-    enableZshIntegration = true;
-    silent = true;
-  };
 
   nixpkgs.overlays = [
     # Skipping tests while upstream sorts it out, revert once
@@ -37,5 +33,17 @@
       "nofail" # Prevent system from failing if this drive doesn't mount
       "exec" # Permit execution of binaries and other executable files
     ];
+  };
+
+
+  programs.direnv = {
+    enable = true;
+    silent = true;
+    enableZshIntegration = true;
+    settings = {
+      global = {
+        hide_env_diff = true;
+      };
+    };
   };
 }

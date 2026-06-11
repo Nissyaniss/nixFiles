@@ -10,9 +10,10 @@ Item {
     property int rotation: 0
     Timer {
         interval: 20
-        running: player.isPlaying
+        running: player != null && player.isPlaying
         repeat: true
         onTriggered: {
+            if (!player) return;
             if (rotation == 360 && isZenBrowser == false && player.isPlaying) {
                 rotation = 0;
             } else if (isZenBrowser == false && player.isPlaying) {
@@ -34,7 +35,7 @@ Item {
         Image {
             id: image
             anchors.fill: parent
-            source: isZenBrowser ? "../assets/ZenLogo.svg" : player.trackArtUrl
+            source: isZenBrowser ? "../assets/ZenLogo.svg" : (player ? player.trackArtUrl : "")
             asynchronous: true
             fillMode: Image.PreserveAspectCrop
         }
@@ -77,7 +78,7 @@ Item {
         transform: Rotation {
             origin.x: 4
             origin.y: 4
-            angle: player.isPlaying ? 140 : 210
+            angle: player != null && player.isPlaying ? 140 : 210
 
             Behavior on angle {
                 NumberAnimation {

@@ -10,10 +10,9 @@ LeftArrow {
 
     function updateMemory() {
         let xhr = new XMLHttpRequest();
-        xhr.open("GET", "file:///proc/meminfo", false); // Synchronous read
-        xhr.send(null);
-
-        if (xhr.status === 200 || xhr.status === 0) {
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState !== XMLHttpRequest.DONE) return;
+            if (xhr.status !== 200 && xhr.status !== 0) return;
             let lines = xhr.responseText.split('\n');
             let total = 0;
             let available = 0;
@@ -30,7 +29,9 @@ LeftArrow {
                 let percentage = Math.round(((total - available) / total) * 100);
                 mem.memUsage = percentage;
             }
-        }
+        };
+        xhr.open("GET", "file:///proc/meminfo", true);
+        xhr.send(null);
     }
 
     BarText {

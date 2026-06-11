@@ -14,10 +14,9 @@ LeftArrow {
 
     function updateCpu() {
         let xhr = new XMLHttpRequest();
-        xhr.open("GET", "file:///proc/stat", false);
-        xhr.send(null);
-
-        if (xhr.status == 200 || xhr.status === 0) {
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState !== XMLHttpRequest.DONE) return;
+            if (xhr.status !== 200 && xhr.status !== 0) return;
             let cpuLine = xhr.responseText.split('\n')[0].split(" ");
             let idle = parseInt(cpuLine[5]);
             let total = cpuLine.reduce((accumulator, currentValue) => {
@@ -40,7 +39,9 @@ LeftArrow {
                 cpu.totalT1 = cpu.totalT2;
                 cpu.idleT1 = cpu.idleT2;
             }
-        }
+        };
+        xhr.open("GET", "file:///proc/stat", true);
+        xhr.send(null);
     }
 
     BarText {

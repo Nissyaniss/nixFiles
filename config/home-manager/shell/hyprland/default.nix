@@ -32,6 +32,7 @@ let
         {
           # output = "DP-8"; # Right
           output = "DP-5"; # Right
+          # output = "DP-10"; # Right
           mode = "1920x1080@60Hz";
           position = "1920x0";
           scale = 1;
@@ -39,6 +40,7 @@ let
         {
           # output = "DP-7"; # Left
           output = "DP-4"; # Left
+          # output = "DP-6"; # Left
           mode = "1920x1080@60Hz";
           position = "-1920x0";
           scale = 1;
