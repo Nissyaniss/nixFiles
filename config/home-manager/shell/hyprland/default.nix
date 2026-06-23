@@ -9,7 +9,7 @@ let
     if machine-name == "pc" then {
       monitorv2 = [
         {
-          output = "DP-2";
+          output = "DP-1";
           mode = "2560x1440@200";
           position = "0x0";
           scale = 1;
