@@ -41,5 +41,9 @@
       piper
       # swaylock # for debugging the lock
       jq
+      claude-code
+      zip
+      unzip
+      pear-desktop
     ];
 }

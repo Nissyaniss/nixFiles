@@ -6,4 +6,5 @@
   services.upower.enable = true;
   networking.networkmanager.enable = true;
   programs.nm-applet.enable = true;
+  programs.direnv.enable = true;
 }

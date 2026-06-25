@@ -5,5 +5,6 @@
     ./hyprpaper
     ./quickshell
     ./starship
+    ./wleave
   ];
 }

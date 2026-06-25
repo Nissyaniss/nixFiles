@@ -24,16 +24,16 @@
     ];
 
     monitors = [
-        {
-          output = "DP-2";
-          mode = "2560x1440@200";
-        }
-        {
-          output = "HDMI-A-1";
-          mode = "1360x768@60";
-          position = "2560x672";
-        }
-  ];
+      {
+        output = "DP-1";
+        mode = "2560x1440@200";
+      }
+      {
+        output = "HDMI-A-1";
+        mode = "1360x768@60";
+        position = "2560x672";
+      }
+    ];
 
     bind = [
       "SUPER + ALT_L, UP, movetoworkspace, +1" # move window to workspace left
@@ -53,10 +53,9 @@
       "SUPER, UP, movefocus, u" # move focus up
       "SUPER, DOWN, movefocus, d" # move focus down
       "SUPER, W, togglefloating" # toggle floating on focused window
-      # "SUPER, SUPER_L, exec, sh ${./bindmScripts/openLauncher.sh}" # start launcher
+      "SUPER, SUPER_L, exec, sh ${../../../common/home-manager/hyprland/scripts/openLauncher.sh}" # start launcher
       "SUPER, P, exec, wleave" # start wleave
       "SUPER SHIFT, F, fullscreen, 2"
-      # "SUPER SHIFT, R, exec, sh ${./bindScripts/toggle_span.sh}"
     ];
   };
 }

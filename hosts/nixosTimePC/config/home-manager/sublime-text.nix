@@ -2,7 +2,7 @@
 , ...
 }: {
   imports = [
-    ../../../../modules/nix/sublime-text.nix
+    ../../../../modules/home-manager/sublime-text.nix
   ];
 
   sublime-text = {

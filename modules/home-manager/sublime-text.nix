@@ -1,7 +1,6 @@
 { lib
 , pkgs
 , config
-, machine-name
 , ...
 }:
 let
@@ -91,13 +90,6 @@ let
         })
         cfg.snippets);
     };
-
-  # me =
-  #   if machine-name == "work" then {
-  #     lasbop01 = { } // defaultSublime;
-  #   } else {
-  #     nissya = { } // defaultSublime;
-  #   };
 
   configDirectory = "sublime-text/Packages";
   userConfigDirectory = "${configDirectory}/User";
@@ -263,7 +255,5 @@ in
     };
   };
 
-  # config.home-manager.users = {
-  #   root = { } // defaultSublime;
-  # }; # // me;
+  config = lib.mkIf cfg.enable defaultSublime;
 }
