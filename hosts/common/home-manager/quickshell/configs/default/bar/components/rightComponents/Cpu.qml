@@ -14,9 +14,11 @@ LeftArrow {
 
     function updateCpu() {
         let xhr = new XMLHttpRequest();
-        xhr.onreadystatechange = function() {
-            if (xhr.readyState !== XMLHttpRequest.DONE) return;
-            if (xhr.status !== 200 && xhr.status !== 0) return;
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState !== XMLHttpRequest.DONE)
+                return;
+            if (xhr.status !== 200 && xhr.status !== 0)
+                return;
             let cpuLine = xhr.responseText.split('\n')[0].split(" ");
             let idle = parseInt(cpuLine[5]);
             let total = cpuLine.reduce((accumulator, currentValue) => {

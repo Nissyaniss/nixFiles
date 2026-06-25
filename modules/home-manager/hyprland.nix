@@ -193,33 +193,32 @@ in
 
   config = lib.mkIf cfg.enable {
     wayland.windowManager.hyprland = {
-      enable = cfg.enable;
+      inherit (cfg) enable;
       settings = {
-        exec-once = cfg.exec-once;
+        inherit (cfg) exec-once;
 
         "debug:disable_logs" = cfg.enable_logs;
 
-        env = cfg.env;
+        inherit (cfg) env;
 
-        input = cfg.input;
+        inherit (cfg) input;
 
-        general = cfg.general;
+        inherit (cfg) general;
 
-        decoration = cfg.decoration;
+        inherit (cfg) decoration;
 
-        animations = cfg.animations;
+        inherit (cfg) animations;
 
-        dwindle = cfg.dwindle;
+        inherit (cfg) dwindle;
 
-        misc = cfg.misc;
+        inherit (cfg) misc;
 
-        bindm = cfg.bindm;
+        inherit (cfg) bindm;
 
-        bind = cfg.bind;
+        inherit (cfg) bind;
 
         monitorv2 = cfg.monitors;
       };
     };
   };
 }
-

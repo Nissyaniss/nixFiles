@@ -13,11 +13,14 @@ LeftArrow {
 
     function updateNetwork() {
         let xhr = new XMLHttpRequest();
-        xhr.onreadystatechange = function() {
-            if (xhr.readyState !== XMLHttpRequest.DONE) return;
-            if (xhr.status !== 200 && xhr.status !== 0) return;
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState !== XMLHttpRequest.DONE)
+                return;
+            if (xhr.status !== 200 && xhr.status !== 0)
+                return;
             let networkLine = xhr.responseText.split("\n")[4].match(/[^ ]+/g);
-            if (!networkLine) return;
+            if (!networkLine)
+                return;
             let receive = parseInt(networkLine[1]);
             let transmit = parseInt(networkLine[9]);
             if (network.isT1) {

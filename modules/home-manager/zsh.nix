@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, ... }:
 let
   cfg = config.local.zsh;
 
@@ -91,43 +91,50 @@ in
 
   config = lib.mkIf cfg.enable {
     programs.zsh = {
-      enable = cfg.enable;
+      inherit (cfg) enable;
 
       autosuggestion.enable = cfg.autosuggestion.enable;
       syntaxHighlighting.enable = cfg.autosuggestion.enable;
 
-      oh-my-zsh = cfg.oh-my-zsh;
+      inherit (cfg) oh-my-zsh;
 
-      shellAliases = { } // lib.optionalAttrs cfg.bat.enable {
-        cat = "bat";
-      } // lib.optionalAttrs cfg.ripgrep.enable {
-        grep = "rg";
-      } // {
-        nix-config = "subl ~/.nixFiles";
-        update = "nh os switch --update ~/.nixFiles";
-      };
+      shellAliases =
+        { }
+        // lib.optionalAttrs cfg.bat.enable {
+          cat = "bat";
+        }
+        // lib.optionalAttrs cfg.ripgrep.enable {
+          grep = "rg";
+        }
+        // {
+          nix-config = "direnv exec ~/.nixFiles/ subl ~/.nixFiles";
+          update = "nh os switch --update ~/.nixFiles";
+        };
 
       siteFunctions = cfg.functions;
 
       initContent =
-        if cfg.starship.transient_prompt then ''
-          function _transient_prompt_redraw() {
-            # Save the current Starship prompt state
-            local ORIGINAL_PROMPT="$PROMPT"
-            local ORIGINAL_RPROMPT="$RPROMPT"
+        if cfg.starship.transient_prompt then
+          ''
+            function _transient_prompt_redraw() {
+              # Save the current Starship prompt state
+              local ORIGINAL_PROMPT="$PROMPT"
+              local ORIGINAL_RPROMPT="$RPROMPT"
 
-            # Apply the transient profile and redraw the current line
-            PROMPT="$(starship prompt --profile transient)"
-            RPROMPT=""
-            zle reset-prompt
+              # Apply the transient profile and redraw the current line
+              PROMPT="$(starship prompt --profile transient)"
+              RPROMPT=""
+              zle reset-prompt
 
-            # Immediately restore the original state for the next command
-            PROMPT="$ORIGINAL_PROMPT"
-            RPROMPT="$ORIGINAL_RPROMPT"
-          }
+              # Immediately restore the original state for the next command
+              PROMPT="$ORIGINAL_PROMPT"
+              RPROMPT="$ORIGINAL_RPROMPT"
+            }
 
-          zle -N zle-line-finish _transient_prompt_redraw
-        '' else '''';
+            zle -N zle-line-finish _transient_prompt_redraw
+          ''
+        else
+          "";
     };
 
     programs.lsd.enable = cfg.lsd.enable;
@@ -146,5 +153,3 @@ in
     };
   };
 }
-
-

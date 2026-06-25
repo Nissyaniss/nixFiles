@@ -1,0 +1,24 @@
+[formatter.deadnix]
+command = "deadnix"
+options = ["-e"]
+includes = [ "*.nix" ]
+
+[formatter.nixfmt]
+command = "nixfmt"
+options = []
+includes = [ "*.nix" ]
+
+[formatter.qml]
+command = "qmlformat"
+options = ["-i"]
+includes = [ "*.qml" ]
+
+[formatter.shell]
+command = "shfmt"
+options = ["-w"]
+includes = [ "*.sh" ]
+
+[formatter.css]
+command = "prettier"
+options = ["-w"]
+includes = [ "*.css" ]

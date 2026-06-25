@@ -19,7 +19,8 @@ RightArrow {
         running: player != null && player.isPlaying
         repeat: true
         onTriggered: {
-            if (player) player.positionChanged();
+            if (player)
+                player.positionChanged();
         }
     }
 

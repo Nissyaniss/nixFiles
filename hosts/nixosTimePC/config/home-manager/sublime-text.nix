@@ -1,6 +1,8 @@
-{ pkgs
-, ...
-}: {
+{
+  pkgs,
+  ...
+}:
+{
   imports = [
     ../../../../modules/home-manager/sublime-text.nix
   ];
@@ -127,7 +129,10 @@
       theme = "Default Dark.sublime-theme";
       color_scheme = "Dracula Neue Classic.sublime-color-scheme";
       spell_check = true;
-      dictionary = [ "Packages/Language - English/en_US.dic" "Packages/Language - French - Français/fr_FR.dic" ];
+      dictionary = [
+        "Packages/Language - English/en_US.dic"
+        "Packages/Language - French - Français/fr_FR.dic"
+      ];
     };
   };
 }

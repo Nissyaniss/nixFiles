@@ -13,7 +13,8 @@ Item {
         running: player != null && player.isPlaying
         repeat: true
         onTriggered: {
-            if (!player) return;
+            if (!player)
+                return;
             if (rotation == 360 && isZenBrowser == false && player.isPlaying) {
                 rotation = 0;
             } else if (isZenBrowser == false && player.isPlaying) {

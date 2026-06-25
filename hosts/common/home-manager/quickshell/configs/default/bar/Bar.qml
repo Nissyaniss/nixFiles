@@ -24,8 +24,7 @@ PanelWindow {
             if (mouse.button == Qt.RightButton && topBar.implicitHeight != 1) {
                 topBar.implicitHeight = 1;
                 hider.cursorShape = Qt.PointingHandCursor;
-            } else if (mouse.button == Qt.RightButton && topBar.implicitHeight == 1)
-            {
+            } else if (mouse.button == Qt.RightButton && topBar.implicitHeight == 1) {
                 topBar.implicitHeight = 40;
                 hider.cursorShape = Qt.ArrowCursor;
             }

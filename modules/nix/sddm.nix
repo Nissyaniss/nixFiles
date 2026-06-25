@@ -1,7 +1,8 @@
-{ config
-, lib
-, pkgs
-, ...
+{
+  config,
+  lib,
+  pkgs,
+  ...
 }:
 let
   cfg = config.sddm;
@@ -54,41 +55,41 @@ in
     };
   };
 
-  config = lib.mkIf cfg.enable
-    {
-      services.displayManager.sddm = {
-        enable = true;
-        wayland.enable = false;
-        theme = cfg.theme;
-        extraPackages = [ cfg.themePackage ];
-        settings = {
-          General = { InputMethod = ""; };
+  config = lib.mkIf cfg.enable {
+    services.displayManager.sddm = {
+      enable = true;
+      wayland.enable = false;
+      inherit (cfg) theme;
+      extraPackages = [ cfg.themePackage ];
+      settings = {
+        General = {
+          InputMethod = "";
         };
       };
-      services.xserver.displayManager.setupCommands = lib.concatMapStrings
-        (item:
-          if item.deactivate == true then
-            ''
-              ${pkgs.xorg.xrandr}/bin/xrandr --output ${item.monitor} --off
-            ''
-          else if item.primary == true then
-            ''
-              ${pkgs.xorg.xrandr}/bin/xrandr --output ${item.monitor} --primary --mode ${item.resolution} --rate ${toString item.refreshRate} --rotate normal
-            ''
-          else
-            ''
-              ${pkgs.xorg.xrandr}/bin/xrandr --output ${item.monitor} --mode ${item.resolution} --rate ${toString item.refreshRate} --rotate normal
-            ''
-        )
-        cfg.setupScript;
-      systemd.services.display-manager.environment = {
-        QT_IM_MODULE = lib.mkForce "none";
-        QT_VIRTUALKEYBOARD_DESKTOP_DISABLE = lib.mkForce "1";
-      };
-      services.xserver.enable = true;
-
-      environment.systemPackages = with pkgs; [
-        cfg.themePackage
-      ];
     };
+    services.xserver.displayManager.setupCommands = lib.concatMapStrings (
+      item:
+      if item.deactivate == true then
+        ''
+          ${pkgs.xorg.xrandr}/bin/xrandr --output ${item.monitor} --off
+        ''
+      else if item.primary == true then
+        ''
+          ${pkgs.xorg.xrandr}/bin/xrandr --output ${item.monitor} --primary --mode ${item.resolution} --rate ${toString item.refreshRate} --rotate normal
+        ''
+      else
+        ''
+          ${pkgs.xorg.xrandr}/bin/xrandr --output ${item.monitor} --mode ${item.resolution} --rate ${toString item.refreshRate} --rotate normal
+        ''
+    ) cfg.setupScript;
+    systemd.services.display-manager.environment = {
+      QT_IM_MODULE = lib.mkForce "none";
+      QT_VIRTUALKEYBOARD_DESKTOP_DISABLE = lib.mkForce "1";
+    };
+    services.xserver.enable = true;
+
+    environment.systemPackages = with pkgs; [
+      cfg.themePackage
+    ];
+  };
 }

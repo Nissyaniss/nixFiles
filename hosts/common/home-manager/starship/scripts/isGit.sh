@@ -4,6 +4,6 @@ if [ "$?" = 0 ]; then
 	exit 0
 elif [ "$(pwd)" = "$HOME" ]; then
 	exit 1
-else 
+else
 	exit 1
 fi

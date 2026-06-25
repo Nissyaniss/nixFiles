@@ -1,9 +1,9 @@
-{ ... }: {
+_: {
   fileSystems."/mnt/data" = {
     device = "/dev/disk/by-uuid/4979a195-a58c-4e11-ade3-c72d9b068986";
     fsType = "ext4";
     options = [
-      # If you don't have this options attribute, it'll default to "defaults" 
+      # If you don't have this options attribute, it'll default to "defaults"
       # boot options for fstab. Search up fstab mount options you can use
       "x-gvfs-show"
       "users" # Allows any user to mount and unmount

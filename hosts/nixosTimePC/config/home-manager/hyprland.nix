@@ -1,4 +1,4 @@
-{ ... }: {
+_: {
   local.hyprland = {
     enable = true;
     exec-once = [
@@ -48,7 +48,7 @@
       "SUPER, T, exec, wezterm" # open wezterm
       "SUPER, D, exec, sh ~/.config/hypr/scripts/legcordControl.sh" # WIP: open and close legcord/discord on Win+D
       "SUPER, C, killactive" # killactive duh
-      "SUPER, LEFT, movefocus, l" # move focus to the left  
+      "SUPER, LEFT, movefocus, l" # move focus to the left
       "SUPER, RIGHT, movefocus, r" # move focus to the right
       "SUPER, UP, movefocus, u" # move focus up
       "SUPER, DOWN, movefocus, d" # move focus down

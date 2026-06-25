@@ -1,7 +1,8 @@
-{ lib
-, pkgs
-, config
-, ...
+{
+  lib,
+  pkgs,
+  config,
+  ...
 }:
 let
   inherit (lib)
@@ -163,7 +164,6 @@ let
     }
   );
 
-
 in
 {
   options.eww = {
@@ -235,8 +235,7 @@ in
     home.packages = [ config.eww.package ];
     xdg.configFile = {
       "eww/eww.yuck".text = ''
-        ${lib.concatMapAttrsStringSep "\n" (name: defWindow:
-          ''
+        ${lib.concatMapAttrsStringSep "\n" (name: defWindow: ''
           (defwindow ${name}
             :monitor ${toString defWindow.monitor}
             :geometry (geometry
@@ -253,32 +252,23 @@ in
 
             (${name})
           )
-          ''
-          )
-          config.eww.defWindow}
-        ${lib.concatMapAttrsStringSep "\n" (name: defListen:
-          ''
+        '') config.eww.defWindow}
+        ${lib.concatMapAttrsStringSep "\n" (name: defListen: ''
           (deflisten ${name}
-            ${lib.optionalString (defListen.initial != null) ":initial '${lib.toJSON defListen.initial}'\n  "}"${defListen.command}"
+            ${
+              lib.optionalString (defListen.initial != null) ":initial '${lib.toJSON defListen.initial}'\n  "
+            }"${defListen.command}"
           )
-          ''
-          )
-          config.eww.defListen}
-        ${lib.concatMapAttrsStringSep "\n" (name: value:
-          ''
+        '') config.eww.defListen}
+        ${lib.concatMapAttrsStringSep "\n" (name: value: ''
           (defvar ${name} ${value})
-          ''
-          )
-          config.eww.defVar}
-        ${lib.concatMapAttrsStringSep "\n" (name: defPoll:
-          ''
+        '') config.eww.defVar}
+        ${lib.concatMapAttrsStringSep "\n" (name: defPoll: ''
           (defpoll ${name}
             :interval "${defPoll.interval}"
             `${defPoll.command}`
           )
-          ''
-          )
-          config.eww.defPoll}
+        '') config.eww.defPoll}
         ${config.eww.defWidget}
       '';
       "eww/eww.scss".source = config.eww.scssPath;

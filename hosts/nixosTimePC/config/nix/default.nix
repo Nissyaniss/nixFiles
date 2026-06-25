@@ -8,4 +8,3 @@
     ./storage.nix
   ];
 }
-

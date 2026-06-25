@@ -1,6 +1,4 @@
-{ ...
-}:
-{
+_: {
   programs.starship = {
     enable = true;
     settings = {
@@ -63,7 +61,6 @@
         when = "sh ${./scripts/isntGitAndIsAtHome.sh}";
         format = "[ ](fg:#6C6C6C bg:#444444)[ ~ ](bg:#444444 fg:#0997D5)[](fg:#444444)";
       };
-
 
       custom.without_git = {
         command = "sh ${./scripts/getDirectoryRelativeToHome.sh}";

@@ -1,7 +1,8 @@
-{ inputs
-, pkgs
-, lib
-, ...
+{
+  inputs,
+  pkgs,
+  lib,
+  ...
 }:
 let
   extension = shortId: guid: {
@@ -42,11 +43,9 @@ in
       inputs.zen-browser.packages.${pkgs.stdenv.hostPlatform.system}.zen-browser-unwrapped
       {
         extraPrefs = lib.concatLines (
-          lib.mapAttrsToList
-            (
-              name: value: ''lockPref(${lib.strings.toJSON name}, ${lib.strings.toJSON value});''
-            )
-            prefs
+          lib.mapAttrsToList (
+            name: value: "lockPref(${lib.strings.toJSON name}, ${lib.strings.toJSON value});"
+          ) prefs
         );
 
         extraPolicies = {

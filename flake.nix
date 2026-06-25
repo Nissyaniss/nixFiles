@@ -29,9 +29,15 @@
   };
 
   outputs =
-    { nixpkgs, home-manager, stylix, ... }@inputs:
+    {
+      nixpkgs,
+      home-manager,
+      stylix,
+      ...
+    }@inputs:
     let
-      mkHost = hostname:
+      mkHost =
+        hostname:
         nixpkgs.lib.nixosSystem {
           specialArgs = { inherit inputs; };
           modules = [
