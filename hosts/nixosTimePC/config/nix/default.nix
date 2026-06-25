@@ -1,0 +1,10 @@
+{ ... }: {
+  imports = [
+    ./nix.nix
+    ./pkgs.nix
+    ./programs.nix
+    ./user.nix
+    ./sddm.nix
+  ];
+}
+

@@ -1,7 +1,7 @@
 { ... }: {
   imports = [
     ./hyprland.nix
-    ./zsh.nix
+    ./nissya.nix
     ./sublime-text.nix
   ];
 }
