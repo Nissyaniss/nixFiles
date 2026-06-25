@@ -5,6 +5,7 @@
     ./programs.nix
     ./user.nix
     ./sddm.nix
+    ./storage.nix
   ];
 }
 
