@@ -102,6 +102,9 @@ in
         cat = "bat";
       } // lib.optionalAttrs cfg.ripgrep.enable {
         grep = "rg";
+      } // {
+        nix-config = "subl ~/.nixFiles";
+        update = "nh os switch --update ~/.nixFiles";
       };
 
       siteFunctions = cfg.functions;

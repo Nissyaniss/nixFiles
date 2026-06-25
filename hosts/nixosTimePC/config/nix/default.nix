@@ -4,7 +4,6 @@
     ./pkgs.nix
     ./programs.nix
     ./user.nix
-    ./sublime-text.nix
     ./sddm.nix
   ];
 }
