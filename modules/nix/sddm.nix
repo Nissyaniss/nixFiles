@@ -58,7 +58,7 @@ in
   config = lib.mkIf cfg.enable {
     services.displayManager.sddm = {
       enable = true;
-      wayland.enable = false;
+      wayland.enable = true;
       inherit (cfg) theme;
       extraPackages = [ cfg.themePackage ];
       settings = {
