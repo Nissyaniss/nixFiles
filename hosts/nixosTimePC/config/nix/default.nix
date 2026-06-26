@@ -6,5 +6,6 @@
     ./user.nix
     ./sddm.nix
     ./storage.nix
+    ./graphics.nix
   ];
 }
