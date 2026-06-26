@@ -11,4 +11,6 @@ _: {
     enableZshIntegration = true;
     silent = true;
   };
+
+  security.pam.services.quickshell = { };
 }
