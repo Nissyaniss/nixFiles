@@ -6,5 +6,6 @@
     ./quickshell
     ./starship
     ./wleave
+    ./lazyvim.nix
   ];
 }

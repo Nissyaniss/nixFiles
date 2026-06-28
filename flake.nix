@@ -26,6 +26,8 @@
     };
 
     kopuz.url = "github:temidaradev/kopuz";
+
+    lazyvim.url = "github:pfassina/lazyvim-nix";
   };
 
   outputs =
@@ -33,6 +35,7 @@
       nixpkgs,
       home-manager,
       stylix,
+      lazyvim,
       ...
     }@inputs:
     let
@@ -47,6 +50,7 @@
             {
               networking.hostName = hostname;
               home-manager.extraSpecialArgs = { inherit inputs; };
+              home-manager.sharedModules = [ lazyvim.homeManagerModules.default ];
             }
           ];
         };
