@@ -82,7 +82,7 @@ in
             opts = {
               formatters_by_ft = {
               ${lib.concatMapAttrsStringSep "\n" (name: lang: ''
-                ${name} = { ${builtins.concatStringsSep " " (map (x: ''"${x}"'') lang.formattersCommands)} },
+                ${name} = { ${builtins.concatStringsSep " ," (map (x: ''"${x}"'') lang.formattersCommands)} },
               '') cfg.lang}
               },
             },
