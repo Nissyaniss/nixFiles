@@ -62,7 +62,66 @@ PanelWindow {
                 clip: true
                 keyNavigationEnabled: true
                 model: ScriptModel {
-                    values: [...DesktopEntries.applications.values].filter(entry => entry.name.toLowerCase().includes(search.text)).sort()
+                    values: {
+                        if (search.text.length === 0) {
+                            return [...DesktopEntries.applications.values];
+                        }
+
+                        class App {
+                            constructor(entry) {
+                                this.name = entry.name;
+                                this.entry = entry;
+                                this.last_position = 0;
+                                this.score = 0;
+                                this.consecutive_chars = 1;
+                            }
+                        }
+
+                        let search_result = [...DesktopEntries.applications.values].map(entry => new App(entry));
+                        const query = search.text;
+
+                        for (let c of query) {
+                            let search_result_temp = [];
+                            for (let app of search_result) {
+                                for (let index = 0; index < app.name.length; index++) {
+                                    const char = c.toLowerCase();
+                                    const app_char = app.name[index];
+                                    const app_char_lower = app_char.toLowerCase();
+                                    if (index == 0 && app_char_lower == char) {
+                                        app.last_position = 1;
+                                        app.score += 10;
+                                        search_result_temp.push(app);
+                                        break;
+                                    } else if (index == app.last_position && char == app_char_lower) {
+                                        app.consecutive_chars += 1;
+                                        app.last_position = index + 1;
+                                        app.score += app.consecutive_chars * 5;
+                                        search_result_temp.push(app);
+                                        break;
+                                    } else if (index >= app.last_position && index > 0 && char.toUpperCase() == app_char && (app.name[index - 1] == app.name[index - 1].toLowerCase() || app.name[index - 1] == '-' || app.name[index - 1] == '_')) {
+                                        app.consecutive_chars = 1;
+                                        app.last_position = index + 1;
+                                        app.score += 4;
+                                        search_result_temp.push(app);
+                                        break;
+                                    } else if (index >= app.last_position && index > 0 && (app.name[index - 1] == '-' || app.name[index - 1] == '_' || app.name[index - 1] == ' ')) {
+                                        app.consecutive_chars = 1;
+                                        app.last_position = index + 1;
+                                        app.score += 3;
+                                        search_result_temp.push(app);
+                                        break;
+                                    } else if (index >= app.last_position && app_char_lower == char) {
+                                        app.consecutive_chars = 1;
+                                        app.last_position = index + 1;
+                                        search_result_temp.push(app);
+                                        break;
+                                    }
+                                }
+                            }
+                            search_result = search_result_temp;
+                        }
+                        return search_result.sort((a, b) => b.score - a.score).map(app => app.entry);
+                    }
                     onValuesChanged: {
                         if (list.count > 0) {
                             list.currentIndex = 0;
