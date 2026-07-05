@@ -1,5 +1,6 @@
 {
   pkgs,
+  lib,
   ...
 }:
 {
@@ -9,6 +10,23 @@
 
   sublime-text = {
     enable = true;
+    package =
+      let
+        unwrapped = pkgs.sublime4.unwrapped.overrideAttrs (
+          final: previous: {
+            buildPhase =
+              lib.replaceStrings [ "--set-rpath " ] [ "--set-rpath ${lib.makeLibraryPath [ pkgs.openssl_1_1 ]}:" ]
+                previous.buildPhase;
+          }
+        );
+      in
+      pkgs.sublime4.overrideAttrs (
+        final: previous: {
+          installPhase =
+            lib.replaceStrings [ "${pkgs.sublime4.unwrapped}" ] [ "${unwrapped}" ]
+              previous.installPhase;
+        }
+      ); # fuck this
     plugins = {
       "Language - French - Français" = { };
       "A File Icon" = { };

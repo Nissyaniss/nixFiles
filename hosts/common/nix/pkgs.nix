@@ -23,7 +23,7 @@
     feishin
     wezterm
     pipewire
-    sublime4
+    #sublime4
     legcord
     grimblast
     nh

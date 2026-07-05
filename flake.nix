@@ -28,6 +28,11 @@
     kopuz.url = "github:temidaradev/kopuz";
 
     lazyvim.url = "github:pfassina/lazyvim-nix";
+
+    helium-flake = {
+      url = "github:oxcl/nix-flake-helium-browser";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =

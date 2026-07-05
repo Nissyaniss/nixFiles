@@ -8,5 +8,6 @@
     ./storage.nix
     ./graphics.nix
     ./network.nix
+    ./helium.nix
   ];
 }
