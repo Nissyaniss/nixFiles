@@ -6,6 +6,7 @@ import Quickshell.Wayland
 import Quickshell.Widgets
 import QtQuick.Controls
 import Quickshell.Hyprland
+import Quickshell.Io
 
 PanelWindow {
     id: toplevel
@@ -26,6 +27,25 @@ PanelWindow {
         windows: [toplevel]
     }
 
+    FileView {
+        id: pop
+        path: "/home/nissya/.nixFiles/hosts/common/home-manager/quickshell/configs/default/launcher/.launcher.json"
+
+        watchChanges: true
+        onFileChanged: reload()
+
+        property var entries: {
+            const apps = DesktopEntries.applications.values;
+            const obj = {};
+            for (let i = 0; i < apps.length; i++) {
+                obj[apps[i].name] = 1;
+            }
+            return obj;
+        }
+
+        onEntriesChanged: setText(JSON.stringify(entries, null, 4))
+    }
+
     DownArrow {
         anchors.fill: parent
         ColumnLayout {
@@ -35,7 +55,9 @@ PanelWindow {
                 focus: true
                 color: "white"
                 leftPadding: 25
-                Component.onCompleted: forceActiveFocus()
+                Component.onCompleted: {
+                    forceActiveFocus();
+                }
                 Layout.fillWidth: true
                 Keys.onUpPressed: {
                     list.decrementCurrentIndex();
@@ -141,7 +163,10 @@ PanelWindow {
                     implicitWidth: 600
                     cursorShape: Qt.PointingHandCursor
                     hoverEnabled: false
-                    onClicked: modelData.execute()
+                    onClicked: {
+                        modelData.execute();
+                        Qt.quit();
+                    }
                     Row {
                         id: item
                         leftPadding: 25

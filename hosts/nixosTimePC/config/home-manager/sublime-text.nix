@@ -13,7 +13,7 @@
     package =
       let
         unwrapped = pkgs.sublime4.unwrapped.overrideAttrs (
-          final: previous: {
+          _final: previous: {
             buildPhase =
               lib.replaceStrings [ "--set-rpath " ] [ "--set-rpath ${lib.makeLibraryPath [ pkgs.openssl_1_1 ]}:" ]
                 previous.buildPhase;
@@ -21,7 +21,7 @@
         );
       in
       pkgs.sublime4.overrideAttrs (
-        final: previous: {
+        _final: previous: {
           installPhase =
             lib.replaceStrings [ "${pkgs.sublime4.unwrapped}" ] [ "${unwrapped}" ]
               previous.installPhase;
@@ -59,6 +59,12 @@
               enabled = true;
               command = [ "${pkgs.kdePackages.qtdeclarative}/bin/qmlls" ];
               selector = "source.qml";
+            };
+            phpantom = {
+              enabled = true;
+              command = [ "${pkgs.phpantom-lsp}/bin/phpantom_lsp" ];
+              selector = "source.php";
+              settings.phpantom.formatting.command = [ "${pkgs.mago}/bin/mago format" ];
             };
           };
         };

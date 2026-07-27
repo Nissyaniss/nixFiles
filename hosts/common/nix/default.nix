@@ -10,5 +10,6 @@
     ./keyboard.nix
     ./bluetooth.nix
     ./stylix.nix
+    ./xdg.nix
   ];
 }

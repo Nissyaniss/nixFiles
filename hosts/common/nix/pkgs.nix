@@ -55,5 +55,6 @@
     zip
     unzip
     pear-desktop
+    pwvucontrol
   ];
 }
