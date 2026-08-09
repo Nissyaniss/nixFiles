@@ -1,8 +1,18 @@
-{
-  pkgs,
-  lib,
-  ...
+{ pkgs
+, lib
+, inputs
+, ...
 }:
+let
+  pkgs-stable = import inputs.nixpkgs-stable {
+    inherit (pkgs) system;
+    config = {
+      permittedInsecurePackages = [
+        "openssl-1.1.1w"
+      ];
+    };
+  }; # double fuck
+in
 {
   imports = [
     ../../../../modules/home-manager/sublime-text.nix
@@ -15,7 +25,9 @@
         unwrapped = pkgs.sublime4.unwrapped.overrideAttrs (
           _final: previous: {
             buildPhase =
-              lib.replaceStrings [ "--set-rpath " ] [ "--set-rpath ${lib.makeLibraryPath [ pkgs.openssl_1_1 ]}:" ]
+              lib.replaceStrings [ "--set-rpath " ] [
+                "--set-rpath ${lib.makeLibraryPath [ pkgs-stable.openssl_1_1 ]}:"
+              ]
                 previous.buildPhase;
           }
         );
