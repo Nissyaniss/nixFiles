@@ -1,7 +1,8 @@
-{ pkgs
-, lib
-, inputs
-, ...
+{
+  pkgs,
+  lib,
+  inputs,
+  ...
 }:
 let
   pkgs-stable = import inputs.nixpkgs-stable {
@@ -25,9 +26,11 @@ in
         unwrapped = pkgs.sublime4.unwrapped.overrideAttrs (
           _final: previous: {
             buildPhase =
-              lib.replaceStrings [ "--set-rpath " ] [
-                "--set-rpath ${lib.makeLibraryPath [ pkgs-stable.openssl_1_1 ]}:"
-              ]
+              lib.replaceStrings
+                [ "--set-rpath " ]
+                [
+                  "--set-rpath ${lib.makeLibraryPath [ pkgs-stable.openssl_1_1 ]}:"
+                ]
                 previous.buildPhase;
           }
         );
@@ -150,7 +153,70 @@ in
         ];
       }
     ];
-    snippets = { };
+    snippets = {
+      submodule = {
+        content = ''
+          lib.types.submodule {
+            options = {
+              $1
+            };
+          };
+        '';
+        tabTrigger = "submodule";
+        scope = "source.nix";
+      };
+
+      mkOption = {
+        content = ''
+          lib.mkOption {
+            type = $1;
+            default = $2;
+          };
+        '';
+        tabTrigger = "mkOption";
+        scope = "source.nix";
+      };
+
+      int = {
+        content = ''
+          lib.types.int
+        '';
+        tabTrigger = "int";
+        scope = "source.nix";
+      };
+
+      str = {
+        content = ''
+          lib.types.str
+        '';
+        tabTrigger = "str";
+        scope = "source.nix";
+      };
+
+      listOf = {
+        content = ''
+          lib.types.listOf
+        '';
+        tabTrigger = "listOf";
+        scope = "source.nix";
+      };
+
+      bool = {
+        content = ''
+          lib.types.bool
+        '';
+        tabTrigger = "bool";
+        scope = "source.nix";
+      };
+
+      float = {
+        content = ''
+          lib.types.float
+        '';
+        tabTrigger = "float";
+        scope = "source.nix";
+      };
+    };
     settings = {
       font_face = "FiraCode Nerd Font Mono";
       ignored_packages = [
