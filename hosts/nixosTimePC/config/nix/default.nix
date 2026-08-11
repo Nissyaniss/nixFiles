@@ -9,5 +9,6 @@
     ./graphics.nix
     ./network.nix
     ./helium.nix
+    ./waydroid.nix
   ];
 }
