@@ -23,33 +23,21 @@ let
     };
   };
 
-  inputType = lib.types.submodule {
-    options = {
-      kb_layout = lib.mkOption {
-        type = lib.types.str;
-      };
-      kb_variant = lib.mkOption {
-        type = lib.types.str;
-      };
-      numlock_by_default = lib.mkOption {
-        type = lib.types.bool;
-      };
-    };
-  };
-
   generalType = lib.types.submodule {
     options = {
       gaps_in = lib.mkOption {
         type = lib.types.int;
+        default = 5;
       };
+
       gaps_out = lib.mkOption {
         type = lib.types.int;
+        default = 20;
       };
+
       border_size = lib.mkOption {
         type = lib.types.int;
-      };
-      layout = lib.mkOption {
-        type = lib.types.str;
+        default = 2;
       };
     };
   };
@@ -58,42 +46,21 @@ let
     options = {
       rounding = lib.mkOption {
         type = lib.types.int;
+        default = 10;
       };
     };
   };
 
-  animationsType = lib.types.submodule {
+  inputType = lib.types.submodule {
     options = {
-      enabled = lib.mkOption {
-        type = lib.types.bool;
-      };
-
-      bezier = lib.mkOption {
+      kb_layout = lib.mkOption {
         type = lib.types.str;
+        default = "us";
       };
 
-      animation = lib.mkOption {
-        type = lib.types.listOf lib.types.str;
-      };
-    };
-  };
-
-  dwindleType = lib.types.submodule {
-    options = {
-      preserve_split = lib.mkOption {
+      follow_mouse = lib.mkOption {
         type = lib.types.bool;
-      };
-    };
-  };
-
-  miscType = lib.types.submodule {
-    options = {
-      force_default_wallpaper = lib.mkOption {
-        type = lib.types.int;
-      };
-
-      focus_on_activate = lib.mkOption {
-        type = lib.types.bool;
+        default = true;
       };
     };
   };
@@ -106,14 +73,28 @@ in
       default = [ ];
     };
 
-    bind = lib.mkOption {
-      type = lib.types.listOf lib.types.str;
-      default = [ ];
+    config = lib.mkOption {
+      type = lib.types.submodule {
+        options = {
+          general = lib.mkOption {
+            type = generalType;
+            default = { };
+          };
+          decoration = lib.mkOption {
+            type = decorationType;
+            default = { };
+          };
+          input = lib.mkOption {
+            type = inputType;
+            default = { };
+          };
+        };
+      };
+      default = { };
     };
-
-    bindm = lib.mkOption {
-      type = lib.types.listOf lib.types.str;
-      default = [ ];
+    binds = lib.mkOption {
+      type = lib.types.attrsOf lib.types.str;
+      default = { };
     };
 
     exec-once = lib.mkOption {
@@ -121,103 +102,60 @@ in
       default = [ ];
     };
 
-    enable_logs = lib.mkOption {
-      type = lib.types.bool;
-      default = false;
-    };
-
     env = lib.mkOption {
-      type = lib.types.listOf lib.types.str;
-      default = [ ];
-    };
-
-    input = lib.mkOption {
-      type = inputType;
-      default = {
-        kb_layout = "us";
-        kb_variant = "";
-        numlock_by_default = true;
-      };
-    };
-
-    general = lib.mkOption {
-      type = generalType;
-      default = {
-        gaps_in = 0;
-        gaps_out = 0;
-        border_size = 1;
-        layout = "dwindle";
-      };
-    };
-
-    decoration = lib.mkOption {
-      type = decorationType;
-      default = {
-        rounding = 10;
-      };
-    };
-
-    animations = lib.mkOption {
-      type = animationsType;
-      default = {
-        enabled = true;
-
-        bezier = "myBezier, 0.05, 0.9, 0.1, 1.05";
-
-        animation = [
-          "windows, 1, 7, myBezier"
-          "windowsOut, 1, 7, default, popin 80%"
-          "border, 1, 10, default"
-          "borderangle, 1, 8, default"
-          "fade, 1, 7, default"
-          "workspaces, 1, 6, default"
-        ];
-      };
-    };
-
-    dwindle = lib.mkOption {
-      type = dwindleType;
-      default = {
-        preserve_split = true;
-      };
-    };
-
-    misc = lib.mkOption {
-      type = miscType;
-      default = {
-        force_default_wallpaper = 0;
-        focus_on_activate = true;
-      };
+      type = lib.types.attrsOf lib.types.str;
+      default = { };
     };
   };
 
   config = lib.mkIf cfg.enable {
     wayland.windowManager.hyprland = {
+      configType = "lua";
       inherit (cfg) enable;
       settings = {
-        inherit (cfg) exec-once;
+        monitor = map (monitor: {
+          _args = [
+            {
+              output = monitor.output;
+              mode = monitor.mode;
+              position = monitor.position;
+              scale = monitor.scale;
+            }
+          ];
+        }) cfg.monitors;
+        config = {
+          inherit (cfg.config) general;
+          inherit (cfg.config) decoration;
+          input = {
+            follow_mouse = if (cfg.config.input.follow_mouse == true) then 1 else 0;
+            kb_layout = "us";
+          };
+        };
+        bind = lib.mapAttrsToList (keybind: dispatcher: {
+          _args = [
+            keybind
+            (lib.generators.mkLuaInline dispatcher)
+          ];
+        }) cfg.binds;
 
-        "debug:disable_logs" = cfg.enable_logs;
-
-        inherit (cfg) env;
-
-        inherit (cfg) input;
-
-        inherit (cfg) general;
-
-        inherit (cfg) decoration;
-
-        inherit (cfg) animations;
-
-        inherit (cfg) dwindle;
-
-        inherit (cfg) misc;
-
-        inherit (cfg) bindm;
-
-        inherit (cfg) bind;
-
-        monitorv2 = cfg.monitors;
+        on = {
+          _args = [
+            "hyprland.start"
+            (lib.generators.mkLuaInline (
+              ''
+                function()
+              ''
+              + lib.concatStringsSep "\n" (
+                lib.mapAttrsToList (
+                  name: value: "hl.env.set(${builtins.toJSON name}, ${builtins.toJSON value})"
+                ) cfg.env
+              )
+              + "\n"
+              + lib.concatMapStringsSep "\n" (program: "hl.exec_cmd(\"${program}\")") cfg.exec-once
+              + "\nend"
+            ))
+          ];
+        };
       };
     };
   };

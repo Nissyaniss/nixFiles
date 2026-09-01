@@ -11,6 +11,10 @@ _: {
     enableZshIntegration = true;
     silent = true;
   };
-
+  programs.hyprland = {
+    withUWSM = false;
+    enable = true;
+  };
+  programs.kdeconnect.enable = true;
   security.pam.services.quickshell = { };
 }

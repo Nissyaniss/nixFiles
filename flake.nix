@@ -5,6 +5,10 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-25.05";
 
+    niri = {
+      url = "github:epireyn/niri-flake";
+    };
+
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -26,14 +30,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    kopuz.url = "github:temidaradev/kopuz";
-
     lazyvim.url = "github:pfassina/lazyvim-nix";
-
-    helium-flake = {
-      url = "github:oxcl/nix-flake-helium-browser";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
   };
 
   outputs =
@@ -56,7 +53,10 @@
             {
               networking.hostName = hostname;
               home-manager.extraSpecialArgs = { inherit inputs; };
-              home-manager.sharedModules = [ lazyvim.homeManagerModules.default ];
+              home-manager.sharedModules = [
+                lazyvim.homeManagerModules.default
+                inputs.niri.homeModules.niri
+              ];
             }
           ];
         };
