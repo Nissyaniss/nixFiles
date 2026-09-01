@@ -52,7 +52,6 @@
     jq
     claude-code
     zip
-    swayfx
     unzip
     pear-desktop
     pwvucontrol

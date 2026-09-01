@@ -7,6 +7,5 @@
     ./starship
     ./wleave
     ./lazyvim.nix
-    ./swayfx.nix
   ];
 }
