@@ -12,5 +12,7 @@
     llvmPackages_21.clang
     llvmPackages_21.libclang
     android-tools
+    gamemode
+    obsidian
   ];
 }
