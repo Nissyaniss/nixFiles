@@ -12,7 +12,7 @@ let
       resize = "hl.dsp.window.resize()";
       close = "hl.dsp.window.close()";
       float = "hl.dsp.window.float({ action = \"toggle\" })";
-      fullscreen = mode: "hl.dsp.window.fullscreen({ mode = ${mode}, action = \"toggle\" })";
+      fullscreen = mode: "hl.dsp.window.fullscreen({ mode = \"${mode}\", action = \"toggle\" })";
       move.workspace = workspace: "hl.dsp.window.move({ workspace = \"${workspace}\" })";
     };
   };

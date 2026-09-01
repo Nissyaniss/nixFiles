@@ -62,6 +62,11 @@ let
         type = lib.types.bool;
         default = true;
       };
+
+      numlock_by_default = lib.mkOption {
+        type = lib.types.bool;
+        default = true;
+      };
     };
   };
 in
@@ -128,7 +133,8 @@ in
           inherit (cfg.config) decoration;
           input = {
             follow_mouse = if (cfg.config.input.follow_mouse == true) then 1 else 0;
-            kb_layout = "us";
+            inherit (cfg.config.input) kb_layout;
+            inherit (cfg.config.input) numlock_by_default;
           };
         };
         bind = lib.mapAttrsToList (keybind: dispatcher: {
