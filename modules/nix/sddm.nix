@@ -71,15 +71,15 @@ in
       item:
       if item.deactivate == true then
         ''
-          ${pkgs.xorg.xrandr}/bin/xrandr --output ${item.monitor} --off
+          ${pkgs.xrandr}/bin/xrandr --output ${item.monitor} --off
         ''
       else if item.primary == true then
         ''
-          ${pkgs.xorg.xrandr}/bin/xrandr --output ${item.monitor} --primary --mode ${item.resolution} --rate ${toString item.refreshRate} --rotate normal
+          ${pkgs.xrandr}/bin/xrandr --output ${item.monitor} --primary --mode ${item.resolution} --rate ${toString item.refreshRate} --rotate normal
         ''
       else
         ''
-          ${pkgs.xorg.xrandr}/bin/xrandr --output ${item.monitor} --mode ${item.resolution} --rate ${toString item.refreshRate} --rotate normal
+          ${pkgs.xrandr}/bin/xrandr --output ${item.monitor} --mode ${item.resolution} --rate ${toString item.refreshRate} --rotate normal
         ''
     ) cfg.setupScript;
     systemd.services.display-manager.environment = {
