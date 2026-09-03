@@ -153,7 +153,7 @@ in
               ''
               + lib.concatStringsSep "\n" (
                 lib.mapAttrsToList (
-                  name: value: "hl.env.set(${builtins.toJSON name}, ${builtins.toJSON value})"
+                  name: value: "hl.env(${builtins.toJSON name}, ${builtins.toJSON value})"
                 ) cfg.env
               )
               + "\n"
