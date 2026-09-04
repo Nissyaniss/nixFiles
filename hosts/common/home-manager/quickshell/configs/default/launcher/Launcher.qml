@@ -27,24 +27,24 @@ PanelWindow {
         windows: [toplevel]
     }
 
-    FileView {
-        id: pop
-        path: "/home/nissya/.nixFiles/hosts/common/home-manager/quickshell/configs/default/launcher/.launcher.json"
+    // FileView {
+    //     id: pop
+    //     path: "/home/nissya/.nixFiles/hosts/common/home-manager/quickshell/configs/default/launcher/.launcher.json"
 
-        watchChanges: true
-        onFileChanged: reload()
+    //     watchChanges: true
+    //     onFileChanged: reload()
 
-        property var entries: {
-            const apps = DesktopEntries.applications.values;
-            const obj = {};
-            for (let i = 0; i < apps.length; i++) {
-                obj[apps[i].name] = 1;
-            }
-            return obj;
-        }
+    //     property var entries: {
+    //         const apps = DesktopEntries.applications.values;
+    //         const obj = {};
+    //         for (let i = 0; i < apps.length; i++) {
+    //             obj[apps[i].name] = 1;
+    //         }
+    //         return obj;
+    //     }
 
-        onEntriesChanged: setText(JSON.stringify(entries, null, 4))
-    }
+    //     onEntriesChanged: setText(JSON.stringify(entries, null, 4))
+    // }
 
     DownArrow {
         anchors.fill: parent

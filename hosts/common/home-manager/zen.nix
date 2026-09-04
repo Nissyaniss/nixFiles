@@ -37,10 +37,6 @@ in
 
     languagePacks = [ "en" ];
     policies = {
-      "zen.window-sync.enabled" = {
-        Value = false;
-        Status = "locked";
-      };
       DisableTelemetry = true;
       DisablePocket = true;
       DisableAppUpdate = true;
@@ -89,6 +85,10 @@ in
     };
     profiles = {
       default = {
+        settings = {
+          "zen.window-sync.enabled" = false;
+          "zen.welcome-screen.seen" = true;
+        };
         isDefault = true;
         mods = [
           "a6335949-4465-4b71-926c-4a52d34bc9c0" # Better Find Bar
