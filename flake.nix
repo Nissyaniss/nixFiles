@@ -10,13 +10,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    lazyvim.url = "github:pfassina/lazyvim-nix";
   };
 
   outputs =
     { nixpkgs
     , home-manager
-    , lazyvim
     , ...
     }@inputs:
     let
@@ -30,9 +28,6 @@
             {
               networking.hostName = hostname;
               home-manager.extraSpecialArgs = { inherit inputs; };
-              home-manager.sharedModules = [
-                lazyvim.homeManagerModules.default
-              ];
             }
           ];
         };

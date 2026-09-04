@@ -1,7 +1,6 @@
-{
-  lib,
-  config,
-  ...
+{ lib
+, config
+, ...
 }:
 let
   inherit (lib)
@@ -49,6 +48,10 @@ let
   );
 in
 {
+  imports = [
+    "${(import ../../npins).lazyvim-nix}/nix/module.nix"
+  ];
+
   options.local.lazyvim = {
     enable = lib.mkEnableOption "Enable Lazyvim";
 
@@ -65,9 +68,11 @@ in
     programs.lazyvim = {
       inherit (cfg) enable;
       extras = {
-        lang = lib.attrsets.concatMapAttrs (name: lang: {
-          ${name}.enable = lang.enable;
-        }) cfg.lang;
+        lang = lib.attrsets.concatMapAttrs
+          (name: lang: {
+            ${name}.enable = lang.enable;
+          })
+          cfg.lang;
       };
       config = {
         autocmds = "${lib.concatMapAttrsStringSep "\n" (name: alias: ''

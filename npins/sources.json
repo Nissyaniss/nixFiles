@@ -1,5 +1,21 @@
 {
   "pins": {
+    "lazyvim-nix": {
+      "type": "GitRelease",
+      "repository": {
+        "type": "GitHub",
+        "owner": "pfassina",
+        "repo": "lazyvim-nix"
+      },
+      "pre_releases": false,
+      "version_upper_bound": null,
+      "release_prefix": null,
+      "submodules": false,
+      "version": "v16.0.0",
+      "revision": "1c198fbfe9d7d88b3e5bce7ca3f972f379904636",
+      "url": "https://api.github.com/repos/pfassina/lazyvim-nix/tarball/refs/tags/v16.0.0",
+      "hash": "sha256-uWfhrU3xJzha7DQ+i21NlymE9LDqXYxmAwgk5TPYp2g="
+    },
     "nixpkgs": {
       "type": "Channel",
       "name": "nixpkgs-unstable",
