@@ -45,7 +45,7 @@ in
       type = lib.types.attrs;
       default = {
         nix-config = "subl ~/.nixFiles";
-        update = "nh os switch --update ~/.nixFiles";
+        update = "npins update && nh os switch --update ~/.nixFiles";
       };
     };
 
