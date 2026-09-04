@@ -44,8 +44,8 @@ in
     aliases = lib.mkOption {
       type = lib.types.attrs;
       default = {
-        nix-config = "subl ~/.nixFiles";
-        update = "npins update && nh os switch --update ~/.nixFiles";
+        nix-config = "direnv exec ~/.nixFiles/ subl ~/.nixFiles";
+        update = "(cd ~/.nixFiles && npins update) && nh os switch --update ~/.nixFiles";
       };
     };
 
@@ -99,16 +99,12 @@ in
       inherit (cfg) oh-my-zsh;
 
       shellAliases =
-        { }
+        cfg.aliases
         // lib.optionalAttrs cfg.bat.enable {
           cat = "bat";
         }
         // lib.optionalAttrs cfg.ripgrep.enable {
           grep = "rg";
-        }
-        // {
-          nix-config = "direnv exec ~/.nixFiles/ subl ~/.nixFiles";
-          update = "nh os switch --update ~/.nixFiles";
         };
 
       siteFunctions = cfg.functions;

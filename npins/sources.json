@@ -16,13 +16,6 @@
       "url": "https://api.github.com/repos/pfassina/lazyvim-nix/tarball/refs/tags/v16.0.0",
       "hash": "sha256-uWfhrU3xJzha7DQ+i21NlymE9LDqXYxmAwgk5TPYp2g="
     },
-    "nixpkgs": {
-      "type": "Channel",
-      "name": "nixpkgs-unstable",
-      "artifact": "nixexprs.tar.xz",
-      "url": "https://releases.nixos.org/nixpkgs/nixpkgs-26.11pre1066425.9387b3fcc0c2/nixexprs.tar.xz",
-      "hash": "sha256-4ua7nluyuvF5SVIa2nBTCTW9ZiuzYuSBZQk4EdwOWhI="
-    },
     "stylix": {
       "type": "Git",
       "repository": {

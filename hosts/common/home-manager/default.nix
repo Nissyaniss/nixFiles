@@ -9,5 +9,6 @@
     ./lazyvim.nix
     ./zen.nix
     ./stylix.nix
+    ./zsh.nix
   ];
 }
