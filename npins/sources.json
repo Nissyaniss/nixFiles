@@ -7,6 +7,19 @@
       "url": "https://releases.nixos.org/nixpkgs/nixpkgs-26.11pre1066425.9387b3fcc0c2/nixexprs.tar.xz",
       "hash": "sha256-4ua7nluyuvF5SVIa2nBTCTW9ZiuzYuSBZQk4EdwOWhI="
     },
+    "stylix": {
+      "type": "Git",
+      "repository": {
+        "type": "GitHub",
+        "owner": "nix-community",
+        "repo": "stylix"
+      },
+      "branch": "master",
+      "submodules": false,
+      "revision": "5e3809851f486e7fc7e84b40f174c74b60ecc784",
+      "url": "https://github.com/nix-community/stylix/archive/5e3809851f486e7fc7e84b40f174c74b60ecc784.tar.gz",
+      "hash": "sha256-DkkJSBOXWV/mja5Vy8az5g1KpZlsbUwlmH0BsQhowaQ="
+    },
     "zen-browser-flake": {
       "type": "Git",
       "repository": {

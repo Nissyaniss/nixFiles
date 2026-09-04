@@ -1,4 +1,8 @@
 { pkgs, ... }: {
+  imports = [
+    (import (import ../../../npins).stylix).homeModules.stylix
+  ];
+
   stylix = {
     enable = true;
     polarity = "dark";

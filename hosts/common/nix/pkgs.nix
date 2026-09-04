@@ -59,5 +59,6 @@
     wl-clipboard
     telegram-desktop
     quickshell
+    npins
   ];
 }

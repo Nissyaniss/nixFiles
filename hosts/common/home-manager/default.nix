@@ -8,5 +8,6 @@
     ./wleave
     ./lazyvim.nix
     ./zen.nix
+    ./stylix.nix
   ];
 }

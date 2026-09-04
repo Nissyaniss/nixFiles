@@ -1,6 +1,7 @@
-{ pkgs
-, inputs
-, ...
+{
+  pkgs,
+  inputs,
+  ...
 }:
 let
   sources = import ../../../npins;
@@ -68,6 +69,9 @@ in
           }
         ];
       };
+      # To add additional extensions, find it on addons.mozilla.org, find
+      # the short ID in the url (like https://addons.mozilla.org/en-US/firefox/addon/!SHORT_ID!/)
+      # Then go to https://addons.mozilla.org/api/v5/addons/addon/!SHORT_ID!/ to get the guid
       ExtensionSettings = MkExtensions {
         "uBlock0@raymondhill.net" = "ublock-origin";
         "{446900e4-71c2-419f-a6a7-df9c091e268b}" = "bitwarden-password-manager";
@@ -76,6 +80,7 @@ in
         "{cb31ec5d-c49a-4e5a-b240-16c767444f62}" = "indie-wiki-buddy";
         "{c84d89d9-a826-4015-957b-affebd9eb603" = "mal-sync";
         "{762f9885-5a13-4abd-9c77-433dcd38b8fd}" = "return-youtube-dislikes";
+        "{a4c4eda4-fb84-4a84-b4a1-f7c1cbf2a1ad}" = "refined-github-";
       };
     };
     profiles = {
