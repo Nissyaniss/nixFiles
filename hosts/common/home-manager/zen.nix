@@ -1,7 +1,6 @@
-{
-  pkgs,
-  inputs,
-  ...
+{ pkgs
+, inputs
+, ...
 }:
 let
   sources = import ../../../npins;
@@ -37,6 +36,10 @@ in
 
     languagePacks = [ "en" ];
     policies = {
+      "zen.window-sync.enabled" = {
+        Value = false;
+        Status = "locked";
+      };
       DisableTelemetry = true;
       DisablePocket = true;
       DisableAppUpdate = true;

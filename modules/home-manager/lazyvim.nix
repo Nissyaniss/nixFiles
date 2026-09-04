@@ -1,6 +1,7 @@
-{ lib
-, config
-, ...
+{
+  lib,
+  config,
+  ...
 }:
 let
   inherit (lib)
@@ -68,11 +69,9 @@ in
     programs.lazyvim = {
       inherit (cfg) enable;
       extras = {
-        lang = lib.attrsets.concatMapAttrs
-          (name: lang: {
-            ${name}.enable = lang.enable;
-          })
-          cfg.lang;
+        lang = lib.attrsets.concatMapAttrs (name: lang: {
+          ${name}.enable = lang.enable;
+        }) cfg.lang;
       };
       config = {
         autocmds = "${lib.concatMapAttrsStringSep "\n" (name: alias: ''
