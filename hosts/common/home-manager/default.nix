@@ -7,5 +7,6 @@
     ./starship
     ./wleave
     ./lazyvim.nix
+    ./zen.nix
   ];
 }

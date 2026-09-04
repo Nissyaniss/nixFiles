@@ -1,7 +1,7 @@
 { ... }: {
   imports = [
     ./nvidia.nix
-    ./zen.nix
+    # ./zen.nix
     ./sddm.nix
   ];
 }

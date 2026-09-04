@@ -58,5 +58,6 @@
     mission-center
     wl-clipboard
     telegram-desktop
+    quickshell
   ];
 }

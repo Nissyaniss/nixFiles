@@ -66,7 +66,7 @@ in
       "SUPER + V" = dispatchers.window.fullscreen "maximized";
       "SUPER + L" =
         dispatchers.exec "for output in $(hyprctl monitors -j | jq -r '.[].name'); do grim -o \"$output\" \"/tmp/lock_bg_\${output}.png\"; done; qs -p ~/.config/quickshell/default/lock/Lock.qml; rm -f /tmp/lock_bg_*.png";
-      "SUPER + F" = dispatchers.exec "zen";
+      "SUPER + F" = dispatchers.exec "zen-beta";
       "SUPER + SHIFT + S" = dispatchers.exec "grimblast copy area";
       "SUPER + T" = dispatchers.exec "wezterm";
       "SUPER + C" = dispatchers.window.close;
