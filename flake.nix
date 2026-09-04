@@ -10,18 +10,12 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # stylix = {
-    #   url = "github:danth/stylix";
-    #   inputs.nixpkgs.follows = "nixpkgs";
-    # };
-
     lazyvim.url = "github:pfassina/lazyvim-nix";
   };
 
   outputs =
     { nixpkgs
     , home-manager
-      # , stylix
     , lazyvim
     , ...
     }@inputs:
@@ -33,7 +27,6 @@
           modules = [
             ./hosts/${hostname}
             home-manager.nixosModules.default
-            # stylix.nixosModules.stylix
             {
               networking.hostName = hostname;
               home-manager.extraSpecialArgs = { inherit inputs; };
