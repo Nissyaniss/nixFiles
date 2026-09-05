@@ -6,7 +6,7 @@
 }:
 let
   pkgs-stable = import inputs.nixpkgs-stable {
-    inherit (pkgs) system;
+    inherit (pkgs.stdenv.hostPlatform) system;
     config = {
       permittedInsecurePackages = [
         "openssl-1.1.1w"
