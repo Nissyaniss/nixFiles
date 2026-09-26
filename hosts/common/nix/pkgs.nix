@@ -35,7 +35,12 @@
     sublime-merge-dev
     nodejs
     sddm-astronaut
-    nautilus
+    kdePackages.dolphin
+    kdePackages.qtsvg # for dolphin
+    kdePackages.kio
+    kdePackages.kio-fuse # to mount remote filesystems
+    kdePackages.kio-extras # extra protocols support (sftp, fish and more)
+    kdePackages.ark # for extract
     libnotify
     vlc
     eog
