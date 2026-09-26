@@ -65,5 +65,6 @@
     telegram-desktop
     quickshell
     npins
+    bitwarden-desktop
   ];
 }
