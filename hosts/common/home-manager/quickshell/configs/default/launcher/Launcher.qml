@@ -15,11 +15,17 @@ PanelWindow {
     implicitHeight: 600
     focusable: true
     color: "transparent"
+    visible: false
+
+    function activate(): void {
+        toplevel.visible = !toplevel.visible;
+        search.text = "";
+    }
 
     Shortcut {
         sequences: [StandardKey.Cancel]
         context: Qt.ApplicationShortcut
-        onActivated: Qt.quit()
+        onActivated: toplevel.visible = false
     }
 
     HyprlandFocusGrab {
@@ -67,7 +73,7 @@ PanelWindow {
                 }
                 Keys.onReturnPressed: {
                     list.model.values[list.currentIndex].execute();
-                    Qt.quit();
+                    toplevel.visible = false;
                 }
                 background: RightArrow {
                     width: parent.width - 10
@@ -165,7 +171,7 @@ PanelWindow {
                     hoverEnabled: false
                     onClicked: {
                         modelData.execute();
-                        Qt.quit();
+                        toplevel.visible = false;
                     }
                     Row {
                         id: item

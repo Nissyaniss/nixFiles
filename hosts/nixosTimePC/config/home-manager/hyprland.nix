@@ -75,8 +75,7 @@ in
       "SUPER + UP" = dispatchers.focus.direction "up";
       "SUPER + DOWN" = dispatchers.focus.direction "down";
       "SUPER + W" = dispatchers.window.float;
-      "SUPER + SUPER_L" =
-        dispatchers.exec "sh ${../../../common/home-manager/hyprland/scripts/openLauncher.sh}";
+      "SUPER + SUPER_L" = dispatchers.exec "qs ipc call launcher activate";
       "SUPER + P" = dispatchers.exec "wleave";
       "SUPER + SHIFT + F" = dispatchers.window.fullscreen "fullscreen";
     };
