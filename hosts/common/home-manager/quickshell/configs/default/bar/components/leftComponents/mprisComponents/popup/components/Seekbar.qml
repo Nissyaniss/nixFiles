@@ -11,7 +11,7 @@ Slider {
     padding: 0
 
     from: 0
-    to: player.length
+    to: player?.length ?? 0
 
     Connections {
         target: player

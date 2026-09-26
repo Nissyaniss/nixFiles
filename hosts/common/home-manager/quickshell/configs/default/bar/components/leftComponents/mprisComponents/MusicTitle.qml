@@ -11,7 +11,7 @@ Item {
 
     BarText {
         id: titleText
-        text: mprisPlayer.trackTitle
+        text: mprisPlayer?.trackTitle ?? ""
         color: "white"
         anchors.verticalCenter: parent.verticalCenter
         x: 0

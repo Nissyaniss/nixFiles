@@ -7,7 +7,7 @@ Item {
 
     property string color: "#1a1a1a"
     readonly property int pw: 12
-    width: contentContainer.width + 30 + pw * 2
+
     height: 40
 
     Shape {

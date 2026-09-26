@@ -7,5 +7,5 @@ Item {
         console.log(to_print);
         console.log("=============");
     }
-    state: debug()
+    state: debug() ?? ""
 }

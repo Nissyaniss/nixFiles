@@ -11,7 +11,7 @@ RightArrow {
     }
     property PwNode node: Pipewire.defaultAudioSink
     property bool hasWheeled: false
-    property int volumePercent: Math.round(node.audio.volume * 100)
+    property int volumePercent: Math.round(node?.audio.volume * 100)
     property bool showMixer: false
 
     SoundMixer {
@@ -35,7 +35,7 @@ RightArrow {
         anchors.verticalCenter: parent.verticalCenter
         spacing: 10
         BarText {
-            text: node.audio.muted || node.audio.volume == 0 ? "" : ""
+            text: node?.audio.muted || node?.audio.volume == 0 ? "" : ""
             font.pixelSize: 30
         }
 

@@ -11,10 +11,10 @@
       "version_upper_bound": null,
       "release_prefix": null,
       "submodules": false,
-      "version": "v16.0.0",
-      "revision": "1c198fbfe9d7d88b3e5bce7ca3f972f379904636",
-      "url": "https://api.github.com/repos/pfassina/lazyvim-nix/tarball/refs/tags/v16.0.0",
-      "hash": "sha256-uWfhrU3xJzha7DQ+i21NlymE9LDqXYxmAwgk5TPYp2g="
+      "version": "v16.0.1",
+      "revision": "0281f0de388fd0cfce3004e1c5704fbe0835ce0b",
+      "url": "https://api.github.com/repos/pfassina/lazyvim-nix/tarball/refs/tags/v16.0.1",
+      "hash": "sha256-ir2bZRoAIkUx27rCiSRZCtTnrXNRmQr7De6aaZfTsHM="
     },
     "stylix": {
       "type": "Git",
@@ -25,9 +25,9 @@
       },
       "branch": "master",
       "submodules": false,
-      "revision": "5e3809851f486e7fc7e84b40f174c74b60ecc784",
-      "url": "https://github.com/nix-community/stylix/archive/5e3809851f486e7fc7e84b40f174c74b60ecc784.tar.gz",
-      "hash": "sha256-DkkJSBOXWV/mja5Vy8az5g1KpZlsbUwlmH0BsQhowaQ="
+      "revision": "abff36bfab11cbdcd0723f41c1b0921e211be6ac",
+      "url": "https://github.com/nix-community/stylix/archive/abff36bfab11cbdcd0723f41c1b0921e211be6ac.tar.gz",
+      "hash": "sha256-/F9gQpAlPCxheQ9ht/5Fka2JEr/FfuOh9R7ySa9SAGc="
     },
     "zen-browser-flake": {
       "type": "Git",
@@ -38,9 +38,9 @@
       },
       "branch": "main",
       "submodules": false,
-      "revision": "fdb83f8fce835213fab7eab52c375926fe1a32dc",
-      "url": "https://github.com/0xc000022070/zen-browser-flake/archive/fdb83f8fce835213fab7eab52c375926fe1a32dc.tar.gz",
-      "hash": "sha256-wuGizAVEmY0u15MYrhgy7AoQdHg+4Y2QiC+v/mxA8dc="
+      "revision": "b851b56b787a61b900751aca2f17e4a5ca6c394a",
+      "url": "https://github.com/0xc000022070/zen-browser-flake/archive/b851b56b787a61b900751aca2f17e4a5ca6c394a.tar.gz",
+      "hash": "sha256-f/tmhFat/UHra627JbVg6calQ3/ZkEydQZJR71BBX0M="
     }
   },
   "version": 8

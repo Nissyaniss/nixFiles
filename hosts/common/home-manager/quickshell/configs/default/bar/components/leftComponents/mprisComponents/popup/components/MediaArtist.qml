@@ -9,7 +9,7 @@ Item {
 
     BarText {
         id: artistText
-        text: player.trackArtist
+        text: player?.trackArtist ?? ""
         color: "white"
         font.pixelSize: 15
         anchors.verticalCenter: parent.verticalCenter

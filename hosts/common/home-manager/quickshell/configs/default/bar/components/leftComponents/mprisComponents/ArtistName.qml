@@ -11,7 +11,7 @@ Item {
 
     BarText {
         id: artistText
-        text: mprisPlayer.trackArtist
+        text: mprisPlayer?.trackArtist ?? ""
         color: "white"
         font.pixelSize: 12
         anchors.verticalCenter: parent.verticalCenter

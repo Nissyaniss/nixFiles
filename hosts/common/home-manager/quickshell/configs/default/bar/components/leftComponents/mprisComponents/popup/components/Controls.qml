@@ -5,7 +5,7 @@ Row {
     spacing: (info.width - background.offset) / 3 - 20
     PreviousButton {
         font.pixelSize: 30
-        color: player.canGoPrevious ? "white" : "gray"
+        color: player?.canGoPrevious ? "white" : "gray"
         mprisPlayer: player
     }
     PauseButton {
@@ -16,7 +16,7 @@ Row {
     }
     SkipButton {
         font.pixelSize: 30
-        color: player.canGoNext ? "white" : "gray"
+        color: player?.canGoNext ? "white" : "gray"
         mprisPlayer: player
     }
 }

@@ -38,10 +38,6 @@ PopupWindow {
         id: linkTracker
         node: Pipewire.defaultAudioSink
     }
-    PwNodeLinkTracker {
-        id: linkTracker2
-        node: Pipewire.nodes
-    }
 
     Column {
         id: mainColumn
@@ -68,7 +64,6 @@ PopupWindow {
 
             anchors.left: parent.left
             anchors.leftMargin: 20
-            anchors.top: parent.top
             anchors.topMargin: 20
 
             popup: Popup {
@@ -191,7 +186,6 @@ PopupWindow {
 
             height: count > 1 ? 200 : 100
 
-            anchors.top: control.bottom
             anchors.topMargin: 10
 
             clip: true

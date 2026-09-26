@@ -9,7 +9,7 @@ Item {
 
     BarText {
         id: titleText
-        text: player.trackTitle
+        text: player?.trackTitle ?? ""
         color: "white"
         anchors.verticalCenter: parent.verticalCenter
         x: 0
