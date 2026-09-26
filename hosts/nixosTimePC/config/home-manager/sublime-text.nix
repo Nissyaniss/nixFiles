@@ -50,6 +50,7 @@ in
           ignore_threshold = false;
         };
       };
+      Direnv = { };
       "Color Scheme - Dracula Neue" = { };
       "Dracula Color Scheme" = { };
       LSP = {
@@ -99,7 +100,7 @@ in
       LSP-ruff = { };
       LSP-rust-analyzer = {
         settings = {
-          command = [ "${pkgs.rustup}/bin/rust-analyzer" ];
+          command = [ "rust-analyzer" ];
           settings = {
             rust-analyzer = {
               checkOnSave = true;
@@ -214,6 +215,29 @@ in
           lib.types.float
         '';
         tabTrigger = "float";
+        scope = "source.nix";
+      };
+
+      shell = {
+        content = ''
+          let
+            pkgs = import <nixpkgs> {
+              config = {
+                allowUnfree = true;
+              };
+              overlays = [ ];
+            };
+          in
+
+
+          pkgs.mkShellNoCC {
+            packages = with pkgs; [
+              nixd
+              $1
+            ];
+          }
+        '';
+        tabTrigger = "shell";
         scope = "source.nix";
       };
     };
