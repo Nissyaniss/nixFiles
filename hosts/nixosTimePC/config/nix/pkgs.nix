@@ -17,5 +17,7 @@
     hydralauncher
     winetricks
     dolphin-emu
+    yt-dlp
+    ffmpeg
   ];
 }
