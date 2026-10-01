@@ -1,21 +1,5 @@
 { pkgs, ... }:
 {
-  nixpkgs = {
-    config = {
-      problems.handlers = {
-        sublimetext4.broken = "warn";
-      };
-      permittedInsecurePackages = [
-        "electron-38.8.4" # legcord
-      ];
-    };
-    overlays = [
-      (final: _prev: {
-        pnpm_10_29_2 = final.pnpm_10;
-      })
-    ];
-  };
-
   environment.systemPackages = with pkgs; [
     bruno
     fastfetch
@@ -32,7 +16,7 @@
     networkmanagerapplet
     playerctl
     alsa-utils
-    sublime-merge-dev
+    sublime-merge
     nodejs
     sddm-astronaut
     kdePackages.dolphin

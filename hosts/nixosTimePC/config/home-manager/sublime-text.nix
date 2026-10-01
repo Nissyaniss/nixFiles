@@ -1,19 +1,7 @@
 {
   pkgs,
-  lib,
-  inputs,
   ...
 }:
-let
-  pkgs-stable = import inputs.nixpkgs-stable {
-    inherit (pkgs.stdenv.hostPlatform) system;
-    config = {
-      permittedInsecurePackages = [
-        "openssl-1.1.1w"
-      ];
-    };
-  }; # double fuck
-in
 {
   imports = [
     ../../../../modules/home-manager/sublime-text.nix
@@ -21,27 +9,7 @@ in
 
   sublime-text = {
     enable = true;
-    package =
-      let
-        unwrapped = pkgs.sublime4.unwrapped.overrideAttrs (
-          _final: previous: {
-            buildPhase =
-              lib.replaceStrings
-                [ "--set-rpath " ]
-                [
-                  "--set-rpath ${lib.makeLibraryPath [ pkgs-stable.openssl_1_1 ]}:"
-                ]
-                previous.buildPhase;
-          }
-        );
-      in
-      pkgs.sublime4.overrideAttrs (
-        _final: previous: {
-          installPhase =
-            lib.replaceStrings [ "${pkgs.sublime4.unwrapped}" ] [ "${unwrapped}" ]
-              previous.installPhase;
-        }
-      ); # fuck this
+    package = pkgs.sublime4;
     plugins = {
       "Language - French - Français" = { };
       "A File Icon" = { };
