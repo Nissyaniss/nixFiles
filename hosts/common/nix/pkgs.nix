@@ -7,7 +7,7 @@
     feishin
     wezterm
     pipewire
-    legcord
+    vesktop
     grimblast
     nh
     git

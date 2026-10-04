@@ -25,9 +25,9 @@
       },
       "branch": "master",
       "submodules": false,
-      "revision": "fb28acd59e2ac1984ec84fa496599d6b4bf3e690",
-      "url": "https://github.com/nix-community/stylix/archive/fb28acd59e2ac1984ec84fa496599d6b4bf3e690.tar.gz",
-      "hash": "sha256-5J4zQ0mmCsd2SS+sOKdzXrngofQdtube3VoHSENz4zE="
+      "revision": "7c065d1ed05381fceb2403b963c5ad150f32fe39",
+      "url": "https://github.com/nix-community/stylix/archive/7c065d1ed05381fceb2403b963c5ad150f32fe39.tar.gz",
+      "hash": "sha256-j42XqSKOAtuqtfHiElyHre2YS/h3Y3q1DjFnKODN1/k="
     },
     "zen-browser-flake": {
       "type": "Git",
@@ -38,9 +38,9 @@
       },
       "branch": "main",
       "submodules": false,
-      "revision": "90424e159acc21e53ea76780a3ad9cb5acef7cba",
-      "url": "https://github.com/0xc000022070/zen-browser-flake/archive/90424e159acc21e53ea76780a3ad9cb5acef7cba.tar.gz",
-      "hash": "sha256-zno5kJyjkflDauJgy9NHyoHfhAr0S2kCCMEwaHJ0a6A="
+      "revision": "e56900732d1fa6f360db502451a457ffe3ca1e6e",
+      "url": "https://github.com/0xc000022070/zen-browser-flake/archive/e56900732d1fa6f360db502451a457ffe3ca1e6e.tar.gz",
+      "hash": "sha256-jr7YVkvOYS+bJjzBwoqtN8b8inJN8UDWziWufAWH1SY="
     }
   },
   "version": 8
