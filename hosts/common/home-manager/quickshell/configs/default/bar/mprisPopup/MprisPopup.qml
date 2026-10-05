@@ -18,7 +18,8 @@ Item {
 
     x: mprisX * progress
     implicitHeight: main.implicitHeight
-    visible: showMusicPopup
+    visible: showMusicPopup || progressAnim.running
+    opacity: Math.max(0, Math.min(1, progress))
     implicitWidth: main.implicitWidth + 20
 
     Behavior on progress {

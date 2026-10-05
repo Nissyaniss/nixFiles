@@ -20,7 +20,8 @@ Item {
     implicitHeight: main.height + control.height + 50
     implicitWidth: mainColumn.width + 20
     x: mixerX * progress
-    visible: showMixer
+    visible: showMixer || progressAnim.running
+    opacity: Math.max(0, Math.min(1, progress))
 
     Behavior on progress {
         SpringAnimation {
