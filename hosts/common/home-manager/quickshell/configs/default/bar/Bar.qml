@@ -7,6 +7,13 @@ PanelWindow {
     id: topBar
     implicitHeight: 40
     color: "transparent"
+
+    property bool showMprisPopup: left.showMprisPopup
+    property int mprisX: left.mprisX
+
+    property bool showMixer: left.showMixer
+    property int mixerX: left.mixerX
+
     anchors {
         top: true
         left: true
@@ -36,7 +43,9 @@ PanelWindow {
         anchors.leftMargin: 0
         anchors.rightMargin: 0
 
-        LeftModules {}
+        LeftModules {
+            id: left
+        }
 
         MiddleModules {}
 

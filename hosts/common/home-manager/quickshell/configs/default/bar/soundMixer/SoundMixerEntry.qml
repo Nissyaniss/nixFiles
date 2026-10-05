@@ -3,7 +3,7 @@ import Quickshell.Services.Pipewire
 import QtQuick.Controls
 import QtQuick.Layouts
 
-import "../../."
+import "../components"
 
 ColumnLayout {
     property PwNode node

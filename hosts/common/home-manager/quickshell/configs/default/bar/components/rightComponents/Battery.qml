@@ -9,9 +9,6 @@ LeftArrow {
     BarText {
         text: UPower.displayDevice.percentage * 100 + "%"
     }
-    Debug {
-        to_print: "aaa"
-    }
     Instantiator {
         model: UPower.devices
     }

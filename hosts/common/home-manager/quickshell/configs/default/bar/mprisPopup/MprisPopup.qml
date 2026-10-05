@@ -4,29 +4,29 @@ import Quickshell
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Shapes
-import "../../../../components"
+import Quickshell.Services.Mpris
+import "../components"
 import "./components"
 
-PopupWindow {
+Item {
     id: musicPopup
     property bool showMusicPopup: false
+    property real progress: showMusicPopup ? 1 : 0
     property int offset: 50
+    property MprisPlayer player: null
+    property int mprisX
 
-    color: "transparent"
-    anchor.window: topBar
-    anchor.rect.x: mpris.x
-    anchor.rect.y: mpris.y + 40
+    x: mprisX * progress
     implicitHeight: main.implicitHeight
     visible: showMusicPopup
     implicitWidth: main.implicitWidth + 20
 
-    NumberAnimation on implicitWidth {
-        id: openningAnimation
-        from: 20
-        to: 450
-        duration: 300
-        easing.type: Easing.InOutQuad
-        running: showMusicPopup
+    Behavior on progress {
+        SpringAnimation {
+            id: progressAnim
+            spring: 10
+            damping: 0.5
+        }
     }
 
     Timer {

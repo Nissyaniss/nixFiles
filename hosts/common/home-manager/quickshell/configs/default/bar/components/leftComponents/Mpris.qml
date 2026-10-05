@@ -3,14 +3,13 @@ import Quickshell.Services.Mpris
 import "../../components/arrows"
 import "../../components"
 import "./mprisComponents"
-import "./mprisComponents/popup"
 
 RightArrow {
     id: mpris
     readonly property list<MprisPlayer> availablePlayers: Mpris.players.values
     property MprisPlayer player: availablePlayers.find(p => p.isPlaying) ?? availablePlayers.find(p => p.canControl && p.canPlay) ?? null
     property bool isHoveringMpris: false
-    property bool showMusicPopup: false
+    property bool showMprisPopup: false
 
     visible: player == null ? false : true
 
@@ -37,10 +36,6 @@ RightArrow {
         }
     }
 
-    Popup {
-        showMusicPopup: mpris.showMusicPopup
-    }
-
     Item {
         z: -1
         width: mpris.width - 20
@@ -64,7 +59,7 @@ RightArrow {
             if (mouse.button == Qt.LeftButton) {
                 player.isPlaying ? player.pause() : player.play();
             } else {
-                showMusicPopup = !showMusicPopup;
+                showMprisPopup = !showMprisPopup;
             }
         }
 

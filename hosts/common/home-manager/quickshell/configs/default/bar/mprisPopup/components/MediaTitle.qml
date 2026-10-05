@@ -1,5 +1,5 @@
 import QtQuick
-import "../../../../../components"
+import "../../components"
 
 Item {
     id: title

@@ -5,7 +5,6 @@ Item {
     id: recordPlayerContainer
     width: 200
     height: 200
-    anchors.verticalCenter: musicPopup.verticalCenter
     property bool isZenBrowser: false
     property int rotation: 0
     Timer {

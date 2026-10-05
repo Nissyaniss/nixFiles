@@ -5,29 +5,29 @@ import Quickshell.Services.Pipewire
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Shapes
-import "../../../components"
-import "../../../components/arrows"
+import "../components"
+import "../components/arrows"
 import "./."
 
-PopupWindow {
+Item {
     id: soundMixer
     property bool showMixer: false
     property int offset: 50
+    property PwNodeLinkTracker linkTracker
+    property int mixerX
+    property real progress: showMixer ? 1 : 0
 
-    color: "transparent"
-    anchor.window: topBar
     implicitHeight: main.height + control.height + 50
     implicitWidth: mainColumn.width + 20
-    anchor.rect.x: sound.x
-    anchor.rect.y: sound.y + 40
+    x: mixerX * progress
     visible: showMixer
 
-    NumberAnimation on implicitWidth {
-        from: 20
-        to: 600
-        duration: 300
-        easing.type: Easing.InOutQuad
-        running: showMixer
+    Behavior on progress {
+        SpringAnimation {
+            id: progressAnim
+            spring: 10
+            damping: 0.5
+        }
     }
 
     PopupBackground {
@@ -44,21 +44,13 @@ PopupWindow {
         width: 600
         spacing: 10
 
-        NumberAnimation on width {
-            from: 20
-            to: 600
-            duration: 300
-            easing.type: Easing.InOutQuad
-            running: showMixer
-        }
-
         anchors.horizontalCenter: parent.horizontalCenter
 
         ComboBox {
             id: control
             width: 400
             height: 40
-            model: Pipewire.nodes
+            model: Pipewire.nodes.values.filter(n => n.audio && n.isSink && !n.isStream)
 
             currentIndex: indexOfValue(Pipewire.defaultAudioSink)
 
@@ -102,7 +94,6 @@ PopupWindow {
                     implicitHeight: contentHeight + 10
                     model: control.popup.visible ? control.delegateModel : null
                     currentIndex: control.highlightedIndex
-                    spacing: -15 // WHY ??
                     boundsBehavior: Flickable.StopAtBounds
 
                     ScrollIndicator.vertical: ScrollIndicator {}
@@ -166,7 +157,7 @@ PopupWindow {
                 text: parent.currentValue ? (parent.currentValue.description !== "" ? parent.currentValue.description : parent.currentValue.name) : "Select Output"
                 verticalAlignment: Text.AlignVCenter
                 elide: Text.ElideRight
-                leftPadding: 15
+                leftPadding: 30
             }
 
             onActivated: {
@@ -176,14 +167,7 @@ PopupWindow {
 
         ListView {
             id: main
-            NumberAnimation on width {
-                from: 20
-                to: 600
-                duration: 300
-                easing.type: Easing.InOutQuad
-                running: showMixer
-            }
-
+            width: 600
             height: count > 1 ? 200 : 100
 
             anchors.topMargin: 10

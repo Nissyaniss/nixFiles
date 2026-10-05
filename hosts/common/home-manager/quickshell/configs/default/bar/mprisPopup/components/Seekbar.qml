@@ -1,4 +1,4 @@
-import "../../../../../components/arrows"
+import "../../components/arrows"
 import QtQuick
 import QtQuick.Controls
 

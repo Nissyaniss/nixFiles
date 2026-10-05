@@ -1,4 +1,4 @@
-import "../../../../../components"
+import "../../components"
 
 BarText {
     height: 25

@@ -1,4 +1,4 @@
-import "../../../../../components/leftComponents/mprisComponents"
+import "../../components/leftComponents/mprisComponents"
 import QtQuick
 
 Row {

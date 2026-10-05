@@ -1,6 +1,5 @@
 import "../../components"
 import "../../components/arrows"
-import "./soundMixer"
 import QtQuick
 import Quickshell.Services.Pipewire
 
@@ -13,10 +12,6 @@ RightArrow {
     property bool hasWheeled: false
     property int volumePercent: Math.round(node?.audio.volume * 100)
     property bool showMixer: false
-
-    SoundMixer {
-        showMixer: sound.showMixer
-    }
 
     Timer {
         id: timer
