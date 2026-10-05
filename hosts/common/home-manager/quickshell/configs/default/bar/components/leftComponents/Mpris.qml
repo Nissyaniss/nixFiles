@@ -9,7 +9,6 @@ RightArrow {
     readonly property list<MprisPlayer> availablePlayers: Mpris.players.values
     property MprisPlayer player: availablePlayers.find(p => p.isPlaying) ?? availablePlayers.find(p => p.canControl && p.canPlay) ?? null
     property bool isHoveringMpris: false
-    property bool showMprisPopup: false
 
     visible: player == null ? false : true
 
@@ -59,7 +58,7 @@ RightArrow {
             if (mouse.button == Qt.LeftButton) {
                 player.isPlaying ? player.pause() : player.play();
             } else {
-                showMprisPopup = !showMprisPopup;
+                topBar.togglePopup("mpris");
             }
         }
 

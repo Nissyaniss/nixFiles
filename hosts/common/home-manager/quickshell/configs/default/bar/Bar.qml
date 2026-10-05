@@ -8,10 +8,16 @@ PanelWindow {
     implicitHeight: 40
     color: "transparent"
 
-    property bool showMprisPopup: left.showMprisPopup
+    property string openPopup: ""
+
+    readonly property bool showMprisPopup: openPopup == "mpris"
+    readonly property bool showMixer: openPopup == "mixer"
+
+    function togglePopup(name: string): void {
+        openPopup = openPopup == name ? "" : name;
+    }
     property int mprisX: left.mprisX
 
-    property bool showMixer: left.showMixer
     property int mixerX: left.mixerX
 
     anchors {

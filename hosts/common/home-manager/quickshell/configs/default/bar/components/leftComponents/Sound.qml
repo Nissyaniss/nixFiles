@@ -11,7 +11,6 @@ RightArrow {
     property PwNode node: Pipewire.defaultAudioSink
     property bool hasWheeled: false
     property int volumePercent: Math.round(node?.audio.volume * 100)
-    property bool showMixer: false
 
     Timer {
         id: timer
@@ -67,7 +66,7 @@ RightArrow {
             if (mouse.button == Qt.LeftButton) {
                 node.audio.muted = !node.audio.muted;
             } else {
-                showMixer = !showMixer;
+                topBar.togglePopup("mixer");
             }
         }
     }
