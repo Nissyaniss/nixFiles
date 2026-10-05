@@ -78,6 +78,9 @@ in
       "SUPER + SUPER_L" = dispatchers.exec "qs ipc call launcher activate";
       "SUPER + P" = dispatchers.exec "wleave";
       "SUPER + SHIFT + F" = dispatchers.window.fullscreen "fullscreen";
+      "XF86AudioPlay" = dispatchers.exec "playerctl play-pause";
+      "XF86AudioNext" = dispatchers.exec "playerctl next";
+      "XF86AudioPrev" = dispatchers.exec "playerctl previous";
     };
 
   };
