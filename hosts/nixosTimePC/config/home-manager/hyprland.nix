@@ -30,7 +30,7 @@ in
 
     exec-once = [
       "blueman-applet"
-      "legcord"
+      "vesktop"
       "hyprctl setcursor breeze_cursors 24"
       "wleave --service"
     ];
