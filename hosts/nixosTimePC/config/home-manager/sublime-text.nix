@@ -9,6 +9,8 @@
 
   sublime-text = {
     enable = true;
+    font = "FiraCode Nerd Font Mono";
+    icon-theme = "A File Icon.sublime-file-icons";
     package = pkgs.sublime4;
     plugins = {
       "Language - French - Français" = { };

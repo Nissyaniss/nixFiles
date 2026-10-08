@@ -27,7 +27,10 @@ let
         jsonFormat.generate "sublime-text-settings"
           (
             (optionalAttrs (cfg.font != null) {
-              font_face = "FiraCode Nerd Font Mono";
+              font_face = cfg.font;
+            })
+            // (optionalAttrs (cfg.icon-theme != null) {
+              file_icon_theme = cfg.icon-theme;
             })
             // {
               sublime_merge_path = "${pkgs.sublime-merge}/bin/sublime_merge";
@@ -173,6 +176,10 @@ in
       '';
     };
     font = mkOption {
+      type = with types; nullOr str;
+      default = null;
+    };
+    icon-theme = mkOption {
       type = with types; nullOr str;
       default = null;
     };
