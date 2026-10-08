@@ -53,6 +53,7 @@
           };
         };
       };
+      SFTP = { };
       LSP-bash = { };
       LSP-clangd = { };
       LSP-css = { };
