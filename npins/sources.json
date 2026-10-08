@@ -16,6 +16,22 @@
       "url": "https://api.github.com/repos/pfassina/lazyvim-nix/tarball/refs/tags/v16.0.1",
       "hash": "sha256-ir2bZRoAIkUx27rCiSRZCtTnrXNRmQr7De6aaZfTsHM="
     },
+    "pear-desktop-nix": {
+      "type": "GitRelease",
+      "repository": {
+        "type": "GitHub",
+        "owner": "h-banii",
+        "repo": "pear-desktop-nix"
+      },
+      "pre_releases": false,
+      "version_upper_bound": null,
+      "release_prefix": null,
+      "submodules": false,
+      "version": "3.12.0",
+      "revision": "72bfecfa93998121631bdab10217859127540f5c",
+      "url": "https://api.github.com/repos/h-banii/pear-desktop-nix/tarball/refs/tags/3.12.0",
+      "hash": "sha256-UOzIuG5wLAWkuGaK7ESuT1tARuAkGG5Bta8JW7KJcOM="
+    },
     "stylix": {
       "type": "Git",
       "repository": {
@@ -38,9 +54,9 @@
       },
       "branch": "main",
       "submodules": false,
-      "revision": "e56900732d1fa6f360db502451a457ffe3ca1e6e",
-      "url": "https://github.com/0xc000022070/zen-browser-flake/archive/e56900732d1fa6f360db502451a457ffe3ca1e6e.tar.gz",
-      "hash": "sha256-jr7YVkvOYS+bJjzBwoqtN8b8inJN8UDWziWufAWH1SY="
+      "revision": "a2caf7fe6fb6e4786591acb9cdf1306db1b011f7",
+      "url": "https://github.com/0xc000022070/zen-browser-flake/archive/a2caf7fe6fb6e4786591acb9cdf1306db1b011f7.tar.gz",
+      "hash": "sha256-MSFMvb579iNOOx89nEAligQJaLB6Qv1QfAw31eC4JIU="
     }
   },
   "version": 8

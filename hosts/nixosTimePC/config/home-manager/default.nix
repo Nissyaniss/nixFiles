@@ -3,5 +3,6 @@
     ./hyprland.nix
     ./nissya.nix
     ./sublime-text.nix
+    ./pear-desktop.nix
   ];
 }
