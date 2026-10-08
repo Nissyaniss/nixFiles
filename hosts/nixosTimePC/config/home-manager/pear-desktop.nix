@@ -1,8 +1,5 @@
 {
-  config,
   lib,
-  osConfig,
-  pkgs,
   ...
 }:
 let
