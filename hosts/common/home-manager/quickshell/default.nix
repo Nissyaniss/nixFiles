@@ -14,5 +14,6 @@ _: {
 
   systemd.user.services.quickshell.Service.Environment = [
     "QML_XHR_ALLOW_FILE_READ=1"
+    "QSG_RHI_BACKEND=vulkan"
   ];
 }
