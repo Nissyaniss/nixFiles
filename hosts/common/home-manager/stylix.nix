@@ -28,6 +28,10 @@
         name = "Noto Color Emoji";
       };
     };
-    targets.spicetify.colors.enable = true;
+    targets = {
+      rofi.enable = false; # why is it enable by default ???
+      spicetify.colors.enable = true;
+    };
+    overlays.enable = false; # home manager ignores them
   };
 }
