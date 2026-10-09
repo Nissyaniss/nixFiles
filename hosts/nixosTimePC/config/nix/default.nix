@@ -9,5 +9,6 @@
     ./graphics.nix
     ./network.nix
     ./waydroid.nix
+    ./virtualisation.nix
   ];
 }
