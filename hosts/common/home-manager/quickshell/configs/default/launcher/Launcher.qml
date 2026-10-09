@@ -22,6 +22,10 @@ PanelWindow {
         search.text = "";
     }
 
+    Order {
+        id: order
+    }
+
     Shortcut {
         sequences: [StandardKey.Cancel]
         context: Qt.ApplicationShortcut
@@ -53,6 +57,7 @@ PanelWindow {
                     list.incrementCurrentIndex();
                 }
                 Keys.onReturnPressed: {
+                    order.score(list.model.values[list.currentIndex].name);
                     list.model.values[list.currentIndex].execute();
                     toplevel.visible = false;
                 }
@@ -72,10 +77,6 @@ PanelWindow {
                 keyNavigationEnabled: true
                 model: ScriptModel {
                     values: {
-                        if (search.text.length === 0) {
-                            return [...DesktopEntries.applications.values];
-                        }
-
                         class App {
                             constructor(entry) {
                                 this.name = entry.name;
@@ -87,6 +88,14 @@ PanelWindow {
                         }
 
                         let search_result = [...DesktopEntries.applications.values].map(entry => new App(entry));
+
+                        for (const app of search_result)
+                            app.freq = order.frecency(app.name);
+
+                        if (search.text.length === 0) {
+                            return [...DesktopEntries.applications.values].sort((a, b) => order.frecency(b.name) - order.frecency(a.name) || a.name.localeCompare(b.name));
+                        }
+
                         const query = search.text;
 
                         for (let c of query) {
@@ -127,9 +136,11 @@ PanelWindow {
                                     }
                                 }
                             }
+
                             search_result = search_result_temp;
                         }
-                        return search_result.sort((a, b) => b.score - a.score).map(app => app.entry);
+
+                        return search_result.sort((a, b) => (b.freq - a.freq) || (b.score - a.score)).map(app => app.entry);
                     }
                     onValuesChanged: {
                         if (list.count > 0) {
@@ -151,6 +162,7 @@ PanelWindow {
                     cursorShape: Qt.PointingHandCursor
                     hoverEnabled: false
                     onClicked: {
+                        order.score(modelData.name);
                         modelData.execute();
                         toplevel.visible = false;
                     }
