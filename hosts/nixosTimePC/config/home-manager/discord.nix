@@ -1,7 +1,6 @@
-{
-  inputs,
-  system,
-  ...
+{ inputs
+, system
+, ...
 }:
 let
   nixcord = import (import ../../../../npins).nixcord {
@@ -68,6 +67,7 @@ in
         volumeBooster.enable = true;
         whoReacted.enable = true;
         youtubeAdblock.enable = true;
+        messageLogger.enable = true; # marked as equicord only but is not ?
       };
     };
   };
