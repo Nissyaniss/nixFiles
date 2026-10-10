@@ -31,8 +31,8 @@
     targets = {
       rofi.enable = false; # why is it enable by default ???
       spicetify.colors.enable = true;
+      nixcord.enable = false;
     };
     overlays.enable = false; # home manager ignores them
-    stylix.targets.nixcord.enable = false;
   };
 }
