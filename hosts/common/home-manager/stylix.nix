@@ -33,5 +33,6 @@
       spicetify.colors.enable = true;
     };
     overlays.enable = false; # home manager ignores them
+    stylix.targets.nixcord.enable = false;
   };
 }

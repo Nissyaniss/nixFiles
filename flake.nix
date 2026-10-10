@@ -12,9 +12,10 @@
   };
 
   outputs =
-    { nixpkgs
-    , home-manager
-    , ...
+    {
+      nixpkgs,
+      home-manager,
+      ...
     }@inputs:
     let
       mkHost =
