@@ -16,6 +16,19 @@
       "url": "https://api.github.com/repos/pfassina/lazyvim-nix/tarball/refs/tags/v16.0.1",
       "hash": "sha256-ir2bZRoAIkUx27rCiSRZCtTnrXNRmQr7De6aaZfTsHM="
     },
+    "nixcord": {
+      "type": "Git",
+      "repository": {
+        "type": "GitHub",
+        "owner": "4evy",
+        "repo": "nixcord"
+      },
+      "branch": "main",
+      "submodules": false,
+      "revision": "1ffd9a241a518fab5c2188749a599a8981cd8208",
+      "url": "https://github.com/4evy/nixcord/archive/1ffd9a241a518fab5c2188749a599a8981cd8208.tar.gz",
+      "hash": "sha256-qvL6V4VxqeF5hhrqCYW/XildRFpDJKsevALZRIyGJ7A="
+    },
     "pear-desktop-nix": {
       "type": "GitRelease",
       "repository": {
@@ -41,9 +54,9 @@
       },
       "branch": "master",
       "submodules": false,
-      "revision": "7c065d1ed05381fceb2403b963c5ad150f32fe39",
-      "url": "https://github.com/nix-community/stylix/archive/7c065d1ed05381fceb2403b963c5ad150f32fe39.tar.gz",
-      "hash": "sha256-j42XqSKOAtuqtfHiElyHre2YS/h3Y3q1DjFnKODN1/k="
+      "revision": "2856c4c6a845b9bec98828ef197abe176e4806bb",
+      "url": "https://github.com/nix-community/stylix/archive/2856c4c6a845b9bec98828ef197abe176e4806bb.tar.gz",
+      "hash": "sha256-UMnLnZ3JlA7UTBNNNx1rNsXYoPP/cirXLCKGiQ/yDx8="
     },
     "zen-browser-flake": {
       "type": "Git",
@@ -54,9 +67,9 @@
       },
       "branch": "main",
       "submodules": false,
-      "revision": "841dba01deda5e994a9838da9d2216f493fbaea9",
-      "url": "https://github.com/0xc000022070/zen-browser-flake/archive/841dba01deda5e994a9838da9d2216f493fbaea9.tar.gz",
-      "hash": "sha256-S4ZBR4y3cQ6NbLDJqoQR48718TWCM1ofpjt8Mzo83Hg="
+      "revision": "1fd1ee43a0fd0bff17a8ba07e2a281406a92991f",
+      "url": "https://github.com/0xc000022070/zen-browser-flake/archive/1fd1ee43a0fd0bff17a8ba07e2a281406a92991f.tar.gz",
+      "hash": "sha256-djG2tdpl/U+8eUmlozsRTRoU2yIvh8r1z8qj8gB/qWM="
     }
   },
   "version": 8
