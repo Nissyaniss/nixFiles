@@ -12,31 +12,30 @@
   };
 
   outputs =
-    {
-      nixpkgs,
-      home-manager,
-      ...
+    { nixpkgs
+    , home-manager
+    , ...
     }@inputs:
     let
       mkHost =
-        hostname:
+        hostname: system:
         nixpkgs.lib.nixosSystem {
-          specialArgs = { inherit inputs; };
+          specialArgs = { inherit inputs system; };
           modules = [
             ./hosts/${hostname}
             home-manager.nixosModules.default
             {
               networking.hostName = hostname;
-              home-manager.extraSpecialArgs = { inherit inputs; };
+              home-manager.extraSpecialArgs = { inherit inputs system; };
             }
           ];
         };
     in
     {
       nixosConfigurations = {
-        nixosTimePC = mkHost "nixosTimePC";
-        nixosTimeLap = mkHost "nixosTimeLap";
-        nixosTimeWork = mkHost "nixosTimeWork";
+        nixosTimePC = mkHost "nixosTimePC" "x86_64-linux";
+        nixosTimeLap = mkHost "nixosTimeLap" "x86_64-linux";
+        nixosTimeWork = mkHost "nixosTimeWork" "x86_64-linux";
       };
     };
 }
