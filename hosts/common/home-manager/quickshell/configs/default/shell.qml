@@ -13,13 +13,13 @@ import "./notifications"
 PanelWindow {
     id: root
 
-    // readonly property list<MprisPlayer> availablePlayers: Mpris.players.values
-    // property MprisPlayer player: availablePlayers.find(p => p.isPlaying) ?? availablePlayers.find(p => p.canControl && p.canPlay) ?? null
+    readonly property list<MprisPlayer> availablePlayers: Mpris.players.values
+    property MprisPlayer player: availablePlayers.find(p => p.isPlaying) ?? availablePlayers.find(p => p.canControl && p.canPlay) ?? null
 
-    // PwNodeLinkTracker {
-    //     id: pipewireLinkTracker
-    //     node: Pipewire.defaultAudioSink
-    // }
+    PwNodeLinkTracker {
+        id: pipewireLinkTracker
+        node: Pipewire.defaultAudioSink
+    }
 
     Notification {}
 
@@ -47,32 +47,32 @@ PanelWindow {
         }
     }
 
-    // Bar {
-    //     id: bar
-    // }
+    Bar {
+        id: bar
+    }
 
-    // SoundMixer {
-    //     id: soundMixerPopup
-    //     linkTracker: pipewireLinkTracker
-    //     mixerX: bar.mixerX
-    //     showMixer: bar.showMixer
-    // }
+    SoundMixer {
+        id: soundMixerPopup
+        linkTracker: pipewireLinkTracker
+        mixerX: bar.mixerX
+        showMixer: bar.showMixer
+    }
 
-    // MprisPopup {
-    //     id: mprisPopup
-    //     player: root.player
-    //     mprisX: bar.mprisX
-    //     showMusicPopup: bar.showMprisPopup
-    // }
+    MprisPopup {
+        id: mprisPopup
+        player: root.player
+        mprisX: bar.mprisX
+        showMusicPopup: bar.showMprisPopup
+    }
 
-    // Launcher {
-    //     id: launcher
-    // }
+    Launcher {
+        id: launcher
+    }
 
-    // IpcHandler {
-    //     target: "launcher"
-    //     function activate(): void {
-    //         launcher.activate();
-    //     }
-    // }
+    IpcHandler {
+        target: "launcher"
+        function activate(): void {
+            launcher.activate();
+        }
+    }
 }

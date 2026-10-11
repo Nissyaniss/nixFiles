@@ -1,4 +1,4 @@
-import "../bar/components"
+import "../../bar/components"
 import QtQuick
 
 BarText {
