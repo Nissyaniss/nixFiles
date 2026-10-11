@@ -1,6 +1,7 @@
-{ inputs
-, system
-, ...
+{
+  inputs,
+  system,
+  ...
 }:
 let
   nixcord = import (import ../../../../npins).nixcord {

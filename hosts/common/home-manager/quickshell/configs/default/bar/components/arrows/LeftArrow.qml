@@ -6,6 +6,7 @@ Item {
     default property alias content: contentContainer.data
 
     property string color: "#1a1a1a"
+    property bool leftAlign: false
     readonly property int pw: 12
     width: contentContainer.width + 30 + pw * 2
     height: 40
@@ -50,7 +51,12 @@ Item {
 
     Item {
         id: contentContainer
-        anchors.centerIn: parent
+
+        anchors.verticalCenter: parent.verticalCenter
+        anchors.horizontalCenter: seg.leftAlign ? undefined : parent.horizontalCenter
+        anchors.left: seg.leftAlign ? parent.left : undefined
+        anchors.leftMargin: seg.pw + 15
+
         width: children.length > 0 ? children[0].width : 0
         height: children.length > 0 ? children[0].height : 0
     }
