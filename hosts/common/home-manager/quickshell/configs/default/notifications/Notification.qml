@@ -4,6 +4,7 @@ import Quickshell
 import Quickshell.Services.Notifications
 import "../bar/components/arrows"
 import "../bar/components"
+import "./components"
 
 Item {
     NotificationServer {
@@ -11,9 +12,10 @@ Item {
         bodySupported: true
         keepOnReload: true
         actionsSupported: true
+        imageSupported: true
 
-        onNotification: n => {
-            n.tracked = true;
+        onNotification: notif => {
+            notif.tracked = true;
         }
     }
 
@@ -28,7 +30,7 @@ Item {
         }
         exclusionMode: ExclusionMode.Ignore
         color: "transparent"
-        implicitWidth: 320
+        implicitWidth: 400
         implicitHeight: list.implicitHeight
         visible: server.trackedNotifications.values.length > 0
 
@@ -46,7 +48,15 @@ Item {
 
                     MouseArea {
                         anchors.fill: parent
-                        onClicked: modelData.dismiss()
+                        acceptedButtons: Qt.LeftButton | Qt.RightButton
+                        onClicked: mouse => {
+                            if (mouse.button == Qt.LeftButton) {
+                                modelData.actions[0].invoke();
+                            } else if (mouse.button == Qt.RightButton) {
+                                exitAnim.running = true;
+                                exitAnim.isDismiss = true;
+                            }
+                        }
                     }
                     Layout.fillWidth: true
                     implicitHeight: arrow.height
@@ -54,11 +64,10 @@ Item {
                     LeftArrow {
                         id: arrow
                         leftAlign: true
-                        height: layoutColumn.implicitHeight + 20
+                        height: main.implicitHeight + 20
                         width: notification.width
                         Component.onCompleted: {
                             x = 0;
-                            opacity = 1;
                         }
                         x: 500
 
@@ -69,39 +78,61 @@ Item {
                             }
                         }
 
+                        SequentialAnimation {
+                            id: exitAnim
+                            property bool isDismiss: false
+
+                            NumberAnimation {
+                                target: arrow
+                                property: "x"
+                                to: 500
+                                duration: 200
+                                easing.type: Easing.InCubic
+                            }
+                            ScriptAction {
+                                script: {
+                                    if (exitAnim.isDismiss) {
+                                        modelData.dismiss();
+                                    } else {
+                                        modelData.expire();
+                                    }
+                                }
+                            }
+                        }
+
                         Item {
                             width: layoutColumn.width
                             height: layoutColumn.height
                         }
 
-                        Column {
-                            id: layoutColumn
-                            spacing: 4
+                        Row {
+                            id: main
+                            NotificationImage {
+                                image: modelData.image
+                                icon: modelData.appIcon
+                            }
+                            spacing: 10
+                            Column {
+                                id: layoutColumn
+                                spacing: 4
 
-                            BarText {
-                                text: modelData.summary
-                                font.bold: true
-                                Layout.fillWidth: true
-                                wrapMode: Text.Wrap
-                            }
-                            BarText {
-                                text: modelData.body
-                                visible: text !== ""
-                                Layout.fillWidth: true
-                                wrapMode: Text.Wrap
-                            }
-                            BarText {
-                                text: modelData.actions[0].identifier
-                                visible: text !== ""
-                                Layout.fillWidth: true
-                                wrapMode: Text.Wrap
+                                NotificationText {
+                                    maximumLineCount: 1
+                                    text: modelData.summary
+                                    font.bold: true
+                                }
+                                NotificationText {
+                                    text: modelData.body
+                                    maximumLineCount: 3
+                                    visible: text !== ""
+                                }
                             }
                         }
 
                         Timer {
                             running: true
                             interval: modelData.expireTimeout > 0 ? modelData.expireTimeout * 1000 : 5000
-                            onTriggered: modelData.expire()
+                            onTriggered: exitAnim.running = true
                         }
                     }
                 }
