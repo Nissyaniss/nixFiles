@@ -1,4 +1,4 @@
-/*@define-color border-color rgb(40, 42, 54);
+@define-color border-color rgb(40, 42, 54);
 @define-color border-color2 rgb(189, 147, 249);
 @define-color bg rgb(40, 42, 54);
 @define-color bg-hover rgb(68, 71, 90);
@@ -68,9 +68,9 @@
 .notification-default-action {
   border-radius: 10px;
 }
-*/
+
 /* When alternative actions are visible */
-/*.notification-default-action:not(:only-child) {
+.notification-default-action:not(:only-child) {
   border-bottom-left-radius: 0px;
   border-bottom-right-radius: 0px;
 }
@@ -80,9 +80,9 @@
   border-top: none;
   border-right: none;
 }
-*/
+
 /* add bottom border radius to eliminate clipping */
-/*.notification-action:first-child {
+.notification-action:first-child {
   border-bottom-left-radius: 10px;
 }
 
@@ -124,46 +124,4 @@
 .floating-notifications {
   background: transparent;
   border-radius: 50px;
-}
-*/
-
-.notification {
-  background-color: black;
-  clip-path: polygon(
-    calc(0% + var(--h) / 2) 0,
-    100% 0,
-    calc(var(--w) - var(--h) / 2) 50%,
-    calc(100% - 20px) 100%,
-    calc(0% + var(--h) / 2) 100%,
-    0% 50%
-  );
-  margin: 6px 8px;
-  padding: 0px;
-}
-
-.body {
-  background: transparent;
-  color: white;
-  text-shadow: none;
-}
-
-.top-action-title {
-  color: white;
-  text-shadow: none;
-}
-
-.floating-notifications {
-  background: transparent;
-  border-radius: 50px;
-}
-
-.close-button {
-  background: red;
-  color: white;
-  text-shadow: none;
-  padding: 0px;
-  border-radius: 100%;
-  min-width: 12px;
-  min-height: 14px;
-  margin-right: 12px;
 }
