@@ -64,8 +64,7 @@ in
       "SUPER + ALT_L + LEFT" = dispatchers.focus.workspace "-1";
       "SUPER + S" = dispatchers.workspace.toggle_magic;
       "SUPER + V" = dispatchers.window.fullscreen "maximized";
-      "SUPER + L" =
-        dispatchers.exec "for output in $(hyprctl monitors -j | jq -r '.[].name'); do grim -o \"$output\" \"/tmp/lock_bg_\${output}.png\"; done; qs -p ~/.config/quickshell/default/lock/Lock.qml; rm -f /tmp/lock_bg_*.png";
+      "SUPER + L" = dispatchers.exec "loginctl lock-session";
       "SUPER + F" = dispatchers.exec "zen-beta";
       "SUPER + SHIFT + S" = dispatchers.exec "grimblast copy area";
       "SUPER + T" = dispatchers.exec "wezterm";
@@ -75,7 +74,7 @@ in
       "SUPER + UP" = dispatchers.focus.direction "up";
       "SUPER + DOWN" = dispatchers.focus.direction "down";
       "SUPER + W" = dispatchers.window.float;
-      "SUPER + SUPER_L" = dispatchers.exec "qs ipc call launcher activate";
+      "SUPER + SUPER_L" = dispatchers.exec "qs ipc call shell launcherActivate";
       "SUPER + P" = dispatchers.exec "wleave";
       "SUPER + SHIFT + F" = dispatchers.window.fullscreen "fullscreen";
       "XF86AudioPlay" = dispatchers.exec "playerctl play-pause";

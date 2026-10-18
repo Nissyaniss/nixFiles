@@ -1,5 +1,18 @@
 {
   "pins": {
+    "home-manager": {
+      "type": "Git",
+      "repository": {
+        "type": "GitHub",
+        "owner": "nix-community",
+        "repo": "home-manager"
+      },
+      "branch": "master",
+      "submodules": false,
+      "revision": "640725978b99076e18e069f6e7d2959124584f8f",
+      "url": "https://github.com/nix-community/home-manager/archive/640725978b99076e18e069f6e7d2959124584f8f.tar.gz",
+      "hash": "sha256-u4DIIZgznEGzByxXrxWCXK19VcMtTBmi/M9gZ7Jk9bM="
+    },
     "lazyvim-nix": {
       "type": "GitRelease",
       "repository": {
@@ -25,9 +38,16 @@
       },
       "branch": "main",
       "submodules": false,
-      "revision": "36818fa6196623f1da8c2898499188f440587330",
-      "url": "https://github.com/4evy/nixcord/archive/36818fa6196623f1da8c2898499188f440587330.tar.gz",
-      "hash": "sha256-M/DxR1WYRVfwFI/skgURb5bGLc0J265T5wA+os0VpZI="
+      "revision": "f4f803048d4bb6bc296fc4bdbd8620ff63fe100f",
+      "url": "https://github.com/4evy/nixcord/archive/f4f803048d4bb6bc296fc4bdbd8620ff63fe100f.tar.gz",
+      "hash": "sha256-Nv32eZ+x7qr/yKofkemv1O2ImnXkUpFQgq71u6c6Wi8="
+    },
+    "nixpkgs": {
+      "type": "Channel",
+      "name": "nixos-unstable",
+      "artifact": "nixexprs.tar.xz",
+      "url": "https://releases.nixos.org/nixos/unstable/nixos-26.11pre1093333.fe13242281a6/nixexprs.tar.xz",
+      "hash": "sha256-LPFRbrCWWyNsdQLO3SX1B/5UMkFK0hfe7bZR6lENvpc="
     },
     "pear-desktop-nix": {
       "type": "GitRelease",
@@ -67,9 +87,9 @@
       },
       "branch": "main",
       "submodules": false,
-      "revision": "1fd1ee43a0fd0bff17a8ba07e2a281406a92991f",
-      "url": "https://github.com/0xc000022070/zen-browser-flake/archive/1fd1ee43a0fd0bff17a8ba07e2a281406a92991f.tar.gz",
-      "hash": "sha256-djG2tdpl/U+8eUmlozsRTRoU2yIvh8r1z8qj8gB/qWM="
+      "revision": "e1b9b3578ebb388b56012cd9ddd80e19681d2d39",
+      "url": "https://github.com/0xc000022070/zen-browser-flake/archive/e1b9b3578ebb388b56012cd9ddd80e19681d2d39.tar.gz",
+      "hash": "sha256-LYN8miMEew9CxgRrF/RCnAyOe6476dQM/JzELnFQef0="
     }
   },
   "version": 8

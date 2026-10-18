@@ -118,16 +118,18 @@ in
       configType = "lua";
       inherit (cfg) enable;
       settings = {
-        monitor = map (monitor: {
-          _args = [
-            {
-              output = monitor.output;
-              mode = monitor.mode;
-              position = monitor.position;
-              scale = monitor.scale;
-            }
-          ];
-        }) cfg.monitors;
+        monitor = map
+          (monitor: {
+            _args = [
+              {
+                output = monitor.output;
+                mode = monitor.mode;
+                position = monitor.position;
+                scale = monitor.scale;
+              }
+            ];
+          })
+          cfg.monitors;
         config = {
           inherit (cfg.config) general;
           inherit (cfg.config) decoration;
@@ -137,12 +139,14 @@ in
             inherit (cfg.config.input) numlock_by_default;
           };
         };
-        bind = lib.mapAttrsToList (keybind: dispatcher: {
-          _args = [
-            keybind
-            (lib.generators.mkLuaInline dispatcher)
-          ];
-        }) cfg.binds;
+        bind = lib.mapAttrsToList
+          (keybind: dispatcher: {
+            _args = [
+              keybind
+              (lib.generators.mkLuaInline dispatcher)
+            ];
+          })
+          cfg.binds;
 
         on = {
           _args = [
@@ -152,12 +156,14 @@ in
                 function()
               ''
               + lib.concatStringsSep "\n" (
-                lib.mapAttrsToList (
-                  name: value: "hl.env(${builtins.toJSON name}, ${builtins.toJSON value})"
-                ) cfg.env
+                lib.mapAttrsToList
+                  (
+                    name: value: "hl.env(${builtins.toJSON name}, ${builtins.toJSON value})"
+                  )
+                  cfg.env
               )
               + "\n"
-              + lib.concatMapStringsSep "\n" (program: "hl.exec_cmd(\"${program}\")") cfg.exec-once
+              + lib.concatMapStringsSep "\n" (program: "hl.exec_cmd(${builtins.toJSON program})") cfg.exec-once
               + "\nend"
             ))
           ];

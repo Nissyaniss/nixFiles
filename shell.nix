@@ -7,17 +7,11 @@ in
 
 pkgs.mkShellNoCC {
   packages = with pkgs; [
-    treefmt
-    deadnix
     statix
-    nixfmt
     kdePackages.qtdeclarative
     nixd
     shfmt
     prettier
+    nixpkgs-fmt
   ];
-
-  shellHook = ''
-    treefmt -q
-  '';
 }

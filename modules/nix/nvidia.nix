@@ -1,17 +1,12 @@
 { config, lib, ... }:
 let
-  cfg = config.nvidia;
+  cfg = config.local.nvidia;
 
   laptopType = lib.types.submodule {
     options = {
       enable = lib.mkOption {
         type = lib.types.bool;
         default = false;
-      };
-
-      kernel_params = lib.mkOption {
-        type = lib.types.listOf lib.types.str;
-        default = [ ];
       };
 
       intel_bus_id = lib.mkOption {
@@ -27,13 +22,8 @@ let
   };
 in
 {
-  options.nvidia = {
+  options.local.nvidia = {
     enable = lib.mkEnableOption "Enable Graphics";
-
-    stable = lib.mkOption {
-      type = lib.types.bool;
-      default = false;
-    };
 
     open = lib.mkOption {
       type = lib.types.bool;

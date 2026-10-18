@@ -1,8 +1,7 @@
-{
-  lib,
-  pkgs,
-  config,
-  ...
+{ lib
+, pkgs
+, config
+, ...
 }:
 let
   inherit (lib)
@@ -18,7 +17,7 @@ let
     unique
     mapAttrsToList
     ;
-  cfg = config.sublime-text;
+  cfg = config.local.sublime-text;
 
   defaultSublime = {
     home.packages = [ cfg.package ];
@@ -52,26 +51,37 @@ let
             );
           };
     }
-    // (concatMapAttrs (name: plugin: {
-      "${userConfigDirectory}/${name}.sublime-settings".source =
-        jsonFormat.generate "sublime-text-settings-${name}" plugin.settings;
-    }) (filterAttrs (_: plugin: plugin.settings != { }) cfg.plugins))
-    // (concatMapAttrs (
-      packageName: plugin:
-      concatMapAttrs (name: value: {
-        "${configDirectory}/${packageName}/${name}".source = value;
-      }) plugin.overrides
-    ) (filterAttrs (_: plugin: plugin.overrides != { }) cfg.plugins))
-    // (concatMapAttrs (name: build-system: {
-      "${userConfigDirectory}/${name}.sublime-build".source =
-        jsonFormat.generate "sublime-text-build-${name}" build-system;
-    }) cfg.build-systems)
-    // (concatMapAttrs (name: syntax: {
-      "${userConfigDirectory}/${name}.sublime-syntax".source = syntax;
-    }) cfg.syntaxes)
-    // (concatMapAttrs (name: snippet: {
-      "${userConfigDirectory}/${name}.sublime-snippet".text =
-        "
+    // (concatMapAttrs
+      (name: plugin: {
+        "${userConfigDirectory}/${name}.sublime-settings".source =
+          jsonFormat.generate "sublime-text-settings-${name}" plugin.settings;
+      })
+      (filterAttrs (_: plugin: plugin.settings != { }) cfg.plugins))
+    // (concatMapAttrs
+      (
+        packageName: plugin:
+          concatMapAttrs
+            (name: value: {
+              "${configDirectory}/${packageName}/${name}".source = value;
+            })
+            plugin.overrides
+      )
+      (filterAttrs (_: plugin: plugin.overrides != { }) cfg.plugins))
+    // (concatMapAttrs
+      (name: build-system: {
+        "${userConfigDirectory}/${name}.sublime-build".source =
+          jsonFormat.generate "sublime-text-build-${name}" build-system;
+      })
+      cfg.build-systems)
+    // (concatMapAttrs
+      (name: syntax: {
+        "${userConfigDirectory}/${name}.sublime-syntax".source = syntax;
+      })
+      cfg.syntaxes)
+    // (concatMapAttrs
+      (name: snippet: {
+        "${userConfigDirectory}/${name}.sublime-snippet".text =
+          "
           <snippet>
             <content><![CDATA[${snippet.content}]]></content>
             <tabTrigger>${snippet.tabTrigger}</tabTrigger>
@@ -79,7 +89,8 @@ let
             <description>${snippet.description}</description>
           </snippet>
         ";
-    }) cfg.snippets);
+      })
+      cfg.snippets);
   };
 
   configDirectory = "sublime-text/Packages";
@@ -158,7 +169,7 @@ let
   });
 in
 {
-  options.sublime-text = {
+  options.local.sublime-text = {
     enable = mkEnableOption "Sublime Text 4";
     package = mkPackageOption pkgs "sublime4" { };
 

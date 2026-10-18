@@ -1,5 +1,5 @@
 _: {
-  nvidia = {
+  local.nvidia = {
     enable = true;
   };
 }

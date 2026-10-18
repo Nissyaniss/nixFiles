@@ -1,0 +1,25 @@
+import QtQuick
+import Quickshell.Io
+import "../../components"
+import "../../../common/arrows"
+import "../../../common"
+
+EndLeftHexagone {
+    Process {
+        id: wleave
+        command: ["wleave"]
+    }
+
+    BarText {
+        id: name
+        text: "⏻"
+        color: "white"
+        leftPadding: -5
+        rightPadding: 5
+    }
+    MouseArea {
+        anchors.fill: parent
+        cursorShape: Qt.PointingHandCursor
+        onClicked: wleave.running = true
+    }
+}

@@ -1,4 +1,4 @@
-{ config, lib, ... }:
+{ config, lib, hostName, ... }:
 let
   cfg = config.local.zsh;
 
@@ -13,9 +13,7 @@ let
         type = lib.types.listOf lib.types.str;
         default = [
           "sublime"
-          "zoxide"
           "colored-man-pages"
-          "command-not-found"
           "rust"
         ];
       };
@@ -45,7 +43,7 @@ in
       type = lib.types.attrs;
       default = {
         nix-config = "direnv exec ~/.nixFiles/ subl ~/.nixFiles";
-        update = "(cd ~/.nixFiles && npins update) && nh os switch --update ~/.nixFiles";
+        update = "(cd ~/.nixFiles && npins update) && nh os switch -f ~/.nixFiles/system.nix ${hostName}";
       };
     };
 
@@ -78,11 +76,6 @@ in
       default = true;
     };
 
-    zoxide.enable = lib.mkOption {
-      type = lib.types.bool;
-      default = true;
-    };
-
     carapace.enable = lib.mkOption {
       type = lib.types.bool;
       default = true;
@@ -94,7 +87,7 @@ in
       inherit (cfg) enable;
 
       autosuggestion.enable = cfg.autosuggestion.enable;
-      syntaxHighlighting.enable = cfg.autosuggestion.enable;
+      syntaxHighlighting.enable = cfg.syntaxHighlighting.enable;
 
       inherit (cfg) oh-my-zsh;
 
@@ -138,7 +131,7 @@ in
     programs.ripgrep.enable = cfg.ripgrep.enable;
 
     programs.zoxide = {
-      enable = cfg.zoxide.enable;
+      enable = true;
       enableZshIntegration = true;
       options = [ "--cmd cd" ];
     };

@@ -1,11 +1,10 @@
-{
-  config,
-  lib,
-  pkgs,
-  ...
+{ config
+, lib
+, pkgs
+, ...
 }:
 let
-  cfg = config.sddm;
+  cfg = config.local.sddm;
 
   setupScript = lib.types.submodule {
     options = {
@@ -36,7 +35,7 @@ let
   };
 in
 {
-  options.sddm = {
+  options.local.sddm = {
     enable = lib.mkEnableOption "Enable SDDM";
 
     theme = lib.mkOption {
@@ -67,21 +66,23 @@ in
         };
       };
     };
-    services.xserver.displayManager.setupCommands = lib.concatMapStrings (
-      item:
-      if item.deactivate == true then
-        ''
-          ${pkgs.xrandr}/bin/xrandr --output ${item.monitor} --off
-        ''
-      else if item.primary == true then
-        ''
-          ${pkgs.xrandr}/bin/xrandr --output ${item.monitor} --primary --mode ${item.resolution} --rate ${toString item.refreshRate} --rotate normal
-        ''
-      else
-        ''
-          ${pkgs.xrandr}/bin/xrandr --output ${item.monitor} --mode ${item.resolution} --rate ${toString item.refreshRate} --rotate normal
-        ''
-    ) cfg.setupScript;
+    services.xserver.displayManager.setupCommands = lib.concatMapStrings
+      (
+        item:
+        if item.deactivate == true then
+          ''
+            ${pkgs.xrandr}/bin/xrandr --output ${item.monitor} --off
+          ''
+        else if item.primary == true then
+          ''
+            ${pkgs.xrandr}/bin/xrandr --output ${item.monitor} --primary --mode ${item.resolution} --rate ${toString item.refreshRate} --rotate normal
+          ''
+        else
+          ''
+            ${pkgs.xrandr}/bin/xrandr --output ${item.monitor} --mode ${item.resolution} --rate ${toString item.refreshRate} --rotate normal
+          ''
+      )
+      cfg.setupScript;
     systemd.services.display-manager.environment = {
       QT_IM_MODULE = lib.mkForce "none";
       QT_VIRTUALKEYBOARD_DESKTOP_DISABLE = lib.mkForce "1";

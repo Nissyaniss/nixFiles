@@ -2,7 +2,8 @@
 {
   imports = [
     ./hardware.nix
-    ../common
+    ../common/core/nix
+    ../common/desktop/nix
     ./config/nix
     ../../modules/nix
   ];
@@ -18,11 +19,8 @@
     imports = [
       ../../modules/home-manager
       ./config/home-manager
-      ../common/home-manager
+      ../common/core/home-manager
+      ../common/desktop/home-manager
     ];
-
-    local.zsh = {
-      enable = true;
-    };
   };
 }

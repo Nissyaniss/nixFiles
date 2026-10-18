@@ -1,26 +1,15 @@
 {
-  nixpkgs.config.allowUnfree = true;
-
-  nix.settings.experimental-features = [
-    "nix-command"
-    "flakes"
-  ];
-
   nix.settings = {
     substituters = [
-      "https://hyprland.cachix.org"
-      "https://kopuz.cachix.org"
+      "https://cache.nixos-cuda.org"
     ];
-    trusted-substituters = [ "https://hyprland.cachix.org" ];
     trusted-public-keys = [
-      "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
-      "kopuz.cachix.org-1:J2X3AnAYhKTJW5S3aCLoA1ckonQXVNZMQvhZA0YAufw="
+      "cache.nixos-cuda.org:74DUi4Ye579gUqzH4ziL9IyiJBlDpMRn9MBN8oNan9M="
     ];
   };
 
   nix.settings.trusted-users = [
     "root"
-    "nissya"
   ];
 
   # Before changing this value read the documentation for this option

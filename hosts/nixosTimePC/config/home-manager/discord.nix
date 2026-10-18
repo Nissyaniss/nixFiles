@@ -1,12 +1,11 @@
-{
-  inputs,
-  system,
-  ...
+{ sources
+, system
+, ...
 }:
 let
-  nixcord = import (import ../../../../npins).nixcord {
-    nixpkgs = inputs.nixpkgs;
-    system = system;
+  nixcord = import sources.nixcord {
+    nixpkgs = sources.nixpkgs;
+    inherit system;
   };
 in
 {

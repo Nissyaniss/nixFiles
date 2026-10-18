@@ -1,0 +1,5 @@
+{ ... }: {
+  local.zsh = {
+    enable = true;
+  };
+}

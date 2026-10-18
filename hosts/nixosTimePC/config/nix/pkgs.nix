@@ -19,5 +19,6 @@
     dolphin-emu
     yt-dlp
     ffmpeg
+    opencode
   ];
 }

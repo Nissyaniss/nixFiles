@@ -1,9 +1,9 @@
-{
-  lib,
-  ...
+{ lib
+, sources
+, ...
 }:
 let
-  pear-desktop-nix = (import ../../../../npins).pear-desktop-nix;
+  pear-desktop-nix = sources.pear-desktop-nix;
 in
 {
   imports = [

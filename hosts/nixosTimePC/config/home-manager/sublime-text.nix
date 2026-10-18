@@ -1,13 +1,8 @@
-{
-  pkgs,
-  ...
+{ pkgs
+, ...
 }:
 {
-  imports = [
-    ../../../../modules/home-manager/sublime-text.nix
-  ];
-
-  sublime-text = {
+  local.sublime-text = {
     enable = true;
     font = "FiraCode Nerd Font Mono";
     icon-theme = "A File Icon.sublime-file-icons";
@@ -26,11 +21,9 @@
       LSP = {
         settings = {
           lsp_code_actions_on_save = {
-            source = {
-              addMissingImports = true;
-              fixAll = true;
-              organizeImports = true;
-            };
+            "source.addMissingImports" = true;
+            "source.fixAll" = true;
+            "source.organizeImports" = true;
           };
           lsp_format_on_save = true;
           show_inlay_hints = true;
@@ -50,7 +43,7 @@
               enabled = true;
               command = [ "${pkgs.phpantom-lsp}/bin/phpantom_lsp" ];
               selector = "source.php";
-              settings.phpantom.formatting.command = [ "${pkgs.mago}/bin/mago format" ];
+              settings.phpantom.formatting.command = [ "${pkgs.mago}/bin/mago" "format" ];
             };
           };
         };

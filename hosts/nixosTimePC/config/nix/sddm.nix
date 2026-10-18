@@ -1,10 +1,6 @@
 { ... }:
 {
-  imports = [
-    ../../../../modules/nix/sddm.nix
-  ];
-
-  sddm = {
+  local.sddm = {
     enable = true;
 
     setupScript = [
@@ -20,4 +16,6 @@
       }
     ];
   };
+
+  services.displayManager.defaultSession = "hyprland";
 }
