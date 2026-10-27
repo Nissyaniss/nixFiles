@@ -30,7 +30,7 @@ in
 
     exec-once = [
       "blueman-applet"
-      "vesktop"
+      "vesktop --start-minimized"
       "hyprctl setcursor breeze_cursors 24"
       "wleave --service"
       "element-desktop --hidden"
