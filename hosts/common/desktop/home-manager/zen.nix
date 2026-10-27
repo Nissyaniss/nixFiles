@@ -56,7 +56,8 @@ in
         Add = [
           {
             Name = "StartPage";
-            URLTemplate = "https://www.startpage.com/sp/search?q={searchTerms}";
+            URLTemplate = "https://search.shittydomain.company/search?q={searchTerms}&category_general=1&language=auto&time_range=&safesearch=0&theme=simple";
+
           }
           {
             Name = "Nix Packages";
@@ -78,6 +79,7 @@ in
         "{c84d89d9-a826-4015-957b-affebd9eb603}" = "mal-sync";
         "{762f9885-5a13-4abd-9c77-433dcd38b8fd}" = "return-youtube-dislikes";
         "{a4c4eda4-fb84-4a84-b4a1-f7c1cbf2a1ad}" = "refined-github-";
+        "ai-channel-blocker@aiblock.extension" = "ai-channel-blocker-for-youtube";
       };
     };
     profiles = {
