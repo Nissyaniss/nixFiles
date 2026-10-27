@@ -8,5 +8,6 @@
     ./stylix.nix
     ./programs.nix
     ./user.nix
+    ./keyring.nix
   ];
 }

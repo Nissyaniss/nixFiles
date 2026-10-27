@@ -33,6 +33,7 @@ in
       "vesktop"
       "hyprctl setcursor breeze_cursors 24"
       "wleave --service"
+      "element-desktop --hidden"
     ];
 
     env = {

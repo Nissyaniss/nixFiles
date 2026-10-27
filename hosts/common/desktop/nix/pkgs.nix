@@ -30,5 +30,7 @@
     wl-clipboard
     telegram-desktop
     bitwarden-desktop
+    gcr_4
+    element-desktop
   ];
 }
