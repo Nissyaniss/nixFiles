@@ -90,12 +90,44 @@ let
           </snippet>
         ";
       })
-      cfg.snippets);
+      cfg.snippets)
+    // (concatMapAttrs
+      (name: value: {
+        "${userConfigDirectory}/${name}.sublime-syntax".source = pkgs.fetchurl {
+          url = value.sourceSyntax;
+          hash = value.hashSyntax;
+        };
+        "${userConfigDirectory}/${name}.tmPreferences".source = pkgs.fetchurl {
+          url = value.sourcePref;
+          hash = value.hashPref;
+        };
+      })
+      cfg.customSyntax);
   };
 
   configDirectory = "sublime-text/Packages";
   userConfigDirectory = "${configDirectory}/User";
   jsonFormat = pkgs.formats.json { };
+
+  customSyntaxOptions = types.submodule {
+    options = {
+      name = lib.mkOption {
+        type = types.str;
+      };
+      sourceSyntax = mkOption {
+        type = types.str;
+      };
+      hashSyntax = lib.mkOption {
+        type = types.str;
+      };
+      sourcePref = mkOption {
+        type = types.str;
+      };
+      hashPref = mkOption {
+        type = types.str;
+      };
+    };
+  };
 
   pluginOptions = types.submodule (_: {
     options = {
@@ -252,6 +284,9 @@ in
       description = ''
         A list of snippets
       '';
+    };
+    customSyntax = lib.mkOption {
+      type = types.attrsOf customSyntaxOptions;
     };
   };
 
