@@ -59,10 +59,10 @@ in
     binds = {
       "SUPER + mouse:272" = dispatchers.window.drag;
       "SUPER + mouse:273" = dispatchers.window.resize;
-      "SUPER + ALT_L + UP" = dispatchers.window.move.workspace "+1";
-      "SUPER + ALT_L + DOWN" = dispatchers.window.move.workspace "-1";
-      "SUPER + ALT_L + RIGHT" = dispatchers.focus.workspace "+1";
-      "SUPER + ALT_L + LEFT" = dispatchers.focus.workspace "-1";
+      "SUPER + ALT + UP" = dispatchers.window.move.workspace "+1";
+      "SUPER + ALT + DOWN" = dispatchers.window.move.workspace "-1";
+      "SUPER + ALT + RIGHT" = dispatchers.focus.workspace "+1";
+      "SUPER + ALT + LEFT" = dispatchers.focus.workspace "-1";
       "SUPER + S" = dispatchers.workspace.toggle_magic;
       "SUPER + V" = dispatchers.window.fullscreen "maximized";
       "SUPER + L" = dispatchers.exec "loginctl lock-session";
