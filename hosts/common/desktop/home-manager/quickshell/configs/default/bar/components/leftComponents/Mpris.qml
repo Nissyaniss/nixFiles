@@ -30,7 +30,13 @@ RightArrow {
 
         onExited: mpris.isHoveringMpris = false
 
-        onClicked: mpris.player.togglePlaying()
+        onClicked: mouse => {
+            if (mouse.button == Qt.LeftButton) {
+                mpris.player.togglePlaying();
+            } else {
+                mpris.popupRequested("mpris");
+            }
+        }
     }
 
     Item {
