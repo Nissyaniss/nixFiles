@@ -45,6 +45,11 @@
               selector = "source.php";
               settings.phpantom.formatting.command = [ "${pkgs.mago}/bin/mago" "format" ];
             };
+            slint = {
+              enabled = true;
+              command = [ "${pkgs.slint-lsp}/bin/slint-lsp" ];
+              selector = "source.slint";
+            };
           };
         };
       };
@@ -203,6 +208,15 @@
         '';
         tabTrigger = "shell";
         scope = "source.nix";
+      };
+    };
+
+    customSyntax = {
+      Slint = {
+        sourceSyntax = "https://raw.githubusercontent.com/slint-ui/slint/master/editors/sublime/Slint.sublime-syntax";
+        hashSyntax = "sha256-PpyhBpNYwdv1pop8SGo1w7RvMyHvUmzHTxL5TawTPbQ=";
+        sourcePref = "https://raw.githubusercontent.com/slint-ui/slint/master/editors/sublime/Slint.tmPreferences";
+        hashPref = "sha256-1KaNobUGJJ/TDFfnEGbeGV1KObun6evlgwrzthDW9x0=";
       };
     };
     settings = {
