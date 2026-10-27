@@ -9,9 +9,9 @@
       },
       "branch": "master",
       "submodules": false,
-      "revision": "640725978b99076e18e069f6e7d2959124584f8f",
-      "url": "https://github.com/nix-community/home-manager/archive/640725978b99076e18e069f6e7d2959124584f8f.tar.gz",
-      "hash": "sha256-u4DIIZgznEGzByxXrxWCXK19VcMtTBmi/M9gZ7Jk9bM="
+      "revision": "7db163b2aee7e410e396b48aed02f646d742b9b8",
+      "url": "https://github.com/nix-community/home-manager/archive/7db163b2aee7e410e396b48aed02f646d742b9b8.tar.gz",
+      "hash": "sha256-fXVURa0+CSCgaxLt8tmPNJq2U+fGYOwbk5j2YUe7kSc="
     },
     "lazyvim-nix": {
       "type": "GitRelease",
@@ -38,16 +38,16 @@
       },
       "branch": "main",
       "submodules": false,
-      "revision": "f4f803048d4bb6bc296fc4bdbd8620ff63fe100f",
-      "url": "https://github.com/4evy/nixcord/archive/f4f803048d4bb6bc296fc4bdbd8620ff63fe100f.tar.gz",
-      "hash": "sha256-Nv32eZ+x7qr/yKofkemv1O2ImnXkUpFQgq71u6c6Wi8="
+      "revision": "a9f0632f7731461516eef1df10537936c8527ffa",
+      "url": "https://github.com/4evy/nixcord/archive/a9f0632f7731461516eef1df10537936c8527ffa.tar.gz",
+      "hash": "sha256-UuxjX2E0V6LFmlD9z8nizrINWs+ytmT3ak0GplVFB7Y="
     },
     "nixpkgs": {
       "type": "Channel",
       "name": "nixos-unstable",
       "artifact": "nixexprs.tar.xz",
-      "url": "https://releases.nixos.org/nixos/unstable/nixos-26.11pre1093333.fe13242281a6/nixexprs.tar.xz",
-      "hash": "sha256-LPFRbrCWWyNsdQLO3SX1B/5UMkFK0hfe7bZR6lENvpc="
+      "url": "https://releases.nixos.org/nixos/unstable/nixos-26.11pre1100280.3ec636362e18/nixexprs.tar.xz",
+      "hash": "sha256-17eNBI5Khe4JZaRkL5hRGPWf8MZ6qv+bWAr4V8YeKBw="
     },
     "pear-desktop-nix": {
       "type": "GitRelease",
@@ -74,9 +74,9 @@
       },
       "branch": "master",
       "submodules": false,
-      "revision": "2856c4c6a845b9bec98828ef197abe176e4806bb",
-      "url": "https://github.com/nix-community/stylix/archive/2856c4c6a845b9bec98828ef197abe176e4806bb.tar.gz",
-      "hash": "sha256-UMnLnZ3JlA7UTBNNNx1rNsXYoPP/cirXLCKGiQ/yDx8="
+      "revision": "3e27b6c499e507df6e3bb8eca3614f5c95e28140",
+      "url": "https://github.com/nix-community/stylix/archive/3e27b6c499e507df6e3bb8eca3614f5c95e28140.tar.gz",
+      "hash": "sha256-2pkE97wOXAYIn2/Nhs9y+iR0qVT+g/3UtukXdkywxXc="
     },
     "zen-browser-flake": {
       "type": "Git",
@@ -87,9 +87,9 @@
       },
       "branch": "main",
       "submodules": false,
-      "revision": "e1b9b3578ebb388b56012cd9ddd80e19681d2d39",
-      "url": "https://github.com/0xc000022070/zen-browser-flake/archive/e1b9b3578ebb388b56012cd9ddd80e19681d2d39.tar.gz",
-      "hash": "sha256-LYN8miMEew9CxgRrF/RCnAyOe6476dQM/JzELnFQef0="
+      "revision": "ed68d814d6cf2e221ba43d84f1e32429f5e2786f",
+      "url": "https://github.com/0xc000022070/zen-browser-flake/archive/ed68d814d6cf2e221ba43d84f1e32429f5e2786f.tar.gz",
+      "hash": "sha256-ThRNX0+T2Gb3ZD0Xf+/R3wJdL93/mW80ubMnLjZelTY="
     }
   },
   "version": 8
