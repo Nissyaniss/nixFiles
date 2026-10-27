@@ -1,4 +1,3 @@
-import "../../../components"
 import "../../../../common"
 import QtQuick
 import Quickshell.Services.Mpris
@@ -16,6 +15,6 @@ BarText {
     MouseArea {
         cursorShape: Qt.PointingHandCursor
         anchors.fill: parent
-        onClicked: mprisPlayer.next()
+        onClicked: parent.mprisPlayer.next()
     }
 }
