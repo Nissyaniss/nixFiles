@@ -78,6 +78,11 @@ in
       default = [ ];
     };
 
+    plugins = lib.mkOption {
+      type = with lib.types; listOf (either package path);
+      default = [ ];
+    };
+
     config = lib.mkOption {
       type = lib.types.submodule {
         options = {
@@ -117,6 +122,7 @@ in
     wayland.windowManager.hyprland = {
       configType = "lua";
       inherit (cfg) enable;
+      inherit (cfg) plugins;
       settings = {
         monitor = map
           (monitor: {
