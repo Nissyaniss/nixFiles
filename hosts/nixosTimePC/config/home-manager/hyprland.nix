@@ -47,6 +47,8 @@ in
       XDG_SESSION_TYPE = "wayland";
       __GLX_VENDOR_LIBRARY_NAME = "nvidia";
       WLR_NO_HARDWARE_CURSORS = "1";
+      EDITOR = "sublime-text";
+      TERM = "wezterm";
     };
 
     monitors = [
