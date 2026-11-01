@@ -8,5 +8,6 @@
     ./pkgs.nix
     ./programs.nix
     ./user.nix
+    ./networking.nix
   ];
 }
