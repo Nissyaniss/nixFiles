@@ -33,7 +33,14 @@ in
       "vesktop --start-minimized"
       "hyprctl setcursor breeze_cursors 24"
       "wleave --service"
-      "element-desktop --hidden"
+      ''
+        until busctl --user status org.kde.StatusNotifierWatcher; do
+          sleep 0.2
+        done
+        vesktop --start-minimized &
+        blueman-applet &
+        element-desktop --hidden &
+      ''
     ];
 
     env = {
