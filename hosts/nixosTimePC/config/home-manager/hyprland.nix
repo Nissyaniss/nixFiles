@@ -29,8 +29,6 @@ in
     };
 
     exec-once = [
-      "blueman-applet"
-      "vesktop --start-minimized"
       "hyprctl setcursor breeze_cursors 24"
       "wleave --service"
       ''
