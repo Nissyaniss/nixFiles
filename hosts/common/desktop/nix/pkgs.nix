@@ -32,5 +32,6 @@
     bitwarden-desktop
     gcr_4
     element-desktop
+    tutanota-desktop
   ];
 }

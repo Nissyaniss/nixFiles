@@ -25,4 +25,18 @@
         "application/json" = "sublime_text.desktop";
       };
     };
+
+    desktopEntries.tutanota-desktop = {
+      # desktop entry is broken
+      name = "Tuta";
+      genericName = "Mail Client";
+      type = "Application";
+      exec = "tutanota-desktop %U";
+      icon = "tutanota-desktop";
+      terminal = false;
+      categories = [ "Network" ];
+      mimeType = [ "x-scheme-handler/mailto" ];
+      comment = "The desktop client for Tuta, the secure e-mail, calendar and drive service.";
+    };
+  };
 }
