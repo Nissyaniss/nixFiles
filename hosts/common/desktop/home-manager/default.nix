@@ -9,5 +9,6 @@
     ./programs.nix
     ./user.nix
     ./keyring.nix
+    ./xdg.nix
   ];
 }
