@@ -4,5 +4,6 @@
     ./sublime-text.nix
     ./lazyvim.nix
     ./hyprland.nix
+    ./thunar.nix
   ];
 }

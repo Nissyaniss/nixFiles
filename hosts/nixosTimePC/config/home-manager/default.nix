@@ -5,5 +5,6 @@
     ./sublime-text.nix
     ./pear-desktop.nix
     ./discord.nix
+    ./thunar.nix
   ];
 }
