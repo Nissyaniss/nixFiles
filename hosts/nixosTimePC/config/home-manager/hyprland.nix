@@ -75,7 +75,10 @@ in
       "SUPER + UP" = dispatchers.focus.direction "up";
       "SUPER + DOWN" = dispatchers.focus.direction "down";
       "SUPER + W" = dispatchers.window.float;
-      "SUPER + SUPER_L" = dispatchers.exec "qs ipc call shell launcherActivate";
+      "SUPER + SUPER_L" = {
+        dispatcher = dispatchers.exec "qs ipc call shell launcherActivate";
+        flags = { release = true; };
+      };
       "SUPER + P" = dispatchers.exec "wleave";
       "SUPER + SHIFT + F" = dispatchers.window.fullscreen "fullscreen";
       "XF86AudioPlay" = dispatchers.exec "playerctl play-pause";

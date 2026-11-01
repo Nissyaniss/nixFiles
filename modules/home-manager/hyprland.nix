@@ -69,6 +69,20 @@ let
       };
     };
   };
+
+  bindsType = lib.types.submodule {
+    options = {
+      dispatcher = lib.mkOption {
+        type = lib.types.str;
+      };
+
+      flags = lib.mkOption {
+        type = lib.types.attrsOf lib.types.anything;
+        default = { };
+      };
+    };
+  };
+
 in
 {
   options.local.hyprland = {
@@ -103,7 +117,7 @@ in
       default = { };
     };
     binds = lib.mkOption {
-      type = lib.types.attrsOf lib.types.str;
+      type = lib.types.attrsOf (lib.types.either lib.types.str bindsType);
       default = { };
     };
 
@@ -146,12 +160,16 @@ in
           };
         };
         bind = lib.mapAttrsToList
-          (keybind: dispatcher: {
-            _args = [
-              keybind
-              (lib.generators.mkLuaInline dispatcher)
-            ];
-          })
+          (keybind: value:
+            let
+              args = if builtins.isString value then { dispatcher = value; flags = { }; } else value;
+            in
+            {
+              _args = [
+                keybind
+                (lib.generators.mkLuaInline args.dispatcher)
+              ] ++ lib.optional (args.flags != { }) args.flags;
+            })
           cfg.binds;
 
         on = {
