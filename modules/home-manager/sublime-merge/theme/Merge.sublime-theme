@@ -397,6 +397,12 @@
             "layer0.opacity": 0.5
         },
         {
+            "class": "commit_dialog_section_container",
+            "parents": [{"class": "details_panel"}],
+            "layer0.tint": "var(detail_panel_bg)",
+            "layer0.opacity": 1.0,
+        },
+        {
             "class": "tab_close_button",
             "parents": [{"class": "tab_control", "attributes": ["hover"]}],
             "layer0.opacity": 0.5
