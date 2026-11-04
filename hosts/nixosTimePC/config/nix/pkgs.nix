@@ -5,7 +5,6 @@
     gamescope
     mangohud
     protonplus
-    balatro-mod-manager
     transmission_4-gtk
     llvmPackages_21.llvm
     llvmPackages_21.clang
@@ -19,6 +18,5 @@
     dolphin-emu
     yt-dlp
     ffmpeg
-    opencode
   ];
 }
