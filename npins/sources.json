@@ -9,9 +9,9 @@
       },
       "branch": "master",
       "submodules": false,
-      "revision": "095fef2f265c3c0da4fe315efba8f8a04495ab34",
-      "url": "https://github.com/nix-community/home-manager/archive/095fef2f265c3c0da4fe315efba8f8a04495ab34.tar.gz",
-      "hash": "sha256-X6xa6sGA7RnJQuZGbFMC+K+KToWAlBDCCjJXfTwEPsw="
+      "revision": "b787c48e2ec57a9d098f5c2721882a3bc1e16f97",
+      "url": "https://github.com/nix-community/home-manager/archive/b787c48e2ec57a9d098f5c2721882a3bc1e16f97.tar.gz",
+      "hash": "sha256-gyV7AtCwLnOImcrfSETP4J3Ie96bz19DY47B7m7Y3HM="
     },
     "lazyvim-nix": {
       "type": "GitRelease",
@@ -38,16 +38,16 @@
       },
       "branch": "main",
       "submodules": false,
-      "revision": "3cc16a5520810b84b3ebb21416402d3a0620ad34",
-      "url": "https://github.com/4evy/nixcord/archive/3cc16a5520810b84b3ebb21416402d3a0620ad34.tar.gz",
-      "hash": "sha256-46kvwxjNCgMM6NQaPI9qDR4XTiZ2AJqosg2dWs5nEDU="
+      "revision": "f28b0ff1bf049aba6aec995fce8498bc221a706c",
+      "url": "https://github.com/4evy/nixcord/archive/f28b0ff1bf049aba6aec995fce8498bc221a706c.tar.gz",
+      "hash": "sha256-L0Tirbo2/A+dE7w7GyMRvAKNs6Ja+hux0c3ySE/LVE8="
     },
     "nixpkgs": {
       "type": "Channel",
       "name": "nixos-unstable",
       "artifact": "nixexprs.tar.xz",
-      "url": "https://releases.nixos.org/nixos/unstable/nixos-26.11pre1105037.1c89083e451e/nixexprs.tar.xz",
-      "hash": "sha256-LOv16TsMYV2/8BUYnhSxHkOASe7es2ORbqMeLlZJ8Hc="
+      "url": "https://releases.nixos.org/nixos/unstable/nixos-26.11pre1107793.1d060086d60c/nixexprs.tar.xz",
+      "hash": "sha256-iNjybNORi/2+shilhMlkNr01UHWKOHRGzQyIyvobs9o="
     },
     "pear-desktop-nix": {
       "type": "GitRelease",
@@ -87,9 +87,9 @@
       },
       "branch": "main",
       "submodules": false,
-      "revision": "536b03dea1ab7460afd44565e81f0a72c371c70f",
-      "url": "https://github.com/0xc000022070/zen-browser-flake/archive/536b03dea1ab7460afd44565e81f0a72c371c70f.tar.gz",
-      "hash": "sha256-1MkvkLk4WEJkPrKvCZa3wapvXmdmNAgjh7Ap97GUqVQ="
+      "revision": "3c9750e20fd25605fbd2f7a71253997cc45838c5",
+      "url": "https://github.com/0xc000022070/zen-browser-flake/archive/3c9750e20fd25605fbd2f7a71253997cc45838c5.tar.gz",
+      "hash": "sha256-5c93tSlnE1VVunrw3/Q75EayZLkMQmoUcNZv/1fXWKU="
     }
   },
   "version": 8
