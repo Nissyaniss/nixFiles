@@ -290,5 +290,12 @@ in
     };
   };
 
-  config = lib.mkIf cfg.enable defaultSublime;
+  config = lib.mkIf cfg.enable (defaultSublime // {
+    # because otherwise it breaks sublime_merge_path
+    home.activation = {
+      removeSublimeCache = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
+        run rm "${config.xdg.cacheHome}/sublime-text/Cache/Default/Startup.cache"
+      '';
+    };
+  });
 }
